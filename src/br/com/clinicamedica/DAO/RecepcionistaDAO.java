@@ -1,4 +1,7 @@
 package br.com.clinicamedica.DAO;
 
-public class RecepcionistaDAO {
+import br.com.clinicamedica.Contract.IDAO;
+import br.com.clinicamedica.Model.Recepcionista;
+
+public class RecepcionistaDAO implements IDAO<Recepcionista> {
 }

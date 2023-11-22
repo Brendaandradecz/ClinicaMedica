@@ -1,4 +1,7 @@
 package br.com.clinicamedica.DAO;
 
-public class ConsultaDAO {
+import br.com.clinicamedica.Contract.IDAO;
+import br.com.clinicamedica.Model.Consulta;
+
+public class ConsultaDAO implements IDAO<Consulta> {
 }
