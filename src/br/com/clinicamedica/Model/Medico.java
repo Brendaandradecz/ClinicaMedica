@@ -1,4 +1,4 @@
 package br.com.clinicamedica.Model;
 
-public class Medico {
+public abstract class Medico {
 }
