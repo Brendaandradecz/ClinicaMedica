@@ -1,4 +1,10 @@
 package br.com.clinicamedica.Contract;
 
-public interface IController {
+import java.util.ArrayList;
+
+public interface IController<T>{
+    boolean adicionar(T objeto);
+    T buscarPorID(int id);
+    ArrayList<T> listarTodos();
+    boolean remover(T objeto);
 }
