@@ -9,6 +9,11 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
     private ArrayList<Cirurgia> cirurgiaDao = new ArrayList<>();
 
     @Override
+    public ArrayList<Cirurgia> getArray() {
+        return cirurgiaDao;
+    }
+
+    @Override
     public boolean adicionar(Cirurgia elemento) {
         if(!cirurgiaDao.contains(elemento)){
             cirurgiaDao.add(elemento);

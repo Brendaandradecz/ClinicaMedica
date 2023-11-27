@@ -35,4 +35,9 @@ public class ColetaDeAmostrasDAO implements IDAO<ColetaDeAmostras> {
         }
         return false;
     }
+
+    @Override
+    public ArrayList<ColetaDeAmostras> getArray() {
+        return coletaDeAmostrasDao;
+    }
 }

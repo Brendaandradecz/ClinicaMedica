@@ -33,6 +33,11 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
     }
 
     @Override
+    public ArrayList<Enfermagem> getArray() {
+        return enfermagemDao;
+    }
+
+    @Override
     public boolean remover(Enfermagem elemento) {
         if (!enfermagemDao.contains(elemento)) {
             enfermagemDao.remove(elemento);

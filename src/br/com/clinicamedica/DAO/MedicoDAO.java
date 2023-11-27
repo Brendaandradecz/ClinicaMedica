@@ -40,6 +40,11 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     }
 
     @Override
+    public ArrayList<Medico> getArray() {
+        return medicoDao;
+    }
+
+    @Override
     public boolean fazerConsulta(Consulta consulta) {
         System.out.println("Consulta realizada");
         return true;

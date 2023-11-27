@@ -13,10 +13,15 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     private ArrayList<Recepcionista> recepcionistaDao = new ArrayList<>();
 
     @Override
+    public ArrayList<Recepcionista> getArray() {
+        return recepcionistaDao;
+    }
+
+    @Override
     public boolean adicionar(Recepcionista elemento) {
         if (recepcionistaDao.contains(elemento)) {
             recepcionistaDao.add(elemento);
-            return true
+            return true;
         } else {
             return false;
         }

@@ -9,6 +9,11 @@ public class ConsultaDAO implements IDAO<Consulta> {
     private ArrayList<Consulta> consultaDao = new ArrayList<>();
 
     @Override
+    public ArrayList<Consulta> getArray() {
+        return consultaDao;
+    }
+
+    @Override
     public boolean adicionar(Consulta elemento) {
         if(!consultaDao.contains(elemento)){
             consultaDao.add(elemento);

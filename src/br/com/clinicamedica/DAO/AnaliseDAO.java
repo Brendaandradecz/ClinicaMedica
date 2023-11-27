@@ -8,16 +8,15 @@ import java.util.ArrayList;
 public class AnaliseDAO implements IDAO<Analise> {
     private ArrayList<Analise> analiseDao = new ArrayList<>();
 
-    @Override
-    public boolean adicionar(Analise elemento) {
-        if (!analiseDao.contains(elemento)) {
-            analiseDao.add(elemento);
-            return true;
-        } else {
-            return false;
-        }
+    public ArrayList<Analise> getArray() {
+        return analiseDao;
     }
 
+    @Override
+    public boolean adicionar(Analise elemento) {
+        analiseDao.add(elemento);
+        return true;
+    }
     @Override
     public Analise buscar(String busca) {
         return null;
@@ -25,14 +24,9 @@ public class AnaliseDAO implements IDAO<Analise> {
 
     @Override
     public boolean remover(Analise elemento) {
-        if (analiseDao.contains(elemento)) {
-            analiseDao.remove(elemento);
-            return true;
-        } else {
-            return false;
-        }
+        analiseDao.remove(elemento);
+        return true;
     }
-
     @Override
     public ArrayList<Analise> listarTodos() {
         return new ArrayList<>(analiseDao);

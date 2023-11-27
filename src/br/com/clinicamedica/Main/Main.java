@@ -1,19 +1,28 @@
 package br.com.clinicamedica.Main;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import br.com.clinicamedica.Controller.AnaliseController;
+import br.com.clinicamedica.Model.Analise;
+import br.com.clinicamedica.Model.Cardiologista;
+import br.com.clinicamedica.Model.Paciente;
+
+import java.time.LocalDateTime;
+
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        Cardiologista cardiologista = new Cardiologista("a", "a", "a", "a", "a", "a");
+        Paciente paciente = new Paciente("a", "a", "a", "a", true);
+        Analise analise = new Analise(
+                LocalDateTime.of(2022, 9,9, 10,5),cardiologista, paciente,
+                "a");
+        Analise analise2 = new Analise(
+                LocalDateTime.of(2022, 9,9, 10,5),cardiologista, paciente,
+                "a");
+        AnaliseController analiseController = new AnaliseController();
+        analiseController.remover(analise2);
+        analiseController.adicionar(analise);
+        analiseController.adicionar(analise);
+        analiseController.remover(analise);
+        analiseController.listarTodos();
     }
 }

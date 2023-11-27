@@ -3,11 +3,17 @@ package br.com.clinicamedica.DAO;
 import br.com.clinicamedica.Contract.IBiomedicoDao;
 import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Model.Biomedico;
+import br.com.clinicamedica.Model.ColetaDeAmostras;
 
 import java.util.ArrayList;
 
 public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     private ArrayList<Biomedico> biomedicoDao = new ArrayList<>();
+
+    @Override
+    public ArrayList<Biomedico> getArray() {
+        return biomedicoDao;
+    }
 
     @Override
     public boolean adicionar(Biomedico biomedico) {
