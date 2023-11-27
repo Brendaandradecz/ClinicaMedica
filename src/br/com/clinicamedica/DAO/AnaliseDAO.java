@@ -9,22 +9,32 @@ public class AnaliseDAO implements IDAO<Analise> {
     private ArrayList<Analise> analiseDao = new ArrayList<>();
 
     @Override
-    public boolean adicionar(Analise objeto) {
-        return false;
+    public boolean adicionar(Analise elemento) {
+        if (!analiseDao.contains(elemento)) {
+            analiseDao.add(elemento);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public Analise buscarPorID(int id) {
+    public Analise buscar(String busca) {
         return null;
+    }
+
+    @Override
+    public boolean remover(Analise elemento) {
+        if (analiseDao.contains(elemento)) {
+            analiseDao.remove(elemento);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public ArrayList<Analise> listarTodos() {
-        return null;
-    }
-
-    @Override
-    public boolean remover(Analise objeto) {
-        return false;
+        return new ArrayList<>(analiseDao);
     }
 }

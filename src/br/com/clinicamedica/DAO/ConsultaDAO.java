@@ -9,22 +9,31 @@ public class ConsultaDAO implements IDAO<Consulta> {
     private ArrayList<Consulta> consultaDao = new ArrayList<>();
 
     @Override
-    public boolean adicionar(Consulta objeto) {
-        return false;
+    public boolean adicionar(Consulta elemento) {
+        if(!consultaDao.contains(elemento)){
+            consultaDao.add(elemento);
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
-    public Consulta buscarPorID(int id) {
+    public Consulta buscar(String busca) {
         return null;
     }
 
     @Override
     public ArrayList<Consulta> listarTodos() {
-        return null;
+        return new ArrayList<>(consultaDao);
     }
 
     @Override
-    public boolean remover(Consulta objeto) {
+    public boolean remover(Consulta elemento) {
+       if (!consultaDao.contains(elemento)){
+           consultaDao.remove(elemento);
+           return true;
+       }
         return false;
     }
 }

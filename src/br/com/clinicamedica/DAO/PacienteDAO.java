@@ -9,22 +9,31 @@ public class PacienteDAO implements IDAO<Paciente> {
     private ArrayList<Paciente> PacienteDao = new ArrayList<>();
 
     @Override
-    public boolean adicionar(Paciente objeto) {
-        return false;
+    public boolean adicionar(Paciente elemento) {
+        if (!PacienteDao.contains(elemento)) {
+            PacienteDao.add(elemento);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public Paciente buscarPorID(int id) {
+    public Paciente buscar(String busca) {
         return null;
     }
 
     @Override
     public ArrayList<Paciente> listarTodos() {
-        return null;
+        return new ArrayList<>(PacienteDao);
     }
 
     @Override
-    public boolean remover(Paciente objeto) {
+    public boolean remover(Paciente elemento) {
+        if (!PacienteDao.contains(elemento)) {
+            PacienteDao.remove(elemento);
+            return true;
+        }
         return false;
     }
 }

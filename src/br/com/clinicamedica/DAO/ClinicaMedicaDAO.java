@@ -9,22 +9,33 @@ public class ClinicaMedicaDAO implements IDAO<ClinicaMedica> {
     private ArrayList<ClinicaMedica> clinicaMedicaDao = new ArrayList<>();
 
     @Override
-    public boolean adicionar(ClinicaMedica objeto) {
-        return false;
+    public boolean adicionar(ClinicaMedica elemento) {
+        if(!clinicaMedicaDao.contains(elemento)){
+            clinicaMedicaDao.add(elemento);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
-    public ClinicaMedica buscarPorID(int id) {
+    public ClinicaMedica buscar(String busca) {
         return null;
     }
+
 
     @Override
     public ArrayList<ClinicaMedica> listarTodos() {
-        return null;
+        return new ArrayList<>(clinicaMedicaDao);
     }
 
     @Override
-    public boolean remover(ClinicaMedica objeto) {
-        return false;
+    public boolean remover(ClinicaMedica elemento) {
+        if (!clinicaMedicaDao.contains(elemento)){
+            clinicaMedicaDao.remove(elemento);
+            return true;
+        }else{
+            return false;
+        }
     }
 }
