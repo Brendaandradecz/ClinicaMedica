@@ -15,31 +15,29 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
 
     @Override
     public boolean adicionar(Cirurgia elemento) {
-        if(!cirurgiaDao.contains(elemento)){
-            cirurgiaDao.add(elemento);
-            return true;
-        }else{
-            return false;
-        }
+        cirurgiaDao.add(elemento);
+        return true;
+
     }
 
     @Override
     public Cirurgia buscar(String busca) {
+        for (Cirurgia cirurgia: cirurgiaDao) {
+            if(cirurgia.getPaciente().getCpf().equals(busca) || cirurgia.getPaciente().getNome().equals(busca)){
+                return cirurgia;
+            }
+        }
         return null;
     }
 
     @Override
     public ArrayList<Cirurgia> listarTodos() {
-        return new ArrayList<>(cirurgiaDao);
+        return cirurgiaDao;
     }
 
     @Override
     public boolean remover(Cirurgia elemento) {
-        if (!cirurgiaDao.contains(elemento)){
-            cirurgiaDao.remove(elemento);
-            return true;
-        }else{
-            return false;
-        }
+        cirurgiaDao.remove(elemento);
+        return true;
     }
 }

@@ -2,10 +2,12 @@ package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IEnfermagemDao;
+import br.com.clinicamedica.Model.Biomedico;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
 import br.com.clinicamedica.Model.Enfermagem;
 import br.com.clinicamedica.Model.Paciente;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
@@ -13,23 +15,24 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
 
     @Override
     public boolean adicionar(Enfermagem elemento) {
-        if (!enfermagemDao.contains(elemento)) {
-            enfermagemDao.add(elemento);
-            return true;
-        } else {
-            return false;
-        }
+        enfermagemDao.add(elemento);
+        return true;
     }
 
     @Override
     public Enfermagem buscar(String busca) {
+        for (Enfermagem enfermagem : enfermagemDao) {
+            if (enfermagem.getCpf().equals(busca) || enfermagem.getCoren().equals(busca) || enfermagem.getNome().equals(busca)) {
+                return enfermagem;
+            }
+        }
         return null;
     }
 
 
     @Override
     public ArrayList<Enfermagem> listarTodos() {
-        return new ArrayList<>(enfermagemDao);
+        return enfermagemDao;
     }
 
     @Override
@@ -39,22 +42,19 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
 
     @Override
     public boolean remover(Enfermagem elemento) {
-        if (!enfermagemDao.contains(elemento)) {
-            enfermagemDao.remove(elemento);
-            return true;
-        }
-        return false;
+        enfermagemDao.remove(elemento);
+        return true;
     }
 
     @Override
-    public boolean realizarTriagem(Paciente paciente) {
+    public boolean realizarTriagem(Paciente paciente, LocalDateTime dataHora) {
         System.out.println("Triagem realizada para o paciente: " + paciente.getNome());
         return true;
     }
 
     @Override
-    public boolean realizarColeta(Paciente paciente, ColetaDeAmostras coletaDeAmostras) {
-        System.out.println("Coleta de amostras realizada para o paciente: " + paciente.getNome());
+    public boolean realizarColeta(ColetaDeAmostras coleta) {
+        System.out.println("Coleta de amostras realizada para o paciente: ");
         return true;
     }
 }

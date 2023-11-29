@@ -6,6 +6,7 @@ import br.com.clinicamedica.DAO.ConsultaDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
 import br.com.clinicamedica.Exception.ElementoInexistenteException;
 import br.com.clinicamedica.Exception.ListaVaziaException;
+import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
 import br.com.clinicamedica.Model.Consulta;
 
 import java.util.ArrayList;
@@ -33,8 +34,12 @@ public class ConsultaController implements IController<Consulta> {
     @Override
     public Consulta buscar(String busca) {
         try{
-            return this.dao.buscar(busca);
-        } catch(Exception e){
+            if(this.dao.buscar(busca).equals("null")){
+                throw new ResultadoNaoEncontradoException();
+            }else{
+                return this.dao.buscar(busca);
+            }
+        } catch(ResultadoNaoEncontradoException e){
             System.out.println(e.getMessage());
         }
         return null;

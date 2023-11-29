@@ -6,13 +6,13 @@ public class Analise {
     private LocalDateTime dataHora;
     private Medico medico;
     private Paciente paciente;
-    private String diagnostico;
+    private String resultado;
 
-    public Analise(LocalDateTime dataHora, Medico medico, Paciente paciente, String diagnostico) {
+    public Analise(LocalDateTime dataHora, Medico medico, Paciente paciente, String resultado) {
         this.dataHora = dataHora;
         this.medico = medico;
         this.paciente = paciente;
-        this.diagnostico = diagnostico;
+        this.resultado = resultado;
     }
 
     public LocalDateTime getDataHora() {
@@ -39,11 +39,11 @@ public class Analise {
         this.paciente = paciente;
     }
 
-    public String getDiagnostico() {
-        return diagnostico;
+    public String getResultado() {
+        return resultado;
     }
 
     public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
+        this.resultado = resultado;
     }
 }

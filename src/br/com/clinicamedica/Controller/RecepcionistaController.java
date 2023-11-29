@@ -7,8 +7,10 @@ import br.com.clinicamedica.DAO.RecepcionistaDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
 import br.com.clinicamedica.Exception.ElementoInexistenteException;
 import br.com.clinicamedica.Exception.ListaVaziaException;
-import br.com.clinicamedica.Model.Recepcionista;
+import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
+import br.com.clinicamedica.Model.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class RecepcionistaController implements IController<Recepcionista>, IRecepcionistaController {
@@ -33,8 +35,12 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     @Override
     public Recepcionista buscar(String busca) {
         try{
-            return this.dao.buscar(busca);
-        } catch(Exception e){
+            if(this.dao.buscar(busca).equals("null")){
+                throw new ResultadoNaoEncontradoException();
+            }else{
+                return this.dao.buscar(busca);
+            }
+        } catch(ResultadoNaoEncontradoException e){
             System.out.println(e.getMessage());
         }
         return null;
@@ -69,17 +75,19 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     }
 
     @Override
-    public boolean marcarCirurgia() {
+    public boolean marcarCirurgia(LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
         return false;
     }
 
     @Override
-    public boolean marcarColeta() {
+    public boolean marcarColeta(LocalDateTime dataHora, Biomedico biomedico, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente) {
         return false;
     }
 
     @Override
-    public boolean marcarConsulta() {
+    public boolean marcarConsulta(LocalDateTime dataHora, Medico medico, Paciente paciente) {
         return false;
     }
+
+
 }

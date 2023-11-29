@@ -1,6 +1,7 @@
 package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
+import br.com.clinicamedica.Model.Enfermagem;
 import br.com.clinicamedica.Model.Limpeza;
 
 import java.util.ArrayList;
@@ -15,30 +16,28 @@ public class LimpezaDAO implements IDAO<Limpeza> {
 
     @Override
     public boolean adicionar(Limpeza elemento) {
-        if (!limpezaDao.contains(elemento)){
-            limpezaDao.add(elemento);
-            return true;
-        }else {
-            return false;
-        }
+        limpezaDao.add(elemento);
+        return true;
     }
 
     @Override
     public Limpeza buscar(String busca) {
+        for (Limpeza limpeza: limpezaDao) {
+            if (limpeza.getCpf().equals(busca) || limpeza.getNome().equals(busca)) {
+                return limpeza;
+            }
+        }
         return null;
     }
 
     @Override
     public ArrayList<Limpeza> listarTodos() {
-        return new ArrayList<>(limpezaDao);
+        return limpezaDao;
     }
 
     @Override
     public boolean remover(Limpeza elemento) {
-        if (!limpezaDao.contains(elemento)){
-            limpezaDao.remove(elemento);
-            return true;
-        }
-        return false;
+        limpezaDao.remove(elemento);
+        return true;
     }
 }

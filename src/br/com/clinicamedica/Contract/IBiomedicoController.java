@@ -1,5 +1,7 @@
 package br.com.clinicamedica.Contract;
 
+import br.com.clinicamedica.Model.ColetaDeAmostras;
+
 public interface IBiomedicoController {
-    boolean fazerAnalise();
+    boolean fazerAnaliseDeAmostras(ColetaDeAmostras coleta);
 }

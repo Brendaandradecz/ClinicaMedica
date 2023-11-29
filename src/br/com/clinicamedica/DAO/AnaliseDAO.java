@@ -15,10 +15,16 @@ public class AnaliseDAO implements IDAO<Analise> {
     @Override
     public boolean adicionar(Analise elemento) {
         analiseDao.add(elemento);
+        System.out.println("adicionou");
         return true;
     }
     @Override
     public Analise buscar(String busca) {
+        for (Analise analise: analiseDao) {
+            if(analise.getPaciente().getNome().equals(busca) || analise.getPaciente().getCpf().equals(busca)){
+                return analise;
+            }
+        }
         return null;
     }
 
@@ -29,6 +35,6 @@ public class AnaliseDAO implements IDAO<Analise> {
     }
     @Override
     public ArrayList<Analise> listarTodos() {
-        return new ArrayList<>(analiseDao);
+        return analiseDao;
     }
 }

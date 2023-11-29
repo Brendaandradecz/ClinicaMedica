@@ -7,7 +7,9 @@ import br.com.clinicamedica.DAO.BiomedicoDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
 import br.com.clinicamedica.Exception.ElementoInexistenteException;
 import br.com.clinicamedica.Exception.ListaVaziaException;
+import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
 import br.com.clinicamedica.Model.Biomedico;
+import br.com.clinicamedica.Model.ColetaDeAmostras;
 
 import java.util.ArrayList;
 
@@ -33,8 +35,12 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
     @Override
     public Biomedico buscar(String busca) {
         try{
-            return this.dao.buscar(busca);
-        } catch(Exception e){
+            if(this.dao.buscar(busca).equals("null")){
+                throw new ResultadoNaoEncontradoException();
+            }else{
+                return this.dao.buscar(busca);
+            }
+        } catch(ResultadoNaoEncontradoException e){
             System.out.println(e.getMessage());
         }
         return null;
@@ -68,7 +74,8 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
         return false;
     }
     @Override
-    public boolean fazerAnalise() {
+    public boolean fazerAnaliseDeAmostras(ColetaDeAmostras coleta) {
+        // trat de erros
         return false;
     }
 }

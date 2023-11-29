@@ -2,12 +2,11 @@ package br.com.clinicamedica.Controller;
 
 import br.com.clinicamedica.Contract.IController;
 import br.com.clinicamedica.Contract.IDAO;
-import br.com.clinicamedica.DAO.AnaliseDAO;
 import br.com.clinicamedica.DAO.PacienteDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
 import br.com.clinicamedica.Exception.ElementoInexistenteException;
 import br.com.clinicamedica.Exception.ListaVaziaException;
-import br.com.clinicamedica.Model.Analise;
+import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
 import br.com.clinicamedica.Model.Paciente;
 
 import java.util.ArrayList;
@@ -34,8 +33,12 @@ public class PacienteController implements IController<Paciente> {
     @Override
     public Paciente buscar(String busca) {
         try{
-            return this.dao.buscar(busca);
-        } catch(Exception e){
+            if(this.dao.buscar(busca).equals("null")){
+                throw new ResultadoNaoEncontradoException();
+            }else{
+                return this.dao.buscar(busca);
+            }
+        } catch(ResultadoNaoEncontradoException e){
             System.out.println(e.getMessage());
         }
         return null;

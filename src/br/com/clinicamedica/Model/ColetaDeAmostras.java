@@ -1,18 +1,22 @@
 package br.com.clinicamedica.Model;
 
+import java.time.LocalDateTime;
+
 public class ColetaDeAmostras {
     private String tipo;
     private String codigo;
     private Enfermagem enfermeiro;
     private Biomedico biomedico;
     private Paciente paciente;
+    private LocalDateTime dataHora;
 
-    public ColetaDeAmostras(String tipo, String codigo, Enfermagem enfermeiro, Biomedico biomedico, Paciente paciente){
+    public ColetaDeAmostras(String tipo, String codigo, Enfermagem enfermeiro, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora){
         this.tipo = tipo;
         this.codigo = codigo;
         this.enfermeiro = enfermeiro;
         this.biomedico = biomedico;
         this.paciente = paciente;
+        this.dataHora = dataHora;
     }
 
     public String getTipo() {
@@ -54,5 +58,13 @@ public class ColetaDeAmostras {
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
+    }
+
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 }

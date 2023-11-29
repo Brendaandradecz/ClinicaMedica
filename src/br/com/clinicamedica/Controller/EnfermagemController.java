@@ -7,8 +7,12 @@ import br.com.clinicamedica.DAO.EnfermagemDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
 import br.com.clinicamedica.Exception.ElementoInexistenteException;
 import br.com.clinicamedica.Exception.ListaVaziaException;
+import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
+import br.com.clinicamedica.Model.ColetaDeAmostras;
 import br.com.clinicamedica.Model.Enfermagem;
+import br.com.clinicamedica.Model.Paciente;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class EnfermagemController implements IController<Enfermagem>, IEnfermagemController {
@@ -33,8 +37,12 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     @Override
     public Enfermagem buscar(String busca) {
         try{
-            return this.dao.buscar(busca);
-        } catch(Exception e){
+            if(this.dao.buscar(busca).equals("null")){
+                throw new ResultadoNaoEncontradoException();
+            }else{
+                return this.dao.buscar(busca);
+            }
+        } catch(ResultadoNaoEncontradoException e){
             System.out.println(e.getMessage());
         }
         return null;
@@ -69,12 +77,12 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     }
 
     @Override
-    public boolean realizarTriagem() {
+    public boolean realizarTriagem(Paciente paciente, LocalDateTime dataHora) {
         return false;
     }
 
     @Override
-    public boolean realizarColeta() {
+    public boolean realizarColeta(ColetaDeAmostras coleta) {
         return false;
     }
 }

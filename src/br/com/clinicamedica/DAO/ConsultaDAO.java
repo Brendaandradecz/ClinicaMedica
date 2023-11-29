@@ -1,6 +1,7 @@
 package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
+import br.com.clinicamedica.Model.Cirurgia;
 import br.com.clinicamedica.Model.Consulta;
 
 import java.util.ArrayList;
@@ -15,30 +16,29 @@ public class ConsultaDAO implements IDAO<Consulta> {
 
     @Override
     public boolean adicionar(Consulta elemento) {
-        if(!consultaDao.contains(elemento)){
-            consultaDao.add(elemento);
-            return true;
-        }else {
-            return false;
-        }
+        consultaDao.add(elemento);
+        return true;
+
     }
 
     @Override
     public Consulta buscar(String busca) {
+        for (Consulta consulta: consultaDao) {
+            if(consulta.getPaciente().getCpf().equals(busca) || consulta.getPaciente().getNome().equals(busca)){
+                return consulta;
+            }
+        }
         return null;
     }
 
     @Override
     public ArrayList<Consulta> listarTodos() {
-        return new ArrayList<>(consultaDao);
+        return consultaDao;
     }
 
     @Override
     public boolean remover(Consulta elemento) {
-       if (!consultaDao.contains(elemento)){
-           consultaDao.remove(elemento);
-           return true;
-       }
-        return false;
+        consultaDao.remove(elemento);
+        return true;
     }
 }

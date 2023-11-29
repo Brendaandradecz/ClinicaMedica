@@ -2,11 +2,9 @@ package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IRecepcionistaDao;
-import br.com.clinicamedica.Model.Cirurgia;
-import br.com.clinicamedica.Model.ColetaDeAmostras;
-import br.com.clinicamedica.Model.Consulta;
-import br.com.clinicamedica.Model.Recepcionista;
+import br.com.clinicamedica.Model.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao {
@@ -19,49 +17,47 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
 
     @Override
     public boolean adicionar(Recepcionista elemento) {
-        if (recepcionistaDao.contains(elemento)) {
-            recepcionistaDao.add(elemento);
-            return true;
-        } else {
-            return false;
-        }
+        recepcionistaDao.add(elemento);
+        return true;
+
     }
 
     @Override
     public Recepcionista buscar(String busca) {
+        for (Recepcionista recepcionista: recepcionistaDao) {
+            if(recepcionista.getNome().equals(busca) || recepcionista.getCpf().equals(busca)){
+                return recepcionista;
+            }
+        }
         return null;
     }
-
-
     @Override
     public ArrayList<Recepcionista> listarTodos() {
-        return new ArrayList<>(recepcionistaDao);
+        return recepcionistaDao;
     }
 
     @Override
     public boolean remover(Recepcionista elemento) {
-        if (recepcionistaDao.contains(elemento)) {
-            recepcionistaDao.add(elemento);
-            return true;
-        }
-        return false;
+        recepcionistaDao.add(elemento);
+        return true;
     }
 
     @Override
-    public boolean marcarCirurgia(Cirurgia cirurgia) {
+    public boolean marcarCirurgia(LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
         System.out.println("Cirurgia marcada - INFORMAÇÕES DA CIRURGIA");
         return true;
     }
 
     @Override
-    public boolean marcarColeta(ColetaDeAmostras coletaDeAmostras) {
+    public boolean marcarColeta(LocalDateTime dataHora, Biomedico biomedico, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente) {
         System.out.println("Coleta marcada - INFORMAÇÕES DA COLETA");
         return true;
     }
 
     @Override
-    public boolean marcarConsulta(Consulta consulta) {
+    public boolean marcarConsulta(LocalDateTime dataHora, Medico medico, Paciente paciente) {
         System.out.println("Consulta marcada - INFORMAÇÕES DA CONSULTA");
         return true;
     }
+
 }

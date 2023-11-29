@@ -7,6 +7,9 @@ import br.com.clinicamedica.DAO.MedicoDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
 import br.com.clinicamedica.Exception.ElementoInexistenteException;
 import br.com.clinicamedica.Exception.ListaVaziaException;
+import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
+import br.com.clinicamedica.Model.Cirurgia;
+import br.com.clinicamedica.Model.Consulta;
 import br.com.clinicamedica.Model.Medico;
 
 import java.util.ArrayList;
@@ -33,8 +36,12 @@ public class MedicoController implements IController<Medico>, IMedicoController 
     @Override
     public Medico buscar(String busca) {
         try{
-            return this.dao.buscar(busca);
-        } catch(Exception e){
+            if(this.dao.buscar(busca).equals("null")){
+                throw new ResultadoNaoEncontradoException();
+            }else{
+                return this.dao.buscar(busca);
+            }
+        } catch(ResultadoNaoEncontradoException e){
             System.out.println(e.getMessage());
         }
         return null;
@@ -69,12 +76,12 @@ public class MedicoController implements IController<Medico>, IMedicoController 
     }
 
     @Override
-    public boolean fazerConsulta() {
+    public boolean fazerConsulta(Consulta consulta) {
         return false;
     }
 
     @Override
-    public boolean fazerCirurgia() {
+    public boolean fazerCirurgia(Cirurgia cirurgia) {
         return false;
     }
 }

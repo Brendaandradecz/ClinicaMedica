@@ -10,30 +10,30 @@ public class ColetaDeAmostrasDAO implements IDAO<ColetaDeAmostras> {
 
     @Override
     public boolean adicionar(ColetaDeAmostras elemento) {
-        if (!coletaDeAmostrasDao.contains(elemento)){
-            coletaDeAmostrasDao.add(elemento);
-            return true;
-        }else{
-            return false;
-        }
+        coletaDeAmostrasDao.add(elemento);
+        return true;
+
     }
 
     @Override
     public ColetaDeAmostras buscar(String busca) {
+        for (ColetaDeAmostras coleta: coletaDeAmostrasDao) {
+            if(coleta.getCodigo().equals(busca) || coleta.getPaciente().getNome().equals(busca) || coleta.getPaciente().getCpf().equals(busca)){
+                return coleta;
+            }
+        }
         return null;
     }
 
     @Override
     public ArrayList<ColetaDeAmostras> listarTodos() {
-        return new ArrayList<>(coletaDeAmostrasDao);
+        return coletaDeAmostrasDao;
     }
 
     @Override
     public boolean remover(ColetaDeAmostras elemento) {
-        if (!coletaDeAmostrasDao.contains(elemento)){
-            coletaDeAmostrasDao.remove(elemento);
-        }
-        return false;
+        coletaDeAmostrasDao.remove(elemento);
+        return true;
     }
 
     @Override
