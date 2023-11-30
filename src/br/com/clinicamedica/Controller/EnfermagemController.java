@@ -78,8 +78,9 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     @Override
     public boolean realizarTriagem(Paciente paciente, LocalDateTime dataHora) {
         try {
-            if(paciente.getCpf() == null) ;
-            return true;
+            if (paciente.getCpf() != null) {
+                return true;
+            }
 
         } catch (DocumentoInvalidoException e) {
             System.out.println(e.getMessage());
