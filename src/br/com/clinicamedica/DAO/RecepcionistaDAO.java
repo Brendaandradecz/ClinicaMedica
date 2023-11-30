@@ -92,17 +92,31 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     @Override
     public boolean alterarData(LocalDateTime alteracao, Cirurgia cirurgia) {
         cirurgia.setDataHora(alteracao);
+        System.out.println("DATA DA CIRURGIA (Alteração Realizada) - CIRUGIA");
+        System.out.println("Nova Data e Hora: " + alteracao +
+                "\nMédico: " + cirurgia.getMedico().getNome() +
+                "\nPaciente: " + cirurgia.getPaciente().getNome() +
+                "\nProcedimento: " + cirurgia.getProcedimento());
         return true;
     }
 
     @Override
     public boolean alterarData(LocalDateTime alteracao, ColetaDeAmostras coleta) {
         coleta.setDataHora(alteracao);
+        System.out.println("NOVA DATA DA COLETA (Alteração Realizada) - COLETA");
+        System.out.println("Nova Data e Hora: " + alteracao +
+                "\nEnfermeiro: " + coleta.getEnfermeiro().getNome() +
+                "\nPaciente: " + coleta.getPaciente().getNome() +
+                "\nTipo: " + coleta.getTipo());
         return true;
 }
     @Override
     public boolean alterarData(LocalDateTime alteracao, Consulta consulta) {
         consulta.setDataHora(alteracao);
+        System.out.println("NOVA DATA DA CONSULTA (Alteração Realizada) - CONSULTA");
+        System.out.println("Nova Data e Hora: " + alteracao +
+                "\nMédico: " + consulta.getMedico().getNome() +
+                "\nPaciente: " + consulta.getPaciente().getNome());
         return true;
     }
 }
