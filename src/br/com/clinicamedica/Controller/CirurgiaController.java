@@ -12,10 +12,7 @@ import br.com.clinicamedica.Model.Cirurgia;
 import java.util.ArrayList;
 
 public class CirurgiaController implements IController<Cirurgia> {
-    private IDAO<Cirurgia> dao;
-    public CirurgiaController(){
-        this.dao = new CirurgiaDAO();
-    }
+    private CirurgiaDAO dao = new CirurgiaDAO();
 
     @Override
     public boolean adicionar(Cirurgia elemento) {

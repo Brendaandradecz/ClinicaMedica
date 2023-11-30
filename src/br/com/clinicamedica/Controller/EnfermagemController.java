@@ -13,11 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class EnfermagemController implements IController<Enfermagem>, IEnfermagemController {
-    private IDAO<Enfermagem> dao;
-
-    public EnfermagemController() {
-        this.dao = new EnfermagemDAO();
-    }
+    private EnfermagemDAO dao = new EnfermagemDAO();
 
     @Override
     public boolean adicionar(Enfermagem elemento) {
@@ -79,7 +75,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     public boolean realizarTriagem(Paciente paciente, LocalDateTime dataHora) {
         try {
             if (paciente.getCpf() != null) {
-                return true;
+                return this.dao.realizarTriagem(paciente, dataHora);
             }
 
         } catch (DocumentoInvalidoException e) {
@@ -92,7 +88,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     public boolean realizarColeta(ColetaDeAmostras coleta) {
         try {
             if (coleta == null || coleta.getCondicaoDaAmostra().contains("Danificada"))
-                return true;
+                return this.dao.realizarColeta(coleta);
 
         } catch (AmostraInvalidaOuDanificadaException e) {
             System.out.println(e.getMessage());

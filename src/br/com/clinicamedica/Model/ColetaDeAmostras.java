@@ -6,16 +6,14 @@ public class ColetaDeAmostras {
     private String tipo;
     private String codigo;
     private Enfermagem enfermeiro;
-    private Biomedico biomedico;
     private Paciente paciente;
     private LocalDateTime dataHora;
     private String condicaoDaAmostra;
 
-    public ColetaDeAmostras(String tipo, String codigo, Enfermagem enfermeiro, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, String condicaoDaAmostra){
+    public ColetaDeAmostras(String tipo, String codigo, Enfermagem enfermeiro, Paciente paciente, LocalDateTime dataHora, String condicaoDaAmostra){
         this.tipo = tipo;
         this.codigo = codigo;
         this.enfermeiro = enfermeiro;
-        this.biomedico = biomedico;
         this.paciente = paciente;
         this.dataHora = dataHora;
         this.condicaoDaAmostra = condicaoDaAmostra;
@@ -43,15 +41,6 @@ public class ColetaDeAmostras {
 
     public void setEnfermeiro(Enfermagem enfermeiro) {
         this.enfermeiro = enfermeiro;
-    }
-
-    public Biomedico getBiomedico() {
-
-        return biomedico;
-    }
-
-    public void setBiomedico(Biomedico biomedico) {
-        this.biomedico = biomedico;
     }
 
     public Paciente getPaciente() {

@@ -12,10 +12,7 @@ import br.com.clinicamedica.Model.Paciente;
 import java.util.ArrayList;
 
 public class PacienteController implements IController<Paciente> {
-    private IDAO<Paciente> dao;
-    public PacienteController(){
-        this.dao = new PacienteDAO();
-    }
+    private PacienteDAO dao = new PacienteDAO();
     @Override
     public boolean adicionar(Paciente elemento) {
         try{

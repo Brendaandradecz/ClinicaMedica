@@ -11,10 +11,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class RecepcionistaController implements IController<Recepcionista>, IRecepcionistaController {
-    private IDAO<Recepcionista> dao;
-    public RecepcionistaController(){
-        this.dao = new RecepcionistaDAO();
-    }
+    private RecepcionistaDAO dao = new RecepcionistaDAO();
     @Override
     public boolean adicionar(Recepcionista elemento) {
         try{
@@ -74,8 +71,8 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     @Override
     public boolean marcarCirurgia(LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
         try {
-            if (paciente.getCpf() != null) {
-                return true;
+            if (paciente.getCpf().equals(null)) {
+                throw new DocumentoInvalidoException();
             }
 
             if (dataHora == null || medico == null || paciente == null || procedimento == null || procedimento.isEmpty()) {
@@ -86,25 +83,22 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 throw new DataInvalidaException();
             }
 
-            if (!procedimento.equals(procedimento)) {
-                throw new CirurgiaInvalidaException();
-            }
-            return true;
+            return this.dao.marcarCirurgia(dataHora, medico, paciente, procedimento);
 
-        } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException | CirurgiaInvalidaException e) {
+        } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException e) {
             System.out.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public boolean marcarColeta(LocalDateTime dataHora, Biomedico biomedico, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente) {
+    public boolean marcarColeta(LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra) {
         try {
-            if (paciente.getCpf() != null) {
-                return true;
+            if (paciente.getCpf().equals(null)) {
+                throw new DocumentoInvalidoException();
             }
 
-            if (dataHora == null || biomedico == null || enfermeiro == null || codigo == null || codigo.isEmpty() || tipo == null || tipo.isEmpty() || paciente == null) {
+            if (dataHora == null || enfermeiro == null || codigo == null || codigo.isEmpty() || tipo == null || tipo.isEmpty() || paciente == null) {
                 throw new ParametrosInvalidosException();
             }
 
@@ -112,13 +106,9 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 throw new DataInvalidaException();
             }
 
-            if (!tipo.equals(tipo)) {
-                throw new TipoInvalidoException();
-            }
+            return this.dao.marcarColeta(dataHora, enfermeiro, codigo, tipo, paciente, condicaoDaAmostra);
 
-            return true;
-
-        } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException | TipoInvalidoException e) {
+        } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -127,8 +117,8 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     @Override
     public boolean marcarConsulta(LocalDateTime dataHora, Medico medico, Paciente paciente) {
         try {
-            if (paciente.getCpf() != null) {
-                return true;
+            if (paciente.getCpf().equals(null)) {
+                throw new DocumentoInvalidoException();
             }
 
             if (dataHora == null || medico == null || paciente == null) {
@@ -138,10 +128,51 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
             if (dataHora.isBefore(LocalDateTime.now())) {
                 throw new DataInvalidaException();
             }
-            if (paciente.getCpf() == null) ;
-            return true;
+            return this.dao.marcarConsulta(dataHora, medico, paciente);
 
         } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean alterarData(LocalDateTime alteracao, Cirurgia cirurgia) {
+        try{
+            if(alteracao.isBefore(LocalDateTime.now())){
+                throw new DataInvalidaException();
+            }else {
+                return this.dao.alterarData(alteracao, cirurgia);
+            }
+        }catch (DataInvalidaException e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean alterarData(LocalDateTime alteracao, ColetaDeAmostras coleta) {
+        try{
+            if(alteracao.isBefore(LocalDateTime.now())){
+                throw new DataInvalidaException();
+            }else {
+                return this.dao.alterarData(alteracao, coleta);
+            }
+        }catch (DataInvalidaException e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean alterarData(LocalDateTime alteracao, Consulta consulta) {
+        try{
+            if(alteracao.isBefore(LocalDateTime.now())){
+                throw new DataInvalidaException();
+            }else {
+                return this.dao.alterarData(alteracao, consulta);
+            }
+        }catch (DataInvalidaException e){
             System.out.println(e.getMessage());
         }
         return false;

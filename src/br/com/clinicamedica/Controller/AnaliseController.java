@@ -12,10 +12,7 @@ import br.com.clinicamedica.Model.Analise;
 import java.util.ArrayList;
 
 public class AnaliseController implements IController<Analise> {
-    private IDAO<Analise> dao;
-    public AnaliseController(){
-        this.dao = new AnaliseDAO();
-    }
+    private AnaliseDAO dao = new AnaliseDAO();
 
     @Override
     public boolean adicionar(Analise elemento) {

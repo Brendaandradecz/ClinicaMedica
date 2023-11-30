@@ -18,6 +18,7 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     @Override
     public boolean adicionar(Recepcionista elemento) {
         recepcionistaDao.add(elemento);
+        System.out.println("Recepcionista adicionado(a) ao sistema!");
         return true;
 
     }
@@ -26,6 +27,11 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     public Recepcionista buscar(String busca) {
         for (Recepcionista recepcionista: recepcionistaDao) {
             if(recepcionista.getNome().equals(busca) || recepcionista.getCpf().equals(busca)){
+                System.out.println("Informações de " + recepcionista.getNome());
+                System.out.println("Nome: " + recepcionista.getNome()
+                        + ". CPF: " + recepcionista.getCpf()
+                        + ". Telefone: " + recepcionista.getTelefone()
+                        + ". Email: " + recepcionista.getEmail());
                 return recepcionista;
             }
         }
@@ -33,17 +39,26 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     }
     @Override
     public ArrayList<Recepcionista> listarTodos() {
+        for (Recepcionista recepcionista: recepcionistaDao) {
+            System.out.println("Informações de " + recepcionista.getNome());
+            System.out.println("Nome: " + recepcionista.getNome()
+                    + ". CPF: " + recepcionista.getCpf()
+                    + ". Telefone: " + recepcionista.getTelefone()
+                    + ". Email: " + recepcionista.getEmail());
+        }
         return recepcionistaDao;
     }
 
     @Override
     public boolean remover(Recepcionista elemento) {
         recepcionistaDao.add(elemento);
+        System.out.println("Recepcionista removido do sistema!");
         return true;
     }
 
     @Override
     public boolean marcarCirurgia(LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
+        Cirurgia cirurgia = new Cirurgia(dataHora, medico, paciente, procedimento);
         System.out.println("Cirurgia marcada - INFORMAÇÕES DA CIRURGIA");
         System.out.println("Data e Hora: " + dataHora +
                 "\nMédico: " + medico.getNome() +
@@ -53,10 +68,10 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     }
 
     @Override
-    public boolean marcarColeta(LocalDateTime dataHora, Biomedico biomedico, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente) {
+    public boolean marcarColeta(LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra) {
+        ColetaDeAmostras coleta = new ColetaDeAmostras(tipo, codigo, enfermeiro, paciente, dataHora, condicaoDaAmostra);
         System.out.println("Coleta marcada - INFORMAÇÕES DA COLETA");
         System.out.println("Data e Hora: " + dataHora +
-                "\nBiomédico: " + biomedico.getNome() +
                 "\nEnfermeiro: " + enfermeiro.getNome() +
                 "\nCódigo: " + codigo +
                 "\nTipo: " + tipo +
@@ -66,10 +81,28 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
 
     @Override
     public boolean marcarConsulta(LocalDateTime dataHora, Medico medico, Paciente paciente) {
+        Consulta consulta = new Consulta(dataHora, paciente, medico);
         System.out.println("Consulta marcada - INFORMAÇÕES DA CONSULTA");
         System.out.println("Data e Hora: " + dataHora +
                 "\nMédico: " + medico.getNome() +
                 "\nPaciente: " + paciente.getNome());
+        return true;
+    }
+
+    @Override
+    public boolean alterarData(LocalDateTime alteracao, Cirurgia cirurgia) {
+        cirurgia.setDataHora(alteracao);
+        return true;
+    }
+
+    @Override
+    public boolean alterarData(LocalDateTime alteracao, ColetaDeAmostras coleta) {
+        coleta.setDataHora(alteracao);
+        return true;
+}
+    @Override
+    public boolean alterarData(LocalDateTime alteracao, Consulta consulta) {
+        consulta.setDataHora(alteracao);
         return true;
     }
 }

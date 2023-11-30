@@ -5,7 +5,9 @@ import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Model.Analise;
 import br.com.clinicamedica.Model.Biomedico;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
+import br.com.clinicamedica.Model.Paciente;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
@@ -19,6 +21,7 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     @Override
     public boolean adicionar(Biomedico biomedico) {
         biomedicoDao.add(biomedico);
+        System.out.println("Biomedico(a) adicionado ao sistema!");
         return true;
     }
 
@@ -26,6 +29,12 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     public Biomedico buscar(String busca) {
         for (Biomedico biomedico : biomedicoDao) {
             if (biomedico.getCpf().equals(busca) || biomedico.getCrbm().equals(busca) || biomedico.getNome().equals(busca)) {
+                System.out.println("Informações de " + biomedico.getNome());
+                System.out.println("Nome: " + biomedico.getNome()
+                + ". CRBM: " + biomedico.getCrbm()
+                + ". CPF: " + biomedico.getCpf()
+                + ". Telefone: " + biomedico.getTelefone()
+                + ". Email: " + biomedico.getEmail());
                 return biomedico;
             }
         }
@@ -34,18 +43,27 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
 
     @Override
     public ArrayList<Biomedico> listarTodos() {
+        for (Biomedico biomedico : biomedicoDao) {
+            System.out.println("Informações de " + biomedico.getNome());
+            System.out.println("Nome: " + biomedico.getNome()
+                    + ". CRBM: " + biomedico.getCrbm()
+                    + ". CPF: " + biomedico.getCpf()
+                    + ". Telefone: " + biomedico.getTelefone()
+                    + ". Email: " + biomedico.getEmail());
+        }
         return biomedicoDao;
     }
 
     @Override
     public boolean remover(Biomedico biomedico) {
         biomedicoDao.remove(biomedico);
+        System.out.println("Biomedico(a) removido do sistema!");
         return true;
     }
 
     @Override
-    public double fazerAnaliseDeAmostras(Analise analise, ColetaDeAmostras coleta) {
-        double resultado = Math.random();
+    public double fazerAnaliseDeAmostras(Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
+        Analise analise = new Analise(dataHora, biomedico, paciente, resultado);
         double Positivo = 0.7;
 
         if (resultado >= Positivo) {

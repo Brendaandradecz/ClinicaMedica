@@ -16,6 +16,7 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
     @Override
     public boolean adicionar(Enfermagem elemento) {
         enfermagemDao.add(elemento);
+        System.out.println("Enfermeiro(a) adicionado ao sistema!");
         return true;
     }
 
@@ -23,6 +24,12 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
     public Enfermagem buscar(String busca) {
         for (Enfermagem enfermagem : enfermagemDao) {
             if (enfermagem.getCpf().equals(busca) || enfermagem.getCoren().equals(busca) || enfermagem.getNome().equals(busca)) {
+                System.out.println("Informações de " + enfermagem.getNome());
+                System.out.println("Nome: " + enfermagem.getNome()
+                        + ". CRBM: " + enfermagem.getCoren()
+                        + ". CPF: " + enfermagem.getCpf()
+                        + ". Telefone: " + enfermagem.getTelefone()
+                        + ". Email: " + enfermagem.getEmail());
                 return enfermagem;
             }
         }
@@ -32,6 +39,14 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
 
     @Override
     public ArrayList<Enfermagem> listarTodos() {
+        for (Enfermagem enfermagem : enfermagemDao) {
+            System.out.println("Informações de " + enfermagem.getNome());
+            System.out.println("Nome: " + enfermagem.getNome()
+                    + ". CRBM: " + enfermagem.getCoren()
+                    + ". CPF: " + enfermagem.getCpf()
+                    + ". Telefone: " + enfermagem.getTelefone()
+                    + ". Email: " + enfermagem.getEmail());
+        }
         return enfermagemDao;
     }
 
@@ -43,6 +58,7 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
     @Override
     public boolean remover(Enfermagem elemento) {
         enfermagemDao.remove(elemento);
+        System.out.println("Enfermeiro(a) removido do sistema");
         return true;
     }
 

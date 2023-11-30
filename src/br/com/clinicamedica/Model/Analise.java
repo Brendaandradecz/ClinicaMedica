@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 
 public class Analise {
     private LocalDateTime dataHora;
-    private Medico medico;
+    private Biomedico biomedico;
     private Paciente paciente;
     private double resultado;
 
-    public Analise(LocalDateTime dataHora, Medico medico, Paciente paciente, double resultado) {
+    public Analise(LocalDateTime dataHora, Biomedico biomedico, Paciente paciente, double resultado) {
         this.dataHora = dataHora;
-        this.medico = medico;
+        this.biomedico = biomedico;
         this.paciente = paciente;
         this.resultado = resultado;
     }
@@ -23,12 +23,16 @@ public class Analise {
         this.dataHora = dataHora;
     }
 
-    public Medico getMedico() {
-        return medico;
+    public void setResultado(double resultado) {
+        this.resultado = resultado;
     }
 
-    public void setMedico(Medico medico) {
-        this.medico = medico;
+    public Biomedico getBiomedico() {
+        return biomedico;
+    }
+
+    public void setBiomedico(Biomedico biomedico) {
+        this.biomedico = biomedico;
     }
 
     public Paciente getPaciente() {

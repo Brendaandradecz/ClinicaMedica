@@ -17,6 +17,7 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     @Override
     public boolean adicionar(Limpeza elemento) {
         limpezaDao.add(elemento);
+        System.out.println("Funcionario(a) adicionado ao sistema!");
         return true;
     }
 
@@ -24,6 +25,11 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     public Limpeza buscar(String busca) {
         for (Limpeza limpeza: limpezaDao) {
             if (limpeza.getCpf().equals(busca) || limpeza.getNome().equals(busca)) {
+                System.out.println("Informações de " + limpeza.getNome());
+                System.out.println("Nome: " + limpeza.getNome()
+                        + ". CPF: " + limpeza.getCpf()
+                        + ". Telefone: " + limpeza.getTelefone()
+                        + ". Email: " + limpeza.getEmail());
                 return limpeza;
             }
         }
@@ -32,12 +38,20 @@ public class LimpezaDAO implements IDAO<Limpeza> {
 
     @Override
     public ArrayList<Limpeza> listarTodos() {
+        for (Limpeza limpeza: limpezaDao) {
+            System.out.println("Informações de " + limpeza.getNome());
+            System.out.println("Nome: " + limpeza.getNome()
+                    + ". CPF: " + limpeza.getCpf()
+                    + ". Telefone: " + limpeza.getTelefone()
+                    + ". Email: " + limpeza.getEmail());
+        }
         return limpezaDao;
     }
 
     @Override
     public boolean remover(Limpeza elemento) {
         limpezaDao.remove(elemento);
+        System.out.println("Funcionario(a) removido do sisstema");
         return true;
     }
 }

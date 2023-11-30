@@ -15,6 +15,7 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     @Override
     public boolean adicionar(Medico elemento) {
         medicoDao.add(elemento);
+        System.out.println("Medico(a) adicionado ao sistema!");
         return true;
     }
 
@@ -22,6 +23,12 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     public Medico buscar(String busca) {
         for (Medico medico: medicoDao) {
             if (medico.getCpf().equals(busca) || medico.getCrm().equals(busca) || medico.getNome().equals(busca)) {
+                System.out.println("Informações de " + medico.getNome());
+                System.out.println("Nome: " + medico.getNome()
+                        + ". CRM: " + medico.getCrm()
+                        + ". CPF: " + medico.getCpf()
+                        + ". Telefone: " + medico.getTelefone()
+                        + ". Email: " + medico.getEmail());
                 return medico;
             }
         }
@@ -30,12 +37,21 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
 
     @Override
     public ArrayList<Medico> listarTodos() {
+        for (Medico medico: medicoDao) {
+            System.out.println("Informações de " + medico.getNome());
+            System.out.println("Nome: " + medico.getNome()
+                    + ". CRM: " + medico.getCrm()
+                    + ". CPF: " + medico.getCpf()
+                    + ". Telefone: " + medico.getTelefone()
+                    + ". Email: " + medico.getEmail());
+        }
         return medicoDao;
     }
 
     @Override
     public boolean remover(Medico elemento) {
         medicoDao.remove(elemento);
+        System.out.println("Medico(a) removido do sistema");
         return true;
     }
 

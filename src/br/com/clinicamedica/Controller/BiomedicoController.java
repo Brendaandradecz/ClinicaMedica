@@ -2,22 +2,18 @@ package br.com.clinicamedica.Controller;
 
 import br.com.clinicamedica.Contract.IBiomedicoController;
 import br.com.clinicamedica.Contract.IController;
-import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.DAO.BiomedicoDAO;
 import br.com.clinicamedica.Exception.*;
 import br.com.clinicamedica.Model.Analise;
 import br.com.clinicamedica.Model.Biomedico;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
+import br.com.clinicamedica.Model.Paciente;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class BiomedicoController implements IController<Biomedico>, IBiomedicoController {
-    private IDAO<Biomedico> dao;
-
-    public BiomedicoController() {
-        this.dao = new BiomedicoDAO();
-    }
-
+    private BiomedicoDAO dao = new BiomedicoDAO();
     @Override
     public boolean adicionar(Biomedico elemento) {
         try {
@@ -75,22 +71,19 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
     }
 
     @Override
-    public boolean fazerAnaliseDeAmostras(Analise analise, ColetaDeAmostras coleta) {
+    public double fazerAnaliseDeAmostras(Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
         try {
-            if (analise == null || coleta == null) {
+            if ( coleta == null) {
                 throw new ParametrosInvalidosException();
             }
-
-            double resultado = analise.getResultado();
-
             if (resultado > 1.0 || resultado < 0){
                 throw new ResultadoInvalidoException();
             }
-            return true;
+            return this.dao.fazerAnaliseDeAmostras(biomedico, paciente, dataHora, resultado, coleta);
 
         } catch (ParametrosInvalidosException | ResultadoInvalidoException e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return 0.0;
     }
 }

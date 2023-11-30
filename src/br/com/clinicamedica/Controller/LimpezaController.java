@@ -12,10 +12,7 @@ import br.com.clinicamedica.Model.Limpeza;
 import java.util.ArrayList;
 
 public class LimpezaController implements IController<Limpeza> {
-    private IDAO<Limpeza> dao;
-    public LimpezaController(){
-        this.dao = new LimpezaDAO();
-    }
+    private LimpezaDAO dao = new LimpezaDAO();
     @Override
     public boolean adicionar(Limpeza elemento) {
         try{

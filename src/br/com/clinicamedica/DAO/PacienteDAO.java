@@ -17,6 +17,7 @@ public class PacienteDAO implements IDAO<Paciente> {
     @Override
     public boolean adicionar(Paciente elemento) {
         pacienteDao.add(elemento);
+        System.out.println("Paciente adicionado ao sistema!");
         return true;
     }
 
@@ -24,6 +25,11 @@ public class PacienteDAO implements IDAO<Paciente> {
     public Paciente buscar(String busca) {
         for (Paciente paciente: pacienteDao) {
             if(paciente.getNome().equals(busca) || paciente.getCpf().equals(busca)){
+                System.out.println("Informações de " + paciente.getNome());
+                System.out.println("Nome: " + paciente.getNome()
+                        + ". CPF: " + paciente.getCpf()
+                        + ". Telefone: " + paciente.getTelefone()
+                        + ". Email: " + paciente.getEmail());
                 return paciente;
             }
         }
@@ -32,12 +38,20 @@ public class PacienteDAO implements IDAO<Paciente> {
 
     @Override
     public ArrayList<Paciente> listarTodos() {
+        for (Paciente paciente: pacienteDao) {
+            System.out.println("Informações de " + paciente.getNome());
+            System.out.println("Nome: " + paciente.getNome()
+                    + ". CPF: " + paciente.getCpf()
+                    + ". Telefone: " + paciente.getTelefone()
+                    + ". Email: " + paciente.getEmail());
+        }
         return pacienteDao;
     }
 
     @Override
     public boolean remover(Paciente elemento) {
         pacienteDao.remove(elemento);
+        System.out.println("Paciente removido do sistema!");
         return true;
     }
 }

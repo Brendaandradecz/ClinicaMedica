@@ -12,10 +12,7 @@ import br.com.clinicamedica.Model.Medico;
 import java.util.ArrayList;
 
 public class MedicoController implements IController<Medico>, IMedicoController {
-    private IDAO<Medico> dao;
-    public MedicoController(){
-        this.dao = new MedicoDAO();
-    }
+    private MedicoDAO dao = new MedicoDAO();
     @Override
     public boolean adicionar(Medico elemento) {
         try{
@@ -82,7 +79,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             if (consulta.getPaciente().getIdade() < 18 && !consulta.getPaciente().isPacienteAcompanhado()) {
                 throw new MenorDesacompanhadoException();
             }
-            return true;
+            return this.dao.fazerConsulta(consulta);
 
 
         } catch (ConsultaNaoAgendadaException | MenorDesacompanhadoException e) {
@@ -100,7 +97,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             if (cirurgia.getPaciente().isPressaoArterialAlterada()){
                 throw new PressaoArterialAlteradaException();
             }
-            return true;
+            return this.dao.fazerCirurgia(cirurgia);
 
         } catch (PressaoArterialAlteradaException | CirurgiaNaoAgendadaException e) {
             System.out.println(e.getMessage());

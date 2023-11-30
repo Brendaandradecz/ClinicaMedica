@@ -6,6 +6,11 @@ import java.time.LocalDateTime;
 
 public interface IRecepcionistaController {
     boolean marcarCirurgia(LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento);
-    boolean marcarColeta(LocalDateTime dataHora, Biomedico biomedico, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente);
+    boolean marcarColeta(LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra);
     boolean marcarConsulta(LocalDateTime dataHora, Medico medico, Paciente paciente);
+    boolean alterarData(LocalDateTime alteracao, Cirurgia cirurgia);
+
+    boolean alterarData(LocalDateTime alteracao, ColetaDeAmostras coleta);
+
+    boolean alterarData(LocalDateTime alteracao, Consulta consulta);
 }

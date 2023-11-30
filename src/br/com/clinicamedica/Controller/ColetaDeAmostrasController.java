@@ -12,10 +12,7 @@ import br.com.clinicamedica.Model.ColetaDeAmostras;
 import java.util.ArrayList;
 
 public class ColetaDeAmostrasController implements IController<ColetaDeAmostras> {
-    private IDAO<ColetaDeAmostras> dao;
-    public ColetaDeAmostrasController(){
-        this.dao = new ColetaDeAmostrasDAO();
-    }
+    private ColetaDeAmostrasDAO dao = new ColetaDeAmostrasDAO();
     @Override
     public boolean adicionar(ColetaDeAmostras elemento) {
         try{

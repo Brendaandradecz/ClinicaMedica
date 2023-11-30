@@ -13,10 +13,7 @@ import java.util.ArrayList;
 
 public class ConsultaController implements IController<Consulta> {
 
-    private IDAO<Consulta> dao;
-    public ConsultaController(){
-        this.dao = new ConsultaDAO();
-    }
+    private ConsultaDAO dao = new ConsultaDAO();
     @Override
     public boolean adicionar(Consulta elemento) {
         try{
