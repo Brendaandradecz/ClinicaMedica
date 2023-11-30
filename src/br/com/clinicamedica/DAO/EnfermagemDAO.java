@@ -48,13 +48,20 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
 
     @Override
     public boolean realizarTriagem(Paciente paciente, LocalDateTime dataHora) {
-        System.out.println("Triagem realizada para o paciente: " + paciente.getNome());
+        System.out.println("INFORMAÇÕES DA TRIAGEM:");
+        System.out.println("Triagem realizada para o paciente " + paciente.getNome() +
+                " em " + dataHora +
+                ". Condição: " + paciente.isCondicaoNormal());
         return true;
     }
 
     @Override
     public boolean realizarColeta(ColetaDeAmostras coleta) {
-        System.out.println("Coleta de amostras realizada para o paciente: ");
+        System.out.println("INFORMAÇÕES DA COLETA DE AMOSTRAS:");
+        System.out.println("Coleta de amostras realizada para o paciente " + coleta.getPaciente().getNome() +
+                ". Tipo de amostra: " + coleta.getTipo() +
+                ". Data e hora da coleta: " + coleta.getDataHora());
         return true;
     }
 }
+

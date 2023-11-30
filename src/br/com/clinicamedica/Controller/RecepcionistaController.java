@@ -4,10 +4,7 @@ import br.com.clinicamedica.Contract.IController;
 import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IRecepcionistaController;
 import br.com.clinicamedica.DAO.RecepcionistaDAO;
-import br.com.clinicamedica.Exception.DuplicacaoException;
-import br.com.clinicamedica.Exception.ElementoInexistenteException;
-import br.com.clinicamedica.Exception.ListaVaziaException;
-import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
+import br.com.clinicamedica.Exception.*;
 import br.com.clinicamedica.Model.*;
 
 import java.time.LocalDateTime;
@@ -76,18 +73,65 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
 
     @Override
     public boolean marcarCirurgia(LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
+        try {
+            if (dataHora == null || medico == null || paciente == null || procedimento == null || procedimento.isEmpty()) {
+                throw new ParametrosInvalidosException();
+            }
+
+            if (dataHora.isBefore(LocalDateTime.now())) {
+                throw new DataInvalidaException();
+            }
+
+            if (!procedimento.equals(procedimento)) {
+                throw new CirurgiaInvalidaException();
+            }
+            return true;
+
+        } catch (ParametrosInvalidosException | DataInvalidaException | CirurgiaInvalidaException e) {
+            System.out.println(e.getMessage());
+        }
         return false;
     }
 
     @Override
     public boolean marcarColeta(LocalDateTime dataHora, Biomedico biomedico, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente) {
+        try {
+            if (dataHora == null || biomedico == null || enfermeiro == null || codigo == null || codigo.isEmpty() || tipo == null || tipo.isEmpty() || paciente == null) {
+                throw new ParametrosInvalidosException();
+            }
+
+            if (dataHora.isBefore(LocalDateTime.now())) {
+                throw new DataInvalidaException();
+            }
+
+            if (!tipo.equals(tipo)) {
+                throw new TipoInvalidoException();
+            }
+
+            return true;
+
+        } catch (ParametrosInvalidosException | DataInvalidaException | TipoInvalidoException e) {
+            System.out.println(e.getMessage());
+        }
         return false;
     }
 
     @Override
     public boolean marcarConsulta(LocalDateTime dataHora, Medico medico, Paciente paciente) {
+        try {
+            if (dataHora == null || medico == null || paciente == null) {
+                throw new ParametrosInvalidosException();
+            }
+
+            if (dataHora.isBefore(LocalDateTime.now())) {
+                throw new DataInvalidaException();
+            }
+            if (paciente.getCpf() == null) ;
+            return true;
+
+        } catch (ParametrosInvalidosException | DataInvalidaException | DocumentoInvalidoException e) {
+            System.out.println(e.getMessage());
+        }
         return false;
     }
-
-
 }

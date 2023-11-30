@@ -2,6 +2,7 @@ package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IBiomedicoDao;
 import br.com.clinicamedica.Contract.IDAO;
+import br.com.clinicamedica.Model.Analise;
 import br.com.clinicamedica.Model.Biomedico;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
 
@@ -43,14 +44,24 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     }
 
     @Override
-    public double fazerAnaliseDeAmostras(ColetaDeAmostras coleta) {
+    public double fazerAnaliseDeAmostras(Analise analise, ColetaDeAmostras coleta) {
         double resultado = Math.random();
-        if (resultado >= 0.7) {
-            System.out.println("Positivo");
-        }else {
-            System.out.println("Negativo");
+        double Positivo = 0.7;
+
+        if (resultado >= Positivo) {
+            System.out.println("A análise indicou um resultado positivo.");
+        } else {
+            System.out.println("A análise indicou um resultado negativo.");
         }
+
+        System.out.println("INFORMAÇÕES DA ANÁLISE DE AMOSTRAS:");
+        System.out.println("Coleta de amostras realizada para o paciente " + coleta.getPaciente().getNome() +
+                ". Tipo de amostra: " + coleta.getTipo() +
+                ". Data e hora da coleta: " + coleta.getDataHora() +
+                ". Resultado: " + analise.getResultado());
+
         return resultado;
     }
 }
+
 

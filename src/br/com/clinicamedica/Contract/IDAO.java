@@ -1,5 +1,6 @@
 package br.com.clinicamedica.Contract;
 
+
 import java.util.ArrayList;
 
 public interface IDAO<T>{
@@ -8,4 +9,6 @@ public interface IDAO<T>{
     ArrayList<T> listarTodos();
     boolean remover(T elemento);
     ArrayList<T> getArray();
+
+
 }

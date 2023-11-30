@@ -4,10 +4,7 @@ import br.com.clinicamedica.Contract.IController;
 import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IEnfermagemController;
 import br.com.clinicamedica.DAO.EnfermagemDAO;
-import br.com.clinicamedica.Exception.DuplicacaoException;
-import br.com.clinicamedica.Exception.ElementoInexistenteException;
-import br.com.clinicamedica.Exception.ListaVaziaException;
-import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
+import br.com.clinicamedica.Exception.*;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
 import br.com.clinicamedica.Model.Enfermagem;
 import br.com.clinicamedica.Model.Paciente;
@@ -17,18 +14,20 @@ import java.util.ArrayList;
 
 public class EnfermagemController implements IController<Enfermagem>, IEnfermagemController {
     private IDAO<Enfermagem> dao;
-    public EnfermagemController(){
+
+    public EnfermagemController() {
         this.dao = new EnfermagemDAO();
     }
+
     @Override
     public boolean adicionar(Enfermagem elemento) {
-        try{
-            if(dao.getArray().contains(elemento)){
+        try {
+            if (dao.getArray().contains(elemento)) {
                 throw new DuplicacaoException("Consulta");
             } else {
                 return this.dao.adicionar(elemento);
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -36,13 +35,13 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
 
     @Override
     public Enfermagem buscar(String busca) {
-        try{
-            if(this.dao.buscar(busca).equals("null")){
+        try {
+            if (this.dao.buscar(busca).equals("null")) {
                 throw new ResultadoNaoEncontradoException();
-            }else{
+            } else {
                 return this.dao.buscar(busca);
             }
-        } catch(ResultadoNaoEncontradoException e){
+        } catch (ResultadoNaoEncontradoException e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -50,13 +49,13 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
 
     @Override
     public ArrayList listarTodos() {
-        try{
-            if(dao.getArray().isEmpty()) {
+        try {
+            if (dao.getArray().isEmpty()) {
                 throw new ListaVaziaException();
-            }else{
+            } else {
                 return this.dao.listarTodos();
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -64,13 +63,13 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
 
     @Override
     public boolean remover(Enfermagem elemento) {
-        try{
-            if(dao.getArray().contains(elemento)){
+        try {
+            if (dao.getArray().contains(elemento)) {
                 return this.dao.remover(elemento);
-            }else{
+            } else {
                 throw new ElementoInexistenteException();
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -78,11 +77,26 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
 
     @Override
     public boolean realizarTriagem(Paciente paciente, LocalDateTime dataHora) {
+        try {
+            if(paciente.getCpf() == null) ;
+            return true;
+
+        } catch (DocumentoInvalidoException e) {
+            System.out.println(e.getMessage());
+        }
         return false;
     }
 
     @Override
     public boolean realizarColeta(ColetaDeAmostras coleta) {
+        try {
+            if (coleta == null || coleta.getCondicaoDaAmostra().contains("Danificada"))
+                return true;
+
+        } catch (AmostraInvalidaOuDanificadaException e) {
+            System.out.println(e.getMessage());
+        }
         return false;
     }
 }
+

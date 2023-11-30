@@ -6,9 +6,9 @@ public class Analise {
     private LocalDateTime dataHora;
     private Medico medico;
     private Paciente paciente;
-    private String resultado;
+    private double resultado;
 
-    public Analise(LocalDateTime dataHora, Medico medico, Paciente paciente, String resultado) {
+    public Analise(LocalDateTime dataHora, Medico medico, Paciente paciente, double resultado) {
         this.dataHora = dataHora;
         this.medico = medico;
         this.paciente = paciente;
@@ -39,7 +39,7 @@ public class Analise {
         this.paciente = paciente;
     }
 
-    public String getResultado() {
+    public double getResultado() {
         return resultado;
     }
 

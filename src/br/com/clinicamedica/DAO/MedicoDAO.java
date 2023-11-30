@@ -46,13 +46,20 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
 
     @Override
     public boolean fazerConsulta(Consulta consulta) {
-        System.out.println("Consulta realizada");
+        System.out.println("INFORMAÇÕES DA CONSULTA:");
+        System.out.println("Consulta realizada por " + consulta.getMedico().getNome() +
+                " para o paciente " + consulta.getPaciente().getNome() +
+                " às " + consulta.getDataHora());
         return true;
     }
 
     @Override
     public boolean fazerCirurgia(Cirurgia cirurgia) {
-        System.out.println("Cirurgia será realizada!");
+        System.out.println("INFORMAÇÕES DA CIRURGIA:");
+        System.out.println("Cirurgia agendada por " + cirurgia.getMedico().getNome() +
+                " para o paciente " + cirurgia.getPaciente().getNome() +
+                " às " + cirurgia.getDataHora() +
+                ". Procedimento: " + cirurgia.getProcedimento());
         return true;
     }
 }
