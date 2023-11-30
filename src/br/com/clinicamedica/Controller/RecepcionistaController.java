@@ -1,7 +1,6 @@
 package br.com.clinicamedica.Controller;
 
 import br.com.clinicamedica.Contract.IController;
-import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IRecepcionistaController;
 import br.com.clinicamedica.DAO.RecepcionistaDAO;
 import br.com.clinicamedica.Exception.*;
@@ -20,7 +19,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
             } else {
                 return this.dao.adicionar(elemento);
             }
-        } catch(Exception e){
+        } catch(DuplicacaoException e){
             System.out.println(e.getMessage());
         }
         return false;
@@ -48,7 +47,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
             }else{
                 return this.dao.listarTodos();
             }
-        } catch(Exception e){
+        } catch(ListaVaziaException e){
             System.out.println(e.getMessage());
         }
         return null;
@@ -62,7 +61,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
             }else{
                 throw new ElementoInexistenteException();
             }
-        } catch(Exception e){
+        } catch(ElementoInexistenteException e){
             System.out.println(e.getMessage());
         }
         return false;
@@ -75,14 +74,13 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 throw new DocumentoInvalidoException();
             }
 
-            if (dataHora == null || medico == null || paciente == null || procedimento == null || procedimento.isEmpty()) {
+            if (dataHora == null || medico == null || paciente == null || procedimento == null){
                 throw new ParametrosInvalidosException();
             }
 
             if (dataHora.isBefore(LocalDateTime.now())) {
                 throw new DataInvalidaException();
             }
-
             return this.dao.marcarCirurgia(dataHora, medico, paciente, procedimento);
 
         } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException e) {
@@ -98,7 +96,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 throw new DocumentoInvalidoException();
             }
 
-            if (dataHora == null || enfermeiro == null || codigo == null || codigo.isEmpty() || tipo == null || tipo.isEmpty() || paciente == null) {
+            if (dataHora == null || enfermeiro == null || codigo == null || tipo == null || paciente == null) {
                 throw new ParametrosInvalidosException();
             }
 

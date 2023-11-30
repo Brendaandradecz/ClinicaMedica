@@ -4,7 +4,6 @@ import br.com.clinicamedica.Contract.IBiomedicoController;
 import br.com.clinicamedica.Contract.IController;
 import br.com.clinicamedica.DAO.BiomedicoDAO;
 import br.com.clinicamedica.Exception.*;
-import br.com.clinicamedica.Model.Analise;
 import br.com.clinicamedica.Model.Biomedico;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
 import br.com.clinicamedica.Model.Paciente;
@@ -22,7 +21,7 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
             } else {
                 return this.dao.adicionar(elemento);
             }
-        } catch (Exception e) {
+        } catch (DuplicacaoException e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -50,7 +49,7 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
             } else {
                 return this.dao.listarTodos();
             }
-        } catch (Exception e) {
+        } catch (ListaVaziaException e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -64,14 +63,14 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
             } else {
                 throw new ElementoInexistenteException();
             }
-        } catch (Exception e) {
+        } catch (ElementoInexistenteException e) {
             System.out.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public double fazerAnaliseDeAmostras(Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
+    public boolean fazerAnaliseDeAmostras(Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
         try {
             if ( coleta == null) {
                 throw new ParametrosInvalidosException();
@@ -84,6 +83,6 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
         } catch (ParametrosInvalidosException | ResultadoInvalidoException e) {
             System.out.println(e.getMessage());
         }
-        return 0.0;
+        return false;
     }
 }

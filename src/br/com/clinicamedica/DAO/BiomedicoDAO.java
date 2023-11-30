@@ -21,7 +21,7 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     @Override
     public boolean adicionar(Biomedico biomedico) {
         biomedicoDao.add(biomedico);
-        System.out.println("Biomedico(a) adicionado ao sistema!");
+        System.out.println("Biomedico(a) adicionado(a) ao sistema!\n");
         return true;
     }
 
@@ -31,10 +31,10 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
             if (biomedico.getCpf().equals(busca) || biomedico.getCrbm().equals(busca) || biomedico.getNome().equals(busca)) {
                 System.out.println("Informações de " + biomedico.getNome());
                 System.out.println("Nome: " + biomedico.getNome()
-                + ". CRBM: " + biomedico.getCrbm()
-                + ". CPF: " + biomedico.getCpf()
-                + ". Telefone: " + biomedico.getTelefone()
-                + ". Email: " + biomedico.getEmail());
+                + ". \nCRBM: " + biomedico.getCrbm()
+                + ". \nCPF: " + biomedico.getCpf()
+                + ". \nTelefone: " + biomedico.getTelefone()
+                + ". \nEmail: " + biomedico.getEmail());
                 return biomedico;
             }
         }
@@ -46,10 +46,10 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
         for (Biomedico biomedico : biomedicoDao) {
             System.out.println("Informações de " + biomedico.getNome());
             System.out.println("Nome: " + biomedico.getNome()
-                    + ". CRBM: " + biomedico.getCrbm()
-                    + ". CPF: " + biomedico.getCpf()
-                    + ". Telefone: " + biomedico.getTelefone()
-                    + ". Email: " + biomedico.getEmail());
+                    + ". \nCRBM: " + biomedico.getCrbm()
+                    + ". \nCPF: " + biomedico.getCpf()
+                    + ". \nTelefone: " + biomedico.getTelefone()
+                    + ". \nEmail: " + biomedico.getEmail());
         }
         return biomedicoDao;
     }
@@ -57,28 +57,28 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     @Override
     public boolean remover(Biomedico biomedico) {
         biomedicoDao.remove(biomedico);
-        System.out.println("Biomedico(a) removido do sistema!");
+        System.out.println("Biomedico(a) removido do sistema!\n");
         return true;
     }
 
     @Override
-    public double fazerAnaliseDeAmostras(Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
+    public boolean fazerAnaliseDeAmostras(Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
         Analise analise = new Analise(dataHora, biomedico, paciente, resultado);
         double Positivo = 0.7;
 
         if (resultado >= Positivo) {
-            System.out.println("A análise indicou um resultado positivo.");
+            System.out.println("A análise indicou um resultado positivo.\n");
         } else {
-            System.out.println("A análise indicou um resultado negativo.");
+            System.out.println("A análise indicou um resultado negativo.\n");
         }
 
         System.out.println("INFORMAÇÕES DA ANÁLISE DE AMOSTRAS:");
         System.out.println("Coleta de amostras realizada para o paciente " + coleta.getPaciente().getNome() +
-                ". Tipo de amostra: " + coleta.getTipo() +
-                ". Data e hora da coleta: " + coleta.getDataHora() +
-                ". Resultado: " + analise.getResultado());
+                ". \nTipo de amostra: " + coleta.getTipo() +
+                ". \nData e hora da coleta: " + coleta.getDataHora() +
+                ". \nResultado: " + analise.getResultado());
 
-        return resultado;
+        return true;
     }
 }
 

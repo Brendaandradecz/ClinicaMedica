@@ -2,7 +2,6 @@ package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IEnfermagemDao;
-import br.com.clinicamedica.Model.Biomedico;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
 import br.com.clinicamedica.Model.Enfermagem;
 import br.com.clinicamedica.Model.Paciente;
@@ -16,7 +15,7 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
     @Override
     public boolean adicionar(Enfermagem elemento) {
         enfermagemDao.add(elemento);
-        System.out.println("Enfermeiro(a) adicionado ao sistema!");
+        System.out.println("Enfermeiro(a) adicionado ao sistema!\n");
         return true;
     }
 
@@ -26,10 +25,10 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
             if (enfermagem.getCpf().equals(busca) || enfermagem.getCoren().equals(busca) || enfermagem.getNome().equals(busca)) {
                 System.out.println("Informações de " + enfermagem.getNome());
                 System.out.println("Nome: " + enfermagem.getNome()
-                        + ". CRBM: " + enfermagem.getCoren()
-                        + ". CPF: " + enfermagem.getCpf()
-                        + ". Telefone: " + enfermagem.getTelefone()
-                        + ". Email: " + enfermagem.getEmail());
+                        + ". \nCRBM: " + enfermagem.getCoren()
+                        + ". \nCPF: " + enfermagem.getCpf()
+                        + ". \nTelefone: " + enfermagem.getTelefone()
+                        + ". \nEmail: " + enfermagem.getEmail());
                 return enfermagem;
             }
         }
@@ -42,10 +41,10 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
         for (Enfermagem enfermagem : enfermagemDao) {
             System.out.println("Informações de " + enfermagem.getNome());
             System.out.println("Nome: " + enfermagem.getNome()
-                    + ". CRBM: " + enfermagem.getCoren()
-                    + ". CPF: " + enfermagem.getCpf()
-                    + ". Telefone: " + enfermagem.getTelefone()
-                    + ". Email: " + enfermagem.getEmail());
+                    + ". \nCRBM: " + enfermagem.getCoren()
+                    + ". \nCPF: " + enfermagem.getCpf()
+                    + ". \nTelefone: " + enfermagem.getTelefone()
+                    + ". \nEmail: " + enfermagem.getEmail());
         }
         return enfermagemDao;
     }
@@ -58,7 +57,7 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
     @Override
     public boolean remover(Enfermagem elemento) {
         enfermagemDao.remove(elemento);
-        System.out.println("Enfermeiro(a) removido do sistema");
+        System.out.println("Enfermeiro(a) removido(a) do sistema\n");
         return true;
     }
 

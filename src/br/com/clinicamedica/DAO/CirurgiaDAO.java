@@ -16,7 +16,7 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
     @Override
     public boolean adicionar(Cirurgia elemento) {
         cirurgiaDao.add(elemento);
-        System.out.println("Cirurgia adicionada ao sistema!");
+        System.out.println("Cirurgia adicionada ao sistema!\n");
         return true;
 
     }
@@ -27,9 +27,9 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
             if(cirurgia.getPaciente().getCpf().equals(busca) || cirurgia.getPaciente().getNome().equals(busca)){
                 System.out.println("INFORMAÇÕES DA CIRURGIA:");
                 System.out.println("Cirurgia realizada no paciente " + cirurgia.getPaciente().getNome() +
-                        ". Data e hora da cirurgia: " + cirurgia.getDataHora() +
-                        ". Procedimento: " + cirurgia.getProcedimento() +
-                        ". Cirugia feita por: " + cirurgia.getMedico().getNome());
+                        ". \nData e hora da cirurgia: " + cirurgia.getDataHora() +
+                        ". \nProcedimento: " + cirurgia.getProcedimento() +
+                        ". \nCirugia feita por: " + cirurgia.getMedico().getNome());
                 return cirurgia;
             }
         }
@@ -41,9 +41,9 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
         for (Cirurgia cirurgia: cirurgiaDao) {
             System.out.println("INFORMAÇÕES DA CIRURGIA:");
             System.out.println("Cirurgia realizada no paciente " + cirurgia.getPaciente().getNome() +
-                    ". Data e hora da cirurgia: " + cirurgia.getDataHora() +
-                    ". Procedimento: " + cirurgia.getProcedimento() +
-                    ". Cirugia feita por: " + cirurgia.getMedico().getNome());
+                    ". \nData e hora da cirurgia: " + cirurgia.getDataHora() +
+                    ". \nProcedimento: " + cirurgia.getProcedimento() +
+                    ". \nCirugia feita por: " + cirurgia.getMedico().getNome());
         }
         return cirurgiaDao;
     }
@@ -51,7 +51,7 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
     @Override
     public boolean remover(Cirurgia elemento) {
         cirurgiaDao.remove(elemento);
-        System.out.println("Cirurgia removida do sistema!");
+        System.out.println("Cirurgia removida do sistema!\n");
         return true;
     }
 }

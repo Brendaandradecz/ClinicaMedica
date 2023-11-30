@@ -1,7 +1,6 @@
 package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
-import br.com.clinicamedica.Model.Enfermagem;
 import br.com.clinicamedica.Model.Limpeza;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     @Override
     public boolean adicionar(Limpeza elemento) {
         limpezaDao.add(elemento);
-        System.out.println("Funcionario(a) adicionado ao sistema!");
+        System.out.println("Funcionario(a) adicionado(a) ao sistema!\n");
         return true;
     }
 
@@ -27,9 +26,9 @@ public class LimpezaDAO implements IDAO<Limpeza> {
             if (limpeza.getCpf().equals(busca) || limpeza.getNome().equals(busca)) {
                 System.out.println("Informações de " + limpeza.getNome());
                 System.out.println("Nome: " + limpeza.getNome()
-                        + ". CPF: " + limpeza.getCpf()
-                        + ". Telefone: " + limpeza.getTelefone()
-                        + ". Email: " + limpeza.getEmail());
+                        + ". \nCPF: " + limpeza.getCpf()
+                        + ". \nTelefone: " + limpeza.getTelefone()
+                        + ". \nEmail: " + limpeza.getEmail());
                 return limpeza;
             }
         }
@@ -41,9 +40,9 @@ public class LimpezaDAO implements IDAO<Limpeza> {
         for (Limpeza limpeza: limpezaDao) {
             System.out.println("Informações de " + limpeza.getNome());
             System.out.println("Nome: " + limpeza.getNome()
-                    + ". CPF: " + limpeza.getCpf()
-                    + ". Telefone: " + limpeza.getTelefone()
-                    + ". Email: " + limpeza.getEmail());
+                    + ". \nCPF: " + limpeza.getCpf()
+                    + ". \nTelefone: " + limpeza.getTelefone()
+                    + ". \nEmail: " + limpeza.getEmail());
         }
         return limpezaDao;
     }
@@ -51,7 +50,7 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     @Override
     public boolean remover(Limpeza elemento) {
         limpezaDao.remove(elemento);
-        System.out.println("Funcionario(a) removido do sisstema");
+        System.out.println("Funcionario(a) removido(a) do sisstema\n");
         return true;
     }
 }

@@ -1,7 +1,6 @@
 package br.com.clinicamedica.Controller;
 
 import br.com.clinicamedica.Contract.IController;
-import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.DAO.PacienteDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
 import br.com.clinicamedica.Exception.ElementoInexistenteException;
@@ -21,7 +20,7 @@ public class PacienteController implements IController<Paciente> {
             } else {
                 return this.dao.adicionar(elemento);
             }
-        } catch(Exception e){
+        } catch(DuplicacaoException e){
             System.out.println(e.getMessage());
         }
         return false;
@@ -49,7 +48,7 @@ public class PacienteController implements IController<Paciente> {
             }else{
                 return this.dao.listarTodos();
             }
-        } catch(Exception e){
+        } catch(ListaVaziaException e){
             System.out.println(e.getMessage());
         }
         return null;
@@ -63,7 +62,7 @@ public class PacienteController implements IController<Paciente> {
             }else{
                 throw new ElementoInexistenteException();
             }
-        } catch(Exception e){
+        } catch(ElementoInexistenteException e){
             System.out.println(e.getMessage());
         }
         return false;

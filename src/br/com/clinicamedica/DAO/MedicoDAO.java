@@ -4,7 +4,6 @@ import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IMedicoDao;
 import br.com.clinicamedica.Model.Cirurgia;
 import br.com.clinicamedica.Model.Consulta;
-import br.com.clinicamedica.Model.Enfermagem;
 import br.com.clinicamedica.Model.Medico;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     @Override
     public boolean adicionar(Medico elemento) {
         medicoDao.add(elemento);
-        System.out.println("Medico(a) adicionado ao sistema!");
+        System.out.println("Medico(a) adicionado(a) ao sistema!\n");
         return true;
     }
 
@@ -25,10 +24,11 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
             if (medico.getCpf().equals(busca) || medico.getCrm().equals(busca) || medico.getNome().equals(busca)) {
                 System.out.println("Informações de " + medico.getNome());
                 System.out.println("Nome: " + medico.getNome()
-                        + ". CRM: " + medico.getCrm()
-                        + ". CPF: " + medico.getCpf()
-                        + ". Telefone: " + medico.getTelefone()
-                        + ". Email: " + medico.getEmail());
+                        + ". \nCRM: " + medico.getCrm()
+                        + ". \nEspecialidade: " + medico.getEspecialidade()
+                        + ". \nCPF: " + medico.getCpf()
+                        + ". \nTelefone: " + medico.getTelefone()
+                        + ". \nEmail: " + medico.getEmail());
                 return medico;
             }
         }
@@ -40,10 +40,10 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
         for (Medico medico: medicoDao) {
             System.out.println("Informações de " + medico.getNome());
             System.out.println("Nome: " + medico.getNome()
-                    + ". CRM: " + medico.getCrm()
-                    + ". CPF: " + medico.getCpf()
-                    + ". Telefone: " + medico.getTelefone()
-                    + ". Email: " + medico.getEmail());
+                    + ". \nCRM: " + medico.getCrm()
+                    + ". \nCPF: " + medico.getCpf()
+                    + ". \nTelefone: " + medico.getTelefone()
+                    + ". \nEmail: " + medico.getEmail());
         }
         return medicoDao;
     }
@@ -51,7 +51,7 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     @Override
     public boolean remover(Medico elemento) {
         medicoDao.remove(elemento);
-        System.out.println("Medico(a) removido do sistema");
+        System.out.println("Medico(a) removido(a) do sistema\n");
         return true;
     }
 
@@ -72,7 +72,7 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     @Override
     public boolean fazerCirurgia(Cirurgia cirurgia) {
         System.out.println("INFORMAÇÕES DA CIRURGIA:");
-        System.out.println("Cirurgia agendada por " + cirurgia.getMedico().getNome() +
+        System.out.println("Cirurgia realizada por " + cirurgia.getMedico().getNome() +
                 " para o paciente " + cirurgia.getPaciente().getNome() +
                 " às " + cirurgia.getDataHora() +
                 ". Procedimento: " + cirurgia.getProcedimento());

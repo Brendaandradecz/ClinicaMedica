@@ -1,7 +1,6 @@
 package br.com.clinicamedica.Controller;
 
 import br.com.clinicamedica.Contract.IController;
-import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IMedicoController;
 import br.com.clinicamedica.DAO.MedicoDAO;
 import br.com.clinicamedica.Exception.*;
@@ -21,7 +20,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             } else {
                 return this.dao.adicionar(elemento);
             }
-        } catch(Exception e){
+        } catch(DuplicacaoException e){
             System.out.println(e.getMessage());
         }
         return false;
@@ -49,7 +48,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             }else{
                 return this.dao.listarTodos();
             }
-        } catch(Exception e){
+        } catch(ListaVaziaException e){
             System.out.println(e.getMessage());
         }
         return null;
@@ -63,7 +62,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             }else{
                 throw new ElementoInexistenteException();
             }
-        } catch(Exception e){
+        } catch(ElementoInexistenteException e){
             System.out.println(e.getMessage());
         }
         return false;
@@ -75,13 +74,10 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             if (consulta == null) {
                 throw new ConsultaNaoAgendadaException();
             }
-
             if (consulta.getPaciente().getIdade() < 18 && !consulta.getPaciente().isPacienteAcompanhado()) {
                 throw new MenorDesacompanhadoException();
             }
             return this.dao.fazerConsulta(consulta);
-
-
         } catch (ConsultaNaoAgendadaException | MenorDesacompanhadoException e) {
             System.out.println(e.getMessage());
         }
@@ -93,7 +89,6 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             if (cirurgia == null) {
                 throw new CirurgiaNaoAgendadaException();
             }
-
             if (cirurgia.getPaciente().isPressaoArterialAlterada()){
                 throw new PressaoArterialAlteradaException();
             }

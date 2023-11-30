@@ -18,7 +18,7 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     @Override
     public boolean adicionar(Recepcionista elemento) {
         recepcionistaDao.add(elemento);
-        System.out.println("Recepcionista adicionado(a) ao sistema!");
+        System.out.println("Recepcionista adicionado(a) ao sistema!\n");
         return true;
 
     }
@@ -29,9 +29,9 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
             if(recepcionista.getNome().equals(busca) || recepcionista.getCpf().equals(busca)){
                 System.out.println("Informações de " + recepcionista.getNome());
                 System.out.println("Nome: " + recepcionista.getNome()
-                        + ". CPF: " + recepcionista.getCpf()
-                        + ". Telefone: " + recepcionista.getTelefone()
-                        + ". Email: " + recepcionista.getEmail());
+                        + ". \nCPF: " + recepcionista.getCpf()
+                        + ". \nTelefone: " + recepcionista.getTelefone()
+                        + ". \nEmail: " + recepcionista.getEmail());
                 return recepcionista;
             }
         }
@@ -42,9 +42,9 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
         for (Recepcionista recepcionista: recepcionistaDao) {
             System.out.println("Informações de " + recepcionista.getNome());
             System.out.println("Nome: " + recepcionista.getNome()
-                    + ". CPF: " + recepcionista.getCpf()
-                    + ". Telefone: " + recepcionista.getTelefone()
-                    + ". Email: " + recepcionista.getEmail());
+                    + ". \nCPF: " + recepcionista.getCpf()
+                    + ". \nTelefone: " + recepcionista.getTelefone()
+                    + ". \nEmail: " + recepcionista.getEmail());
         }
         return recepcionistaDao;
     }
@@ -52,7 +52,7 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     @Override
     public boolean remover(Recepcionista elemento) {
         recepcionistaDao.add(elemento);
-        System.out.println("Recepcionista removido do sistema!");
+        System.out.println("Recepcionista removido(a) do sistema!\n");
         return true;
     }
 

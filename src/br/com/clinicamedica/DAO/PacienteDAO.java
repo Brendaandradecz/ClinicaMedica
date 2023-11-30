@@ -1,7 +1,6 @@
 package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
-import br.com.clinicamedica.Model.Analise;
 import br.com.clinicamedica.Model.Paciente;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class PacienteDAO implements IDAO<Paciente> {
     @Override
     public boolean adicionar(Paciente elemento) {
         pacienteDao.add(elemento);
-        System.out.println("Paciente adicionado ao sistema!");
+        System.out.println("Paciente adicionado ao sistema!\n");
         return true;
     }
 
@@ -27,9 +26,14 @@ public class PacienteDAO implements IDAO<Paciente> {
             if(paciente.getNome().equals(busca) || paciente.getCpf().equals(busca)){
                 System.out.println("Informações de " + paciente.getNome());
                 System.out.println("Nome: " + paciente.getNome()
-                        + ". CPF: " + paciente.getCpf()
-                        + ". Telefone: " + paciente.getTelefone()
-                        + ". Email: " + paciente.getEmail());
+                        + ". \nCPF: " + paciente.getCpf()
+                        + ". \nIdade: " + paciente.getIdade()
+                        + ". \nAcompanhado? " + paciente.isPacienteAcompanhado()
+                        + ". \nCondição normal? " + paciente.isCondicaoNormal()
+                        + ". \nPossui Convenio? " + paciente.isPossuiConvenio()
+                        + ". \nPressão Arterial alterada? " + paciente.isPressaoArterialAlterada()
+                        + ". \nTelefone: " + paciente.getTelefone()
+                        + ". \nEmail: " + paciente.getEmail());
                 return paciente;
             }
         }
@@ -41,9 +45,14 @@ public class PacienteDAO implements IDAO<Paciente> {
         for (Paciente paciente: pacienteDao) {
             System.out.println("Informações de " + paciente.getNome());
             System.out.println("Nome: " + paciente.getNome()
-                    + ". CPF: " + paciente.getCpf()
-                    + ". Telefone: " + paciente.getTelefone()
-                    + ". Email: " + paciente.getEmail());
+                    + ". \nCPF: " + paciente.getCpf()
+                    + ". \nIdade: " + paciente.getIdade()
+                    + ". \nAcompanhado? " + paciente.isPacienteAcompanhado()
+                    + ". \nCondição normal? " + paciente.isCondicaoNormal()
+                    + ". \nPossui Convenio? " + paciente.isPossuiConvenio()
+                    + ". \nPressão Arterial alterada? " + paciente.isPressaoArterialAlterada()
+                    + ". \nTelefone: " + paciente.getTelefone()
+                    + ". \nEmail: " + paciente.getEmail());
         }
         return pacienteDao;
     }
@@ -51,7 +60,7 @@ public class PacienteDAO implements IDAO<Paciente> {
     @Override
     public boolean remover(Paciente elemento) {
         pacienteDao.remove(elemento);
-        System.out.println("Paciente removido do sistema!");
+        System.out.println("Paciente removido do sistema!\n");
         return true;
     }
 }

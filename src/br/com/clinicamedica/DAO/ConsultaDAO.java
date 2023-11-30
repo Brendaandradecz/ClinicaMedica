@@ -1,7 +1,6 @@
 package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
-import br.com.clinicamedica.Model.Cirurgia;
 import br.com.clinicamedica.Model.Consulta;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class ConsultaDAO implements IDAO<Consulta> {
     @Override
     public boolean adicionar(Consulta elemento) {
         consultaDao.add(elemento);
-        System.out.println("Consulta adicionada ao sistema!");
+        System.out.println("Consulta adicionada ao sistema!\n");
         return true;
 
     }
@@ -28,8 +27,8 @@ public class ConsultaDAO implements IDAO<Consulta> {
             if(consulta.getPaciente().getCpf().equals(busca) || consulta.getPaciente().getNome().equals(busca)){
                 System.out.println("INFORMAÇÕES DA CONSULTA:");
                 System.out.println("Consulta do paciente " + consulta.getPaciente().getNome() +
-                        ". Data e hora da consulta: " + consulta.getDataHora() +
-                        ". Consulta feita por: " + consulta.getMedico().getNome());
+                        ". \nData e hora da consulta: " + consulta.getDataHora() +
+                        ". \nConsulta feita por: " + consulta.getMedico().getNome());
                 return consulta;
             }
         }
@@ -41,8 +40,8 @@ public class ConsultaDAO implements IDAO<Consulta> {
         for (Consulta consulta: consultaDao) {
             System.out.println("INFORMAÇÕES DA CONSULTA:");
             System.out.println("Consulta do paciente " + consulta.getPaciente().getNome() +
-                    ". Data e hora da consulta: " + consulta.getDataHora() +
-                    ". Consulta feita por: " + consulta.getMedico().getNome());
+                    ". \nData e hora da consulta: " + consulta.getDataHora() +
+                    ". \nConsulta feita por: " + consulta.getMedico().getNome());
         }
         return consultaDao;
     }
@@ -50,7 +49,7 @@ public class ConsultaDAO implements IDAO<Consulta> {
     @Override
     public boolean remover(Consulta elemento) {
         consultaDao.remove(elemento);
-        System.out.println("Consulta removida do sistema!");
+        System.out.println("Consulta removida do sistema!\n");
         return true;
     }
 }

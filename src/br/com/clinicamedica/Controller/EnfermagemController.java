@@ -1,7 +1,6 @@
 package br.com.clinicamedica.Controller;
 
 import br.com.clinicamedica.Contract.IController;
-import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IEnfermagemController;
 import br.com.clinicamedica.DAO.EnfermagemDAO;
 import br.com.clinicamedica.Exception.*;
@@ -23,7 +22,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
             } else {
                 return this.dao.adicionar(elemento);
             }
-        } catch (Exception e) {
+        } catch (DuplicacaoException e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -51,7 +50,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
             } else {
                 return this.dao.listarTodos();
             }
-        } catch (Exception e) {
+        } catch (ListaVaziaException e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -65,7 +64,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
             } else {
                 throw new ElementoInexistenteException();
             }
-        } catch (Exception e) {
+        } catch (ElementoInexistenteException e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -76,8 +75,9 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
         try {
             if (paciente.getCpf() != null) {
                 return this.dao.realizarTriagem(paciente, dataHora);
+            }else{
+                throw new DocumentoInvalidoException();
             }
-
         } catch (DocumentoInvalidoException e) {
             System.out.println(e.getMessage());
         }
@@ -87,9 +87,11 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     @Override
     public boolean realizarColeta(ColetaDeAmostras coleta) {
         try {
-            if (coleta == null || coleta.getCondicaoDaAmostra().contains("Danificada"))
+            if (coleta == null || coleta.getCondicaoDaAmostra().contains("Danificada")){
+                throw new AmostraInvalidaOuDanificadaException();
+            }else{
                 return this.dao.realizarColeta(coleta);
-
+            }
         } catch (AmostraInvalidaOuDanificadaException e) {
             System.out.println(e.getMessage());
         }

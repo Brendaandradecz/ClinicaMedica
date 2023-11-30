@@ -15,7 +15,7 @@ public class AnaliseDAO implements IDAO<Analise> {
     @Override
     public boolean adicionar(Analise elemento) {
         analiseDao.add(elemento);
-        System.out.println("Análise adicionada ao sistema!");
+        System.out.println("Analise adicionada ao sistema!\n");
         return true;
     }
     @Override
@@ -23,11 +23,11 @@ public class AnaliseDAO implements IDAO<Analise> {
         for (Analise analise: analiseDao) {
             if(analise.getPaciente().getNome().equals(busca) || analise.getPaciente().getCpf().equals(busca)){
                 System.out.println();
-                System.out.println("INFORMAÇÕES DA ANÁLISE DE AMOSTRAS:");
-                System.out.println("Coleta de amostras realizada para o paciente " + analise.getPaciente().getNome() +
-                        ". Data e hora da analise: " + analise.getDataHora() +
-                        ". Resultado: " + analise.getResultado()+
-                        ". Analise feita por: " + analise.getBiomedico().getNome());
+                System.out.println("INFORMAÇÕES DA ANALISE DE AMOSTRAS:");
+                System.out.println("Coleta de amostras realizada para o paciente " + analise.getPaciente().getNome()
+                        + ". \nData e hora da analise: " + analise.getDataHora()
+                        + ". \nResultado: " + analise.getResultado()
+                        + ". \nAnalise feita por: " + analise.getBiomedico().getNome());
                 return analise;
             }
         }
@@ -37,17 +37,17 @@ public class AnaliseDAO implements IDAO<Analise> {
     @Override
     public boolean remover(Analise elemento) {
         analiseDao.remove(elemento);
-        System.out.println("Analise removida do sistema!");
+        System.out.println("Analise removida do sistema!\n");
         return true;
     }
     @Override
     public ArrayList<Analise> listarTodos() {
         for (Analise analise: analiseDao) {
-            System.out.println("INFORMAÇÕES DA ANÁLISE DE AMOSTRAS:");
-            System.out.println("Coleta de amostras realizada para o paciente " + analise.getPaciente().getNome() +
-                    ". Data e hora da analise: " + analise.getDataHora() +
-                    ". Resultado: " + analise.getResultado()+
-                    ". Analise feita por: " + analise.getBiomedico().getNome());
+            System.out.println("INFORMAÇÕES DA ANALISE DE AMOSTRAS:");
+            System.out.println("Coleta de amostras realizada para o paciente " + analise.getPaciente().getNome()
+                    + ". \nData e hora da analise: " + analise.getDataHora()
+                    + ". \nResultado: " + analise.getResultado()
+                    + ". \nAnalise feita por: " + analise.getBiomedico().getNome());
         }
         return analiseDao;
     }
