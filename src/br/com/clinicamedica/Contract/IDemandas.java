@@ -2,9 +2,10 @@ package br.com.clinicamedica.Contract;
 
 import java.util.ArrayList;
 
-public interface IController<T>{
-    boolean adicionar(T elemento);
+public interface IDemandas<T>{
+    boolean adicionar(String id);
+    boolean remover(String id);
     boolean buscar(String busca);
     ArrayList<T> listarTodos();
-    boolean remover(T elemento);
+    ArrayList<T> getArray();
 }

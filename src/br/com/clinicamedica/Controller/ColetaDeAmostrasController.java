@@ -1,6 +1,6 @@
 package br.com.clinicamedica.Controller;
 
-import br.com.clinicamedica.Contract.IController;
+import br.com.clinicamedica.Contract.IDemandasController;
 import br.com.clinicamedica.DAO.ColetaDeAmostrasDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
 import br.com.clinicamedica.Exception.ElementoInexistenteException;
@@ -10,34 +10,53 @@ import br.com.clinicamedica.Model.ColetaDeAmostras;
 
 import java.util.ArrayList;
 
-public class ColetaDeAmostrasController implements IController<ColetaDeAmostras> {
+public class ColetaDeAmostrasController implements IDemandasController<ColetaDeAmostras> {
     private ColetaDeAmostrasDAO dao = new ColetaDeAmostrasDAO();
+
     @Override
-    public boolean adicionar(ColetaDeAmostras elemento) {
+    public boolean adicionar(String id) {
         try{
-            if(dao.getArray().contains(elemento)){
-                throw new DuplicacaoException("Coleta de Amostras");
-            } else {
-                return this.dao.adicionar(elemento);
+            for (ColetaDeAmostras coleta: this.dao.getArray()) {
+                if(coleta.getId().equals(id)){
+                    throw new DuplicacaoException("Coleta de Amostras");
+                }else{
+                    return this.dao.adicionar(id);
+                }
             }
         } catch(DuplicacaoException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
+        }
+        return false;
+    }
+    @Override
+    public boolean remover(String id) {
+        try{
+            for (ColetaDeAmostras coleta: this.dao.getArray()) {
+                if(coleta.getId().equals(id)){
+                    return this.dao.remover(id);
+                }else{
+                    throw new ElementoInexistenteException();
+                }
+            }
+        } catch(ElementoInexistenteException e){
+            System.err.println(e.getMessage());
         }
         return false;
     }
 
+
     @Override
-    public ColetaDeAmostras buscar(String busca) {
+    public boolean buscar(String busca) {
         try{
-            if(this.dao.buscar(busca).equals("null")){
+            if(!(this.dao.buscar(busca))){
                 throw new ResultadoNaoEncontradoException();
             }else{
                 return this.dao.buscar(busca);
             }
         } catch(ResultadoNaoEncontradoException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -49,24 +68,8 @@ public class ColetaDeAmostrasController implements IController<ColetaDeAmostras>
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return null;
     }
-
-    @Override
-    public boolean remover(ColetaDeAmostras elemento) {
-        try{
-            if(dao.getArray().contains(elemento)){
-                return this.dao.remover(elemento);
-            }else{
-                throw new ElementoInexistenteException();
-            }
-        } catch(ElementoInexistenteException e){
-            System.out.println(e.getMessage());
-        }
-        return false;
-    }
-
-
 }

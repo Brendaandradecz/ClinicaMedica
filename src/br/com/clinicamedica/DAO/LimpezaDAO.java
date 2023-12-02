@@ -21,24 +21,24 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     }
 
     @Override
-    public Limpeza buscar(String busca) {
+    public boolean buscar(String busca) {
         for (Limpeza limpeza: limpezaDao) {
             if (limpeza.getCpf().equals(busca) || limpeza.getNome().equals(busca)) {
-                System.out.println("Informações de " + limpeza.getNome());
+                System.out.println("\nInformações de " + limpeza.getNome());
                 System.out.println("Nome: " + limpeza.getNome()
                         + ". \nCPF: " + limpeza.getCpf()
                         + ". \nTelefone: " + limpeza.getTelefone()
                         + ". \nEmail: " + limpeza.getEmail());
-                return limpeza;
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     @Override
     public ArrayList<Limpeza> listarTodos() {
         for (Limpeza limpeza: limpezaDao) {
-            System.out.println("Informações de " + limpeza.getNome());
+            System.out.println("\nInformações de " + limpeza.getNome());
             System.out.println("Nome: " + limpeza.getNome()
                     + ". \nCPF: " + limpeza.getCpf()
                     + ". \nTelefone: " + limpeza.getTelefone()

@@ -25,23 +25,23 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     }
 
     @Override
-    public Recepcionista buscar(String busca) {
+    public boolean buscar(String busca) {
         for (Recepcionista recepcionista: recepcionistaDao) {
             if(recepcionista.getNome().equals(busca) || recepcionista.getCpf().equals(busca)){
-                System.out.println("Informações de " + recepcionista.getNome());
+                System.out.println("\nInformações de " + recepcionista.getNome());
                 System.out.println("Nome: " + recepcionista.getNome()
                         + ". \nCPF: " + recepcionista.getCpf()
                         + ". \nTelefone: " + recepcionista.getTelefone()
                         + ". \nEmail: " + recepcionista.getEmail());
-                return recepcionista;
+                return true;
             }
         }
-        return null;
+        return false;
     }
     @Override
     public ArrayList<Recepcionista> listarTodos() {
         for (Recepcionista recepcionista: recepcionistaDao) {
-            System.out.println("Informações de " + recepcionista.getNome());
+            System.out.println("\nInformações de " + recepcionista.getNome());
             System.out.println("Nome: " + recepcionista.getNome()
                     + ". \nCPF: " + recepcionista.getCpf()
                     + ". \nTelefone: " + recepcionista.getTelefone()
@@ -58,8 +58,8 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     }
 
     @Override
-    public boolean marcarCirurgia(LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
-        Cirurgia cirurgia = new Cirurgia(dataHora, medico, paciente, procedimento);
+    public boolean marcarCirurgia(String id, LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
+        Cirurgia cirurgia = new Cirurgia(dataHora, medico, paciente, procedimento, id);
         System.out.println("Cirurgia marcada - INFORMAÇÕES DA CIRURGIA");
         System.out.println("Data e Hora: " + dataHora +
                 "\nMédico: " + medico.getNome() +
@@ -69,8 +69,8 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     }
 
     @Override
-    public boolean marcarColeta(LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra) {
-        ColetaDeAmostras coleta = new ColetaDeAmostras(tipo, codigo, enfermeiro, paciente, dataHora, condicaoDaAmostra);
+    public boolean marcarColeta(String id, LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra) {
+        ColetaDeAmostras coleta = new ColetaDeAmostras(tipo, codigo, enfermeiro, paciente, dataHora, condicaoDaAmostra, id);
         System.out.println("Coleta marcada - INFORMAÇÕES DA COLETA");
         System.out.println("Data e Hora: " + dataHora +
                 "\nEnfermeiro: " + enfermeiro.getNome() +
@@ -81,8 +81,8 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     }
 
     @Override
-    public boolean marcarConsulta(LocalDateTime dataHora, Medico medico, Paciente paciente) {
-        Consulta consulta = new Consulta(dataHora, paciente, medico);
+    public boolean marcarConsulta(String id, LocalDateTime dataHora, Medico medico, Paciente paciente) {
+        Consulta Consulta = new Consulta(dataHora, paciente, medico, id);
         System.out.println("Consulta marcada - INFORMAÇÕES DA CONSULTA");
         System.out.println("Data e Hora: " + dataHora +
                 "\nMédico: " + medico.getNome() +

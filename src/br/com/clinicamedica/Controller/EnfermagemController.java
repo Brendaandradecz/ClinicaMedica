@@ -23,23 +23,23 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
                 return this.dao.adicionar(elemento);
             }
         } catch (DuplicacaoException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public Enfermagem buscar(String busca) {
+    public boolean buscar(String busca) {
         try {
-            if (this.dao.buscar(busca).equals("null")) {
+            if (!(this.dao.buscar(busca))) {
                 throw new ResultadoNaoEncontradoException();
             } else {
                 return this.dao.buscar(busca);
             }
         } catch (ResultadoNaoEncontradoException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
                 return this.dao.listarTodos();
             }
         } catch (ListaVaziaException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return null;
     }
@@ -65,7 +65,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
                 throw new ElementoInexistenteException();
             }
         } catch (ElementoInexistenteException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
@@ -79,7 +79,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
                 throw new DocumentoInvalidoException();
             }
         } catch (DocumentoInvalidoException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
@@ -93,7 +93,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
                 return this.dao.realizarColeta(coleta);
             }
         } catch (AmostraInvalidaOuDanificadaException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }

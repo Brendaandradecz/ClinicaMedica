@@ -21,23 +21,23 @@ public class PacienteController implements IController<Paciente> {
                 return this.dao.adicionar(elemento);
             }
         } catch(DuplicacaoException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public Paciente buscar(String busca) {
+    public boolean buscar(String busca) {
         try{
-            if(this.dao.buscar(busca).equals("null")){
+            if(!(this.dao.buscar(busca))){
                 throw new ResultadoNaoEncontradoException();
             }else{
                 return this.dao.buscar(busca);
             }
         } catch(ResultadoNaoEncontradoException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PacienteController implements IController<Paciente> {
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return null;
     }
@@ -63,7 +63,7 @@ public class PacienteController implements IController<Paciente> {
                 throw new ElementoInexistenteException();
             }
         } catch(ElementoInexistenteException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }

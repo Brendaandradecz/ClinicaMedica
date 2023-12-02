@@ -7,12 +7,22 @@ public class Cirurgia {
     private Medico medico;
     private Paciente paciente;
     private String procedimento;
+    private String id;
 
-    public Cirurgia(LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
+    public Cirurgia(LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento, String id) {
         this.dataHora = dataHora;
         this.medico = medico;
         this.paciente = paciente;
         this.procedimento = procedimento;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getProcedimento() {

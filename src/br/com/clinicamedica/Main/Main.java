@@ -31,8 +31,12 @@ public class Main {
         System.out.println("Insira o CRBM: ");
         String crbm1 = scanner.nextLine();
         Biomedico biomedico1 = new Biomedico(nomeBio1, cpfBio1, emailBio1, telefoneBio1, crbm1);
+        biomedicoController.listarTodos();
+        biomedicoController.adicionar(biomedico1);
+        biomedicoController.adicionar(biomedico1);
+        biomedicoController.buscar("02");
 
-        System.out.println("Insira o nome do biomedico: ");
+        System.out.println("\nInsira o nome do biomedico: ");
         String nomeBio2 = scanner.nextLine();
         System.out.println("Insira o CPF: ");
         String cpfBio2 = scanner.nextLine();
@@ -43,8 +47,11 @@ public class Main {
         System.out.println("Insira o CRBM: ");
         String crbm2 = scanner.nextLine();
         Biomedico biomedico2 = new Biomedico(nomeBio2, cpfBio2, emailBio2, telefoneBio2, crbm2);
+        biomedicoController.adicionar(biomedico2);
+        biomedicoController.listarTodos();
+        biomedicoController.buscar("brenda");
 
-        System.out.println("Insira o nome do paciente: ");
+        System.out.println("\nInsira o nome do paciente: ");
         String nomePaciente1 = scanner.nextLine();
         System.out.println("Insira a idade: ");
         int idade1 = scanner.nextInt();
@@ -63,21 +70,12 @@ public class Main {
         System.out.println("O paciente está acompanhado? (true/false): ");
         boolean pacienteAcompanhado1 = scanner.nextBoolean();
         Paciente paciente1 = new Paciente(nomePaciente1, idade1, cpfPaciente1, emailPaciente1, telefonePaciente1, possuiConvenio1, condicaoNormal1, pressaoArterialAlterada1, pacienteAcompanhado1);
+        pacienteController.remover(paciente1);
+        pacienteController.adicionar(paciente1);
+        pacienteController.listarTodos();
+        pacienteController.buscar("001");
 
-
-        System.out.println("Insira a data e hora da analise (no formato 'yyyy-MM-ddTHH:mm:ss'): ");
-        LocalDateTime dataHoraAnalise1 = LocalDateTime.parse(scanner.nextLine());
-        System.out.println("Insira o resultado: ");
-        double resultado1 = scanner.nextDouble();
-        Analise analise1 = new Analise(dataHoraAnalise1, biomedico1, paciente1, resultado1);
-
-        System.out.println("Insira a data e hora da analise (no formato 'yyyy-MM-ddTHH:mm:ss'): ");
-        LocalDateTime dataHoraAnalise2 = LocalDateTime.parse(scanner.nextLine());
-        System.out.println("Insira o resultado: ");
-        double resultado2 = scanner.nextDouble();
-        Analise analise2 = new Analise(dataHoraAnalise2, biomedico2, paciente1, resultado1);
-
-        System.out.println("Insira o nome do cardiologista: ");
+        System.out.println("\nInsira o nome do cardiologista: ");
         String nomeCardio1 = scanner.nextLine();
         System.out.println("Insira o CPF: ");
         String cpfCardio1 = scanner.nextLine();
@@ -90,8 +88,9 @@ public class Main {
         System.out.println("Insira a especialidade: ");
         String especialidadeCardio1 = scanner.nextLine();
         Cardiologista cardiologista1 = new Cardiologista(nomeCardio1, cpfCardio1, emailCardio1, telefoneCardio1, crmCardio1, especialidadeCardio1);
+        medicoController.adicionar(cardiologista1);
 
-        System.out.println("Insira o nome do ginecologista: ");
+        System.out.println("\nInsira o nome do ginecologista: ");
         String nomeGineco1 = scanner.nextLine();
         System.out.println("Insira o CPF: ");
         String cpfGineco1 = scanner.nextLine();
@@ -104,8 +103,9 @@ public class Main {
         System.out.println("Insira a especialidade: ");
         String especialidadeGineco1 = scanner.nextLine();
         Ginecologista ginecologista1 = new Ginecologista(nomeGineco1, cpfGineco1, emailGineco1, telefoneGineco1, crmGineco1, especialidadeGineco1);
+        medicoController.adicionar(ginecologista1);
 
-        System.out.println("Insira o nome do clínico geral: ");
+        System.out.println("\nInsira o nome do clínico geral: ");
         String nomeGeral1 = scanner.nextLine();
         System.out.println("Insira o CPF: ");
         String cpfGeral1 = scanner.nextLine();
@@ -118,8 +118,9 @@ public class Main {
         System.out.println("Insira a especialidade: ");
         String especialidadeGeral1 = scanner.nextLine();
         ClinicoGeral clinicoGeral1 = new ClinicoGeral(nomeGeral1, cpfGeral1, emailGeral1, telefoneGeral1, crmGeral1, especialidadeGeral1);
+        medicoController.adicionar(clinicoGeral1);
 
-        System.out.println("Insira o nome do psiquiatra: ");
+        System.out.println("\nInsira o nome do psiquiatra: ");
         String nomePsi1 = scanner.nextLine();
         System.out.println("Insira o CPF: ");
         String cpfPsi1 = scanner.nextLine();
@@ -132,8 +133,9 @@ public class Main {
         System.out.println("Insira a especialidade: ");
         String especialidadePsi1 = scanner.nextLine();
         Psiquiatra psiquiatra1 = new Psiquiatra(nomePsi1, cpfPsi1, emailPsi1, telefonePs1, crmPsi1, especialidadePsi1);
+        medicoController.adicionar(psiquiatra1);
 
-        System.out.println("Insira o nome do urologista: ");
+        System.out.println("\nInsira o nome do urologista: ");
         String nomeUro1 = scanner.nextLine();
         System.out.println("Insira o CPF: ");
         String cpfUro1 = scanner.nextLine();
@@ -146,8 +148,14 @@ public class Main {
         System.out.println("Insira a especialidade: ");
         String especialidadeUro1 = scanner.nextLine();
         Urologista urologista1 = new Urologista(nomeUro1, cpfUro1, emailUro1, telefoneUro1, crmUro1, especialidadeUro1);
+        medicoController.adicionar(urologista1);
 
-        System.out.println("Insira o nome do enfermeiro: ");
+        medicoController.listarTodos();
+        medicoController.buscar("0");
+        medicoController.buscar("01");
+        medicoController.buscar("Brena");
+
+        System.out.println("\nInsira o nome do enfermeiro: ");
         String nomeEnf1 = scanner.nextLine();
         System.out.println("Insira o CPF: ");
         String cpfEnf1 = scanner.nextLine();
@@ -158,8 +166,10 @@ public class Main {
         System.out.println("Insira o COREN: ");
         String corenEnf1 = scanner.nextLine();
         Enfermeiro enfermeiro1 = new Enfermeiro(nomeEnf1, cpfEnf1, emailEnf1, telefoneEnf1, corenEnf1);
+        enfermagemController.adicionar(enfermeiro1);
+        enfermagemController.realizarTriagem(paciente1, LocalDateTime.of(2023,12,2,12,0,0,0));
 
-        System.out.println("Insira o nome do técnico em enfermagem: ");
+        System.out.println("\nInsira o nome do técnico em enfermagem: ");
         String nomeTecEnf1 = scanner.nextLine();
         System.out.println("Insira o CPF: ");
         String cpfTecEnf1 = scanner.nextLine();
@@ -170,8 +180,11 @@ public class Main {
         System.out.println("Insira o COREN: ");
         String corenTecEnf1 = scanner.nextLine();
         TecnicoEmEnfermagem tecnicoEnfermagem1 = new TecnicoEmEnfermagem(nomeTecEnf1, cpfTecEnf1, emailTecEnf1, telefoneTecEnf1, corenTecEnf1);
+        enfermagemController.adicionar(tecnicoEnfermagem1);
 
-        System.out.println("Insira o nome da recepcionista: ");
+        enfermagemController.listarTodos();
+
+        System.out.println("\nInsira o nome da recepcionista: ");
         String nomeRecep1 = scanner.nextLine();
         System.out.println("Insira o CPF: ");
         String cpfRecep1 = scanner.nextLine();
@@ -180,8 +193,10 @@ public class Main {
         System.out.println("Insira o telefone: ");
         String telefoneRecep1 = scanner.nextLine();
         Recepcionista recepcionista1 = new Recepcionista(nomeRecep1, cpfRecep1, emailrecep1, telefoneRecep1);
+        recepcionistaController.adicionar(recepcionista1);
+        recepcionistaController.listarTodos();
 
-        System.out.println("Insira o nome do funcionário de limpeza: ");
+        System.out.println("\nInsira o nome do funcionário de limpeza: ");
         String nomeFuncLimp1 = scanner.nextLine();
         System.out.println("Insira o CPF: ");
         String cpfFuncLimp1 = scanner.nextLine();
@@ -189,20 +204,28 @@ public class Main {
         String emailFuncLimp1 = scanner.nextLine();
         System.out.println("Insira o telefone: ");
         String telefoneFuncLimp1 = scanner.nextLine();
-        Limpeza funcionarioLimpeza = new Limpeza(nomeFuncLimp1, cpfFuncLimp1, emailFuncLimp1, telefoneFuncLimp1);
-
+        Limpeza funcionarioLimpeza1 = new Limpeza(nomeFuncLimp1, cpfFuncLimp1, emailFuncLimp1, telefoneFuncLimp1);
+        limpezaController.adicionar(funcionarioLimpeza1);
+        limpezaController.listarTodos();
+        /*
+        System.out.println("Insira a identificação da cirurgia: ");
+        String idCirurgia1 = scanner.next();
         System.out.println("Insira a data e hora da cirurgia (no formato 'yyyy-MM-ddTHH:mm:ss'): ");
         LocalDateTime dataHoraCirurgia1 = LocalDateTime.parse(scanner.nextLine());
         System.out.println("Insira o procedimento cirúrgico: ");
         String procedimentoCirurgia1 = scanner.nextLine();
-        recepcionistaController.marcarCirurgia(dataHoraCirurgia1, cardiologista1, paciente1, procedimentoCirurgia1);
+        recepcionistaController.marcarCirurgia(idCirurgia1, dataHoraCirurgia1, cardiologista1, paciente1, procedimentoCirurgia1);
 
+        System.out.println("Insira a identificação da cirurgia: ");
+        String idCirurgia2 = scanner.next();
         System.out.println("Insira a data e hora da cirurgia (no formato 'yyyy-MM-ddTHH:mm:ss'): ");
         LocalDateTime dataHoraCirurgia2 = LocalDateTime.parse(scanner.nextLine());
         System.out.println("Insira o procedimento cirúrgico: ");
         String procedimentoCirurgia2 = scanner.nextLine();
-        recepcionistaController.marcarCirurgia(dataHoraCirurgia2, clinicoGeral1, paciente1, procedimentoCirurgia2);
+        recepcionistaController.marcarCirurgia(idCirurgia2, dataHoraCirurgia2, clinicoGeral1, paciente1, procedimentoCirurgia2);
 
+        System.out.println("Insira a identificação da coleta: ");
+        String idColeta1 = scanner.next();
         System.out.println("Insira o tipo de amostra: ");
         String tipo1 = scanner.nextLine();
         System.out.println("Insira o código da amostra: ");
@@ -211,8 +234,10 @@ public class Main {
         LocalDateTime dataHoraColeta1 = LocalDateTime.parse(scanner.nextLine());
         System.out.println("Insira a condição da amostra: ");
         String condicaoDaAmostra1 = scanner.nextLine();
-        recepcionistaController.marcarColeta(dataHoraColeta1, enfermeiro1, codigo1, tipo1, paciente1, condicaoDaAmostra1);
+        recepcionistaController.marcarColeta(idColeta1, dataHoraColeta1, enfermeiro1, codigo1, tipo1, paciente1, condicaoDaAmostra1);
 
+        System.out.println("Insira a identificação da coleta: ");
+        String idColeta2 = scanner.next();
         System.out.println("Insira o tipo de amostra: ");
         String tipo2 = scanner.nextLine();
         System.out.println("Insira o código da amostra: ");
@@ -221,19 +246,35 @@ public class Main {
         LocalDateTime dataHoraColeta2 = LocalDateTime.parse(scanner.nextLine());
         System.out.println("Insira a condição da amostra: ");
         String condicaoDaAmostra2 = scanner.nextLine();
-        recepcionistaController.marcarColeta(dataHoraColeta2, tecnicoEnfermagem1, codigo2, tipo2, paciente1, condicaoDaAmostra2);
+        recepcionistaController.marcarColeta(idColeta2, dataHoraColeta2, tecnicoEnfermagem1, codigo2, tipo2, paciente1, condicaoDaAmostra2);
 
+        System.out.println("Insira a identificação da consulta: ");
+        String idConsulta1 = scanner.next();
         LocalDateTime dataHoraConsulta1 = LocalDateTime.parse(scanner.nextLine());
         System.out.println("Insira a condição da amostra: ");
-        recepcionistaController.marcarConsulta(dataHoraConsulta1, urologista1, paciente1);
+        recepcionistaController.marcarConsulta(idConsulta1, dataHoraConsulta1, urologista1, paciente1);
 
+        System.out.println("Insira a identificação da consulta: ");
+        String idConsulta2 = scanner.next();
         LocalDateTime dataHoraConsulta2 = LocalDateTime.parse(scanner.nextLine());
         System.out.println("Insira a condição da amostra: ");
-        recepcionistaController.marcarConsulta(dataHoraConsulta2, psiquiatra1, paciente1);
+        recepcionistaController.marcarConsulta(idConsulta2, dataHoraConsulta2, psiquiatra1, paciente1);
 
+        System.out.println("Insira a identificação da consulta: ");
+        String idConsulta3 = scanner.next();
         LocalDateTime dataHoraConsulta3 = LocalDateTime.parse(scanner.nextLine());
         System.out.println("Insira a condição da amostra: ");
-        recepcionistaController.marcarConsulta(dataHoraConsulta2, ginecologista1, paciente1);
+        recepcionistaController.marcarConsulta(idConsulta3, dataHoraConsulta2, ginecologista1, paciente1);
+        System.out.println("\nInsira o resultado da analise: ");
+        double resultado1 = scanner.nextDouble();
+        biomedicoController.fazerAnaliseDeAmostras(biomedico1, paciente1,LocalDateTime.of(2023,2,2,2,2,2), resultado1, coleta1);
+        analiseController.adicionar(analise1);
 
+        System.out.println("\nInsira o resultado da analise: ");
+        double resultado2 = scanner.nextDouble();
+        Analise analise2 = new Analise(LocalDateTime.of(2023,2,2,2,2,2), biomedico2, paciente1, resultado2);
+        analiseController.adicionar(analise2);
+        analiseController.listarTodos();
+        */
     }
 }

@@ -21,10 +21,10 @@ public class PacienteDAO implements IDAO<Paciente> {
     }
 
     @Override
-    public Paciente buscar(String busca) {
+    public boolean buscar(String busca) {
         for (Paciente paciente: pacienteDao) {
             if(paciente.getNome().equals(busca) || paciente.getCpf().equals(busca)){
-                System.out.println("Informações de " + paciente.getNome());
+                System.out.println("\nInformações de " + paciente.getNome());
                 System.out.println("Nome: " + paciente.getNome()
                         + ". \nCPF: " + paciente.getCpf()
                         + ". \nIdade: " + paciente.getIdade()
@@ -34,16 +34,16 @@ public class PacienteDAO implements IDAO<Paciente> {
                         + ". \nPressão Arterial alterada? " + paciente.isPressaoArterialAlterada()
                         + ". \nTelefone: " + paciente.getTelefone()
                         + ". \nEmail: " + paciente.getEmail());
-                return paciente;
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     @Override
     public ArrayList<Paciente> listarTodos() {
         for (Paciente paciente: pacienteDao) {
-            System.out.println("Informações de " + paciente.getNome());
+            System.out.println("\nInformações de " + paciente.getNome());
             System.out.println("Nome: " + paciente.getNome()
                     + ". \nCPF: " + paciente.getCpf()
                     + ". \nIdade: " + paciente.getIdade()

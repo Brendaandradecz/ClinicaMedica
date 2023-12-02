@@ -20,26 +20,26 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
     }
 
     @Override
-    public Enfermagem buscar(String busca) {
+    public boolean buscar(String busca) {
         for (Enfermagem enfermagem : enfermagemDao) {
             if (enfermagem.getCpf().equals(busca) || enfermagem.getCoren().equals(busca) || enfermagem.getNome().equals(busca)) {
-                System.out.println("Informações de " + enfermagem.getNome());
+                System.out.println("\nInformações de " + enfermagem.getNome());
                 System.out.println("Nome: " + enfermagem.getNome()
                         + ". \nCRBM: " + enfermagem.getCoren()
                         + ". \nCPF: " + enfermagem.getCpf()
                         + ". \nTelefone: " + enfermagem.getTelefone()
                         + ". \nEmail: " + enfermagem.getEmail());
-                return enfermagem;
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
 
     @Override
     public ArrayList<Enfermagem> listarTodos() {
         for (Enfermagem enfermagem : enfermagemDao) {
-            System.out.println("Informações de " + enfermagem.getNome());
+            System.out.println("\nInformações de " + enfermagem.getNome());
             System.out.println("Nome: " + enfermagem.getNome()
                     + ". \nCRBM: " + enfermagem.getCoren()
                     + ". \nCPF: " + enfermagem.getCpf()

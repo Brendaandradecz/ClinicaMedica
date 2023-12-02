@@ -9,14 +9,24 @@ public class ColetaDeAmostras {
     private Paciente paciente;
     private LocalDateTime dataHora;
     private String condicaoDaAmostra;
+    private String id;
 
-    public ColetaDeAmostras(String tipo, String codigo, Enfermagem enfermeiro, Paciente paciente, LocalDateTime dataHora, String condicaoDaAmostra){
+    public ColetaDeAmostras(String tipo, String codigo, Enfermagem enfermeiro, Paciente paciente, LocalDateTime dataHora, String condicaoDaAmostra, String id){
         this.tipo = tipo;
         this.codigo = codigo;
         this.enfermeiro = enfermeiro;
         this.paciente = paciente;
         this.dataHora = dataHora;
         this.condicaoDaAmostra = condicaoDaAmostra;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTipo() {

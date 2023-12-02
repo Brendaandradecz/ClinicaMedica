@@ -26,25 +26,25 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     }
 
     @Override
-    public Biomedico buscar(String busca) {
+    public boolean buscar(String busca) {
         for (Biomedico biomedico : biomedicoDao) {
             if (biomedico.getCpf().equals(busca) || biomedico.getCrbm().equals(busca) || biomedico.getNome().equals(busca)) {
-                System.out.println("Informações de " + biomedico.getNome());
+                System.out.println("\nInformações de " + biomedico.getNome());
                 System.out.println("Nome: " + biomedico.getNome()
                 + ". \nCRBM: " + biomedico.getCrbm()
                 + ". \nCPF: " + biomedico.getCpf()
                 + ". \nTelefone: " + biomedico.getTelefone()
                 + ". \nEmail: " + biomedico.getEmail());
-                return biomedico;
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     @Override
     public ArrayList<Biomedico> listarTodos() {
         for (Biomedico biomedico : biomedicoDao) {
-            System.out.println("Informações de " + biomedico.getNome());
+            System.out.println("\nInformações de " + biomedico.getNome());
             System.out.println("Nome: " + biomedico.getNome()
                     + ". \nCRBM: " + biomedico.getCrbm()
                     + ". \nCPF: " + biomedico.getCpf()
@@ -62,8 +62,8 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     }
 
     @Override
-    public boolean fazerAnaliseDeAmostras(Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
-        Analise analise = new Analise(dataHora, biomedico, paciente, resultado);
+    public boolean fazerAnaliseDeAmostras(String id, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
+        Analise analise = new Analise(dataHora, biomedico, paciente, resultado, id);
         double Positivo = 0.7;
 
         if (resultado >= Positivo) {
@@ -71,7 +71,6 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
         } else {
             System.out.println("A análise indicou um resultado negativo.\n");
         }
-
         System.out.println("INFORMAÇÕES DA ANÁLISE DE AMOSTRAS:");
         System.out.println("Coleta de amostras realizada para o paciente " + coleta.getPaciente().getNome() +
                 ". \nTipo de amostra: " + coleta.getTipo() +

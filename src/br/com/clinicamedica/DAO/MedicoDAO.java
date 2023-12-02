@@ -19,26 +19,26 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     }
 
     @Override
-    public Medico buscar(String busca) {
+    public boolean buscar(String busca) {
         for (Medico medico: medicoDao) {
             if (medico.getCpf().equals(busca) || medico.getCrm().equals(busca) || medico.getNome().equals(busca)) {
-                System.out.println("Informações de " + medico.getNome());
+                System.out.println("\nInformações de " + medico.getNome());
                 System.out.println("Nome: " + medico.getNome()
                         + ". \nCRM: " + medico.getCrm()
                         + ". \nEspecialidade: " + medico.getEspecialidade()
                         + ". \nCPF: " + medico.getCpf()
                         + ". \nTelefone: " + medico.getTelefone()
                         + ". \nEmail: " + medico.getEmail());
-                return medico;
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     @Override
     public ArrayList<Medico> listarTodos() {
         for (Medico medico: medicoDao) {
-            System.out.println("Informações de " + medico.getNome());
+            System.out.println("\nInformações de " + medico.getNome());
             System.out.println("Nome: " + medico.getNome()
                     + ". \nCRM: " + medico.getCrm()
                     + ". \nCPF: " + medico.getCpf()

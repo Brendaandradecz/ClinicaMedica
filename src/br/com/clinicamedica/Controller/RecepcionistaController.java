@@ -20,23 +20,23 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 return this.dao.adicionar(elemento);
             }
         } catch(DuplicacaoException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public Recepcionista buscar(String busca) {
+    public boolean buscar(String busca) {
         try{
-            if(this.dao.buscar(busca).equals("null")){
+            if(!(this.dao.buscar(busca))){
                 throw new ResultadoNaoEncontradoException();
             }else{
                 return this.dao.buscar(busca);
             }
         } catch(ResultadoNaoEncontradoException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return null;
     }
@@ -62,13 +62,13 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 throw new ElementoInexistenteException();
             }
         } catch(ElementoInexistenteException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public boolean marcarCirurgia(LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
+    public boolean marcarCirurgia(String id, LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
         try {
             if (paciente.getCpf().equals(null)) {
                 throw new DocumentoInvalidoException();
@@ -81,16 +81,16 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
             if (dataHora.isBefore(LocalDateTime.now())) {
                 throw new DataInvalidaException();
             }
-            return this.dao.marcarCirurgia(dataHora, medico, paciente, procedimento);
+            return this.dao.marcarCirurgia(id, dataHora, medico, paciente, procedimento);
 
         } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public boolean marcarColeta(LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra) {
+    public boolean marcarColeta(String id, LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra) {
         try {
             if (paciente.getCpf().equals(null)) {
                 throw new DocumentoInvalidoException();
@@ -104,16 +104,16 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 throw new DataInvalidaException();
             }
 
-            return this.dao.marcarColeta(dataHora, enfermeiro, codigo, tipo, paciente, condicaoDaAmostra);
+            return this.dao.marcarColeta(id, dataHora, enfermeiro, codigo, tipo, paciente, condicaoDaAmostra);
 
         } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public boolean marcarConsulta(LocalDateTime dataHora, Medico medico, Paciente paciente) {
+    public boolean marcarConsulta(String id, LocalDateTime dataHora, Medico medico, Paciente paciente) {
         try {
             if (paciente.getCpf().equals(null)) {
                 throw new DocumentoInvalidoException();
@@ -126,10 +126,10 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
             if (dataHora.isBefore(LocalDateTime.now())) {
                 throw new DataInvalidaException();
             }
-            return this.dao.marcarConsulta(dataHora, medico, paciente);
+            return this.dao.marcarConsulta(id, dataHora, medico, paciente);
 
         } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
@@ -143,7 +143,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 return this.dao.alterarData(alteracao, cirurgia);
             }
         }catch (DataInvalidaException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
@@ -157,7 +157,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 return this.dao.alterarData(alteracao, coleta);
             }
         }catch (DataInvalidaException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
@@ -171,7 +171,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
                 return this.dao.alterarData(alteracao, consulta);
             }
         }catch (DataInvalidaException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }

@@ -7,5 +7,5 @@ import br.com.clinicamedica.Model.Paciente;
 import java.time.LocalDateTime;
 
 public interface IBiomedicoDao {
-    boolean fazerAnaliseDeAmostras(Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta);
+    boolean fazerAnaliseDeAmostras(String id, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta);
 }

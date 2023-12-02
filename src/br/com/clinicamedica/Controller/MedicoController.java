@@ -21,23 +21,23 @@ public class MedicoController implements IController<Medico>, IMedicoController 
                 return this.dao.adicionar(elemento);
             }
         } catch(DuplicacaoException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public Medico buscar(String busca) {
+    public boolean buscar(String busca) {
         try{
-            if(this.dao.buscar(busca).equals("null")){
+            if(!(this.dao.buscar(busca))){
                 throw new ResultadoNaoEncontradoException();
             }else{
                 return this.dao.buscar(busca);
             }
         } catch(ResultadoNaoEncontradoException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return null;
     }
@@ -63,7 +63,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
                 throw new ElementoInexistenteException();
             }
         } catch(ElementoInexistenteException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
@@ -79,7 +79,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             }
             return this.dao.fazerConsulta(consulta);
         } catch (ConsultaNaoAgendadaException | MenorDesacompanhadoException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
@@ -95,7 +95,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             return this.dao.fazerCirurgia(cirurgia);
 
         } catch (PressaoArterialAlteradaException | CirurgiaNaoAgendadaException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }

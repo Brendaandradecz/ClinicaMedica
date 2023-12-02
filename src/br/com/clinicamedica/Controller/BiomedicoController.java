@@ -22,23 +22,23 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
                 return this.dao.adicionar(elemento);
             }
         } catch (DuplicacaoException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public Biomedico buscar(String busca) {
+    public boolean buscar(String busca) {
         try {
-            if (this.dao.buscar(busca).equals("null")) {
+            if (!(this.dao.buscar(busca))) {
                 throw new ResultadoNaoEncontradoException();
             } else {
                 return this.dao.buscar(busca);
             }
         } catch (ResultadoNaoEncontradoException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
                 return this.dao.listarTodos();
             }
         } catch (ListaVaziaException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return null;
     }
@@ -64,13 +64,13 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
                 throw new ElementoInexistenteException();
             }
         } catch (ElementoInexistenteException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }
 
     @Override
-    public boolean fazerAnaliseDeAmostras(Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
+    public boolean fazerAnaliseDeAmostras(String id, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
         try {
             if ( coleta == null) {
                 throw new ParametrosInvalidosException();
@@ -78,10 +78,10 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
             if (resultado > 1.0 || resultado < 0){
                 throw new ResultadoInvalidoException();
             }
-            return this.dao.fazerAnaliseDeAmostras(biomedico, paciente, dataHora, resultado, coleta);
+            return this.dao.fazerAnaliseDeAmostras(id, biomedico, paciente, dataHora, resultado, coleta);
 
         } catch (ParametrosInvalidosException | ResultadoInvalidoException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return false;
     }

@@ -7,12 +7,14 @@ public class Analise {
     private Biomedico biomedico;
     private Paciente paciente;
     private double resultado;
+    private String id;
 
-    public Analise(LocalDateTime dataHora, Biomedico biomedico, Paciente paciente, double resultado) {
+    public Analise(LocalDateTime dataHora, Biomedico biomedico, Paciente paciente, double resultado, String id) {
         this.dataHora = dataHora;
         this.biomedico = biomedico;
         this.paciente = paciente;
         this.resultado = resultado;
+        this.id = id;
     }
 
     public LocalDateTime getDataHora() {
@@ -37,6 +39,14 @@ public class Analise {
 
     public Paciente getPaciente() {
         return paciente;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setPaciente(Paciente paciente) {
