@@ -2,6 +2,7 @@ package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IRecepcionistaDao;
+import br.com.clinicamedica.Controller.ColetaDeAmostrasController;
 import br.com.clinicamedica.Model.*;
 
 import java.time.LocalDateTime;
