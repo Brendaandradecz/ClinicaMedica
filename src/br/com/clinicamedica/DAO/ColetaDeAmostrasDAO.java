@@ -1,34 +1,25 @@
 package br.com.clinicamedica.DAO;
 
-import br.com.clinicamedica.Contract.IDemandas;
+import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
+import br.com.clinicamedica.Model.Consulta;
 
 import java.util.ArrayList;
 
-public class ColetaDeAmostrasDAO implements IDemandas<ColetaDeAmostras> {
+public class ColetaDeAmostrasDAO implements IDAO<ColetaDeAmostras> {
     private ArrayList<ColetaDeAmostras> coletaDeAmostrasDao = new ArrayList<>();
 
     @Override
-    public boolean adicionar(String id) {
-        for (ColetaDeAmostras coleta: coletaDeAmostrasDao) {
-            if(coleta.getId().equals(id)){
-                coletaDeAmostrasDao.add(coleta);
-                System.out.println("Coleta de Amostras adicionada do sistema!\n");
-                return true;
-            }
-        }
-        return false;
+    public boolean adicionar(ColetaDeAmostras coleta) {
+        coletaDeAmostrasDao.add(coleta);
+        System.out.println("Coleta De Amostras adicionado ao sistema!\n");
+        return true;
     }
     @Override
-    public boolean remover(String id) {
-        for (ColetaDeAmostras coleta: coletaDeAmostrasDao) {
-            if(coleta.getId().equals(id)){
-                coletaDeAmostrasDao.remove(coleta);
-                System.out.println("Coleta de Amostras removida do sistema!\n");
-                return true;
-            }
-        }
-        return false;
+    public boolean remover(ColetaDeAmostras coleta) {
+        coletaDeAmostrasDao.remove(coleta);
+        System.out.println("Coleta De Amostras adicionado ao sistema!\n");
+        return true;
     }
 
     @Override
@@ -65,5 +56,13 @@ public class ColetaDeAmostrasDAO implements IDemandas<ColetaDeAmostras> {
     @Override
     public ArrayList<ColetaDeAmostras> getArray() {
         return coletaDeAmostrasDao;
+    }
+    public ColetaDeAmostras encontrar(String id){
+        for (ColetaDeAmostras coleta : coletaDeAmostrasDao) {
+            if(coleta.getId().equals(id)){
+                return coleta;
+            }
+        }
+        return null;
     }
 }

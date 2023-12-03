@@ -1,39 +1,31 @@
 package br.com.clinicamedica.DAO;
 
+import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IDemandas;
 import br.com.clinicamedica.Model.Analise;
+import br.com.clinicamedica.Model.Cirurgia;
 
 import java.util.ArrayList;
 
-public class AnaliseDAO implements IDemandas<Analise> {
+public class AnaliseDAO implements IDAO<Analise> {
     private ArrayList<Analise> analiseDao = new ArrayList<>();
 
     public ArrayList<Analise> getArray() {
         return analiseDao;
     }
 
-    @Override
-    public boolean adicionar(String id) {
-        for (Analise analise: analiseDao) {
-            if(analise.getId().equals(id)){
-                analiseDao.add(analise);
-                System.out.println("Analise adicionada do sistema!\n");
-                return true;
-            }
-        }
-        return false;
+    public boolean adicionar(Analise analise) {
+        analiseDao.add(analise);
+        System.out.println("Analise adicionado ao sistema!\n");
+        return true;
     }
     @Override
-    public boolean remover(String id) {
-        for (Analise analise: analiseDao) {
-            if(analise.getId().equals(id)){
-                analiseDao.remove(analise);
-                System.out.println("Analise removida do sistema!\n");
-                return true;
-            }
-        }
-        return false;
+    public boolean remover(Analise analise) {
+        analiseDao.remove(analise);
+        System.out.println("Analis adicionado ao sistema!\n");
+        return true;
     }
+
     @Override
     public boolean buscar(String busca) {
         for (Analise analise: analiseDao) {
@@ -59,5 +51,13 @@ public class AnaliseDAO implements IDemandas<Analise> {
                     + ". \nAnalise feita por: " + analise.getBiomedico().getNome());
         }
         return analiseDao;
+    }
+    public Analise encontrar(String id){
+        for (Analise analise : analiseDao) {
+            if(analise.getId().equals(id)){
+                return analise;
+            }
+        }
+        return null;
     }
 }

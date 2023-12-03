@@ -1,5 +1,7 @@
 package br.com.clinicamedica.Controller;
 
+import br.com.clinicamedica.Contract.IController;
+import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Contract.IDemandasController;
 import br.com.clinicamedica.DAO.CirurgiaDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
@@ -10,36 +12,30 @@ import br.com.clinicamedica.Model.Cirurgia;
 
 import java.util.ArrayList;
 
-public class CirurgiaController implements IDemandasController<Cirurgia> {
+public class CirurgiaController implements IController<Cirurgia> {
     private CirurgiaDAO dao = new CirurgiaDAO();
-
-
     @Override
-    public boolean adicionar(String id) {
+    public boolean adicionar(Cirurgia elemento) {
         try{
-            for (Cirurgia cirurgia: this.dao.getArray()) {
-                if(cirurgia.getId().equals(id)){
-                    throw new DuplicacaoException("Cirurgia");
-                }else{
-                    return this.dao.adicionar(id);
-                }
+            if(this.dao.getArray().contains(elemento)){
+                throw new DuplicacaoException("Cirurgia");
+            }else{
+                return this.dao.adicionar(elemento);
             }
         } catch(DuplicacaoException e){
             System.err.println(e.getMessage());
         }
-        return false;
+        return true;
     }
     @Override
-    public boolean remover(String id) {
-        try{
-            for (Cirurgia cirurgia: this.dao.getArray()) {
-                if(cirurgia.getId().equals(id)){
-                    return this.dao.remover(id);
-                }else{
-                    throw new ElementoInexistenteException();
-                }
+    public boolean remover(Cirurgia elemento) {
+        try {
+            if (dao.getArray().contains(elemento)) {
+                return this.dao.remover(elemento);
+            } else {
+                throw new ElementoInexistenteException();
             }
-        } catch(ElementoInexistenteException e){
+        } catch (ElementoInexistenteException e) {
             System.err.println(e.getMessage());
         }
         return false;
@@ -60,7 +56,7 @@ public class CirurgiaController implements IDemandasController<Cirurgia> {
     }
 
     @Override
-    public ArrayList listarTodos() {
+    public ArrayList<Cirurgia> listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException();
@@ -72,5 +68,7 @@ public class CirurgiaController implements IDemandasController<Cirurgia> {
         }
         return null;
     }
-
+    public Cirurgia encontrar(String id){
+        return this.dao.encontrar(id);
+    }
 }

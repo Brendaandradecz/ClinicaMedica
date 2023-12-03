@@ -2,6 +2,7 @@ package br.com.clinicamedica.Controller;
 
 import br.com.clinicamedica.Contract.IController;
 import br.com.clinicamedica.Contract.IMedicoController;
+import br.com.clinicamedica.Contract.IMedicoDao;
 import br.com.clinicamedica.DAO.MedicoDAO;
 import br.com.clinicamedica.Exception.*;
 import br.com.clinicamedica.Model.Cirurgia;
@@ -70,7 +71,8 @@ public class MedicoController implements IController<Medico>, IMedicoController 
 
     @Override
     public boolean fazerConsulta(Consulta consulta) {
-        try {
+        return this.dao.fazerConsulta(consulta);
+        /*try {
             if (consulta == null) {
                 throw new ConsultaNaoAgendadaException();
             }
@@ -81,7 +83,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
         } catch (ConsultaNaoAgendadaException | MenorDesacompanhadoException e) {
             System.err.println(e.getMessage());
         }
-        return false;
+        return false;*/
     }
     @Override
     public boolean fazerCirurgia(Cirurgia cirurgia) {

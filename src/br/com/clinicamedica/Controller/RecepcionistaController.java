@@ -175,4 +175,82 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
         }
         return false;
     }
+    public Consulta encontrar(String id){
+        return this.dao.encontrarConsulta(id);
+    }
+
+    @Override
+    public boolean adicionar(Consulta consulta) {
+        return this.dao.adicionar(consulta);
+    }
+
+    @Override
+    public boolean adicionar(ColetaDeAmostras coleta) {
+        return this.dao.adicionar(coleta);
+    }
+
+    @Override
+    public boolean adicionar(Cirurgia cirurgia) {
+        return this.dao.adicionar(cirurgia);
+    }
+
+    @Override
+    public boolean remover(Consulta consulta) {
+        return false;
+    }
+
+    @Override
+    public boolean remover(ColetaDeAmostras coleta) {
+        return this.dao.remover(coleta);
+    }
+
+    @Override
+    public boolean remover(Cirurgia cirurgia) {
+        return this.dao.remover(cirurgia);
+    }
+
+    @Override
+    public boolean buscarConsulta(String busca) {
+        return this.dao.buscarConsulta(busca);
+    }
+
+    @Override
+    public boolean buscarColeta(String busca) {
+        return this.dao.buscarColeta(busca);
+    }
+
+    @Override
+    public boolean buscarCirurgia(String busca) {
+        return this.dao.buscarCirurgia(busca);
+    }
+
+    @Override
+    public ArrayList<Consulta> listarConsultas() {
+        return this.dao.listarConsultas();
+    }
+
+    @Override
+    public ArrayList<Cirurgia> listarCirurgias() {
+        return this.dao.listarCirurgias();
+    }
+
+    @Override
+    public ArrayList<ColetaDeAmostras> listarColetas() {
+        return this.dao.listarColetas();
+    }
+
+    @Override
+    public Consulta encontrarConsulta(String id) {
+        return this.dao.encontrarConsulta(id);
+    }
+
+    @Override
+    public Cirurgia encontrarCirurgia(String id) {
+        return this.dao.encontrarCirurgia(id);
+    }
+
+    @Override
+    public ColetaDeAmostras encontrarColeta(String id) {
+        return this.dao.encontrarColeta(id);
+    }
 }

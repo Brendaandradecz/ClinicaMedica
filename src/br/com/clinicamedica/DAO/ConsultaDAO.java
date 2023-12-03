@@ -1,41 +1,29 @@
 package br.com.clinicamedica.DAO;
 
-import br.com.clinicamedica.Contract.IDemandas;
+import br.com.clinicamedica.Contract.IDAO;
 import br.com.clinicamedica.Model.Consulta;
 
 import java.util.ArrayList;
 
-public class ConsultaDAO implements IDemandas<Consulta> {
+public class ConsultaDAO implements IDAO<Consulta> {
     private ArrayList<Consulta> consultaDao = new ArrayList<>();
 
     @Override
     public ArrayList<Consulta> getArray() {
         return consultaDao;
     }
-
     @Override
-    public boolean adicionar(String id) {
-        for (Consulta consulta: consultaDao) {
-            if(consulta.getId().equals(id)){
-                consultaDao.add(consulta);
-                System.out.println("Consulta adicionada do sistema!\n");
-                return true;
-            }
-        }
-        return false;
+    public boolean adicionar(Consulta consulta) {
+        consultaDao.add(consulta);
+        System.out.println("Consulta adicionado ao sistema!\n");
+        return true;
     }
     @Override
-    public boolean remover(String id) {
-        for (Consulta consulta: consultaDao) {
-            if(consulta.getId().equals(id)){
-                consultaDao.add(consulta);
-                System.out.println("Consulta removida do sistema!\n");
-                return true;
-            }
-        }
-        return false;
+    public boolean remover(Consulta consulta) {
+        consultaDao.remove(consulta);
+        System.out.println("Consulta adicionado ao sistema!\n");
+        return true;
     }
-
     @Override
     public boolean buscar(String busca) {
         for (Consulta consulta: consultaDao) {
@@ -59,5 +47,13 @@ public class ConsultaDAO implements IDemandas<Consulta> {
                     ". \nConsulta feita por: " + consulta.getMedico().getNome());
         }
         return consultaDao;
+    }
+    public Consulta encontrar(String id){
+        for (Consulta consulta : consultaDao) {
+            if(consulta.getId().equals(id)){
+                return consulta;
+            }
+        }
+        return null;
     }
 }

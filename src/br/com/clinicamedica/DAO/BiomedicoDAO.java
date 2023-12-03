@@ -2,6 +2,7 @@ package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IBiomedicoDao;
 import br.com.clinicamedica.Contract.IDAO;
+import br.com.clinicamedica.Controller.AnaliseController;
 import br.com.clinicamedica.Model.Analise;
 import br.com.clinicamedica.Model.Biomedico;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     private ArrayList<Biomedico> biomedicoDao = new ArrayList<>();
+    private AnaliseController analiseController =  new AnaliseController();
 
     @Override
     public ArrayList<Biomedico> getArray() {
@@ -64,6 +66,7 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     @Override
     public boolean fazerAnaliseDeAmostras(String id, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
         Analise analise = new Analise(dataHora, biomedico, paciente, resultado, id);
+        analiseController.adicionar(analise);
         double Positivo = 0.7;
 
         if (resultado >= Positivo) {
@@ -78,6 +81,26 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
                 ". \nResultado: " + analise.getResultado());
 
         return true;
+    }
+
+    @Override
+    public boolean adicionarAnalise(Analise analise) {
+        return this.analiseController.adicionar(analise);
+    }
+
+    @Override
+    public boolean buscarAnalise(String busca) {
+        return this.analiseController.buscar(busca);
+    }
+
+    @Override
+    public ArrayList<Analise> listarAnalise() {
+        return this.analiseController.listarTodos();
+    }
+
+    @Override
+    public boolean removerAnalise(Analise analise) {
+        return this.analiseController.remover(analise);
     }
 }
 

@@ -4,6 +4,7 @@ import br.com.clinicamedica.Contract.IBiomedicoController;
 import br.com.clinicamedica.Contract.IController;
 import br.com.clinicamedica.DAO.BiomedicoDAO;
 import br.com.clinicamedica.Exception.*;
+import br.com.clinicamedica.Model.Analise;
 import br.com.clinicamedica.Model.Biomedico;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
 import br.com.clinicamedica.Model.Paciente;
@@ -42,7 +43,7 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
     }
 
     @Override
-    public ArrayList listarTodos() {
+    public ArrayList<Biomedico> listarTodos() {
         try {
             if (dao.getArray().isEmpty()) {
                 throw new ListaVaziaException();
@@ -84,5 +85,25 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
             System.err.println(e.getMessage());
         }
         return false;
+    }
+
+    @Override
+    public boolean adicionarAnalise(Analise analise) {
+        return this.dao.adicionarAnalise(analise);
+    }
+
+    @Override
+    public boolean buscarAnalise(String busca) {
+        return this.buscarAnalise(busca);
+    }
+
+    @Override
+    public ArrayList<Analise> listarAnalises() {
+        return this.dao.listarAnalise();
+    }
+
+    @Override
+    public boolean removerAnalise(Analise analise) {
+        return this.dao.removerAnalise(analise);
     }
 }
