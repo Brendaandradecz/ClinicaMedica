@@ -14,7 +14,7 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     @Override
     public boolean adicionar(Medico elemento) {
         medicoDao.add(elemento);
-        System.out.println("Medico(a) adicionado(a) ao sistema!\n");
+        System.out.println("\nMedico(a) adicionado(a) ao sistema!\n");
         return true;
     }
 
@@ -22,10 +22,9 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     public boolean buscar(String busca) {
         for (Medico medico: medicoDao) {
             if (medico.getCpf().equals(busca) || medico.getCrm().equals(busca) || medico.getNome().equals(busca)) {
-                System.out.println("\nInformações de " + medico.getNome());
-                System.out.println("Nome: " + medico.getNome()
+                System.out.println("\nInformacoes de " + medico.getNome());
+                System.out.println("\nNome: " + medico.getNome()
                         + ". \nCRM: " + medico.getCrm()
-                        + ". \nEspecialidade: " + medico.getEspecialidade()
                         + ". \nCPF: " + medico.getCpf()
                         + ". \nTelefone: " + medico.getTelefone()
                         + ". \nEmail: " + medico.getEmail());
@@ -38,8 +37,8 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     @Override
     public ArrayList<Medico> listarTodos() {
         for (Medico medico: medicoDao) {
-            System.out.println("\nInformações de " + medico.getNome());
-            System.out.println("Nome: " + medico.getNome()
+            System.out.println("\nInformacoes de " + medico.getNome());
+            System.out.println("\nNome: " + medico.getNome()
                     + ". \nCRM: " + medico.getCrm()
                     + ". \nCPF: " + medico.getCpf()
                     + ". \nTelefone: " + medico.getTelefone()
@@ -51,7 +50,7 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     @Override
     public boolean remover(Medico elemento) {
         medicoDao.remove(elemento);
-        System.out.println("Medico(a) removido(a) do sistema\n");
+        System.out.println("\nMedico(a) removido(a) do sistema");
         return true;
     }
 
@@ -62,8 +61,8 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
 
     @Override
     public boolean fazerConsulta(Consulta consulta) {
-        System.out.println("INFORMAÇÕES DA CONSULTA:");
-        System.out.println("Consulta realizada por " + consulta.getMedico().getNome() +
+        System.out.println("\nINFORMACOES DA CONSULTA:");
+        System.out.println("\nConsulta realizada por " + consulta.getMedico().getNome() +
                 " para o paciente " + consulta.getPaciente().getNome() +
                 " às " + consulta.getDataHora());
         return true;
@@ -71,8 +70,8 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
 
     @Override
     public boolean fazerCirurgia(Cirurgia cirurgia) {
-        System.out.println("INFORMAÇÕES DA CIRURGIA:");
-        System.out.println("Cirurgia realizada por " + cirurgia.getMedico().getNome() +
+        System.out.println("\nINFORMACOES DA CIRURGIA:");
+        System.out.println("\nCirurgia realizada por " + cirurgia.getMedico().getNome() +
                 " para o paciente " + cirurgia.getPaciente().getNome() +
                 " às " + cirurgia.getDataHora() +
                 ". Procedimento: " + cirurgia.getProcedimento());

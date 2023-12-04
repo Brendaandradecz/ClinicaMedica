@@ -57,14 +57,14 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
     @Override
     public boolean remover(Enfermagem elemento) {
         enfermagemDao.remove(elemento);
-        System.out.println("Enfermeiro(a) removido(a) do sistema\n");
+        System.out.println("\nEnfermeiro(a) removido(a) do sistema\n");
         return true;
     }
 
     @Override
     public boolean realizarTriagem(Paciente paciente, LocalDateTime dataHora) {
-        System.out.println("INFORMAÇÕES DA TRIAGEM:");
-        System.out.println("Triagem realizada para o paciente " + paciente.getNome() +
+        System.out.println("\nINFORMACOES DA TRIAGEM:");
+        System.out.println("\nTriagem realizada para o paciente " + paciente.getNome() +
                 " em " + dataHora +
                 ". Condição: " + paciente.isCondicaoNormal());
         return true;
@@ -72,7 +72,7 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
 
     @Override
     public boolean realizarColeta(ColetaDeAmostras coleta) {
-        System.out.println("INFORMAÇÕES DA COLETA DE AMOSTRAS:");
+        System.out.println("\nINFORMACOES DA COLETA DE AMOSTRAS:");
         System.out.println("Coleta de amostras realizada para o paciente " + coleta.getPaciente().getNome() +
                 ". Tipo de amostra: " + coleta.getTipo() +
                 ". Data e hora da coleta: " + coleta.getDataHora());

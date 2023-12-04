@@ -12,13 +12,13 @@ public class ColetaDeAmostrasDAO implements IDAO<ColetaDeAmostras> {
     @Override
     public boolean adicionar(ColetaDeAmostras coleta) {
         coletaDeAmostrasDao.add(coleta);
-        System.out.println("Coleta De Amostras adicionado ao sistema!\n");
+        System.out.println("\nColeta De Amostras adicionado ao sistema!\n");
         return true;
     }
     @Override
     public boolean remover(ColetaDeAmostras coleta) {
         coletaDeAmostrasDao.remove(coleta);
-        System.out.println("Coleta De Amostras adicionado ao sistema!\n");
+        System.out.println("\nColeta De Amostras adicionado ao sistema!\n");
         return true;
     }
 
@@ -26,7 +26,7 @@ public class ColetaDeAmostrasDAO implements IDAO<ColetaDeAmostras> {
     public boolean buscar(String busca) {
         for (ColetaDeAmostras coleta: coletaDeAmostrasDao) {
             if(coleta.getCodigo().equals(busca) || coleta.getPaciente().getNome().equals(busca) || coleta.getPaciente().getCpf().equals(busca)){
-                System.out.println("\nINFORMAÇÕES DA COLETA DE AMOSTRAS:");
+                System.out.println("\nINFORMACOES DA COLETA DE AMOSTRAS:");
                 System.out.println("Coleta realizada no paciente " + coleta.getPaciente().getNome() +
                         ". \nData e hora da coleta: " + coleta.getDataHora() +
                         ". \nTipo: " + coleta.getTipo() +
@@ -42,7 +42,7 @@ public class ColetaDeAmostrasDAO implements IDAO<ColetaDeAmostras> {
     @Override
     public ArrayList<ColetaDeAmostras> listarTodos() {
         for (ColetaDeAmostras coleta: coletaDeAmostrasDao) {
-            System.out.println("\nINFORMAÇÕES DA COLETA DE AMOSTRAS:");
+            System.out.println("\nINFORMACOES DA COLETA DE AMOSTRAS:");
             System.out.println("Coleta realizada no paciente " + coleta.getPaciente().getNome() +
                     ". \nData e hora da coleta: " + coleta.getDataHora() +
                     ". \nTipo: " + coleta.getTipo() +

@@ -73,15 +73,12 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
     @Override
     public boolean fazerAnaliseDeAmostras(String id, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
         try {
-            if ( coleta == null) {
-                throw new ParametrosInvalidosException();
-            }
             if (resultado > 1.0 || resultado < 0){
                 throw new ResultadoInvalidoException();
             }
             return this.dao.fazerAnaliseDeAmostras(id, biomedico, paciente, dataHora, resultado, coleta);
 
-        } catch (ParametrosInvalidosException | ResultadoInvalidoException e) {
+        } catch (ResultadoInvalidoException e) {
             System.err.println(e.getMessage());
         }
         return false;

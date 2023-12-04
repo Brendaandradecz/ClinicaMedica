@@ -17,20 +17,20 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
     @Override
     public boolean adicionar(Cirurgia cirurgia) {
         cirurgiaDao.add(cirurgia);
-        System.out.println("Cirurgia adicionado ao sistema!\n");
+        System.out.println("Cirurgia adicionada ao sistema!\n");
         return true;
     }
     @Override
     public boolean remover(Cirurgia cirurgia) {
         cirurgiaDao.remove(cirurgia);
-        System.out.println("Cirurgia adicionado ao sistema!\n");
+        System.out.println("Cirurgia adicionada ao sistema!\n");
         return true;
     }
     @Override
     public boolean buscar(String busca) {
         for (Cirurgia cirurgia: cirurgiaDao) {
             if(cirurgia.getPaciente().getCpf().equals(busca) || cirurgia.getPaciente().getNome().equals(busca)){
-                System.out.println("\nINFORMAÇÕES DA CIRURGIA:");
+                System.out.println("\nINFORMACOES DA CIRURGIA:");
                 System.out.println("Cirurgia realizada no paciente " + cirurgia.getPaciente().getNome() +
                         ". \nData e hora da cirurgia: " + cirurgia.getDataHora() +
                         ". \nProcedimento: " + cirurgia.getProcedimento() +
@@ -44,7 +44,7 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
     @Override
     public ArrayList<Cirurgia> listarTodos() {
         for (Cirurgia cirurgia: cirurgiaDao) {
-            System.out.println("\nINFORMAÇÕES DA CIRURGIA:");
+            System.out.println("\nINFORMACOES DA CIRURGIA:");
             System.out.println("Cirurgia realizada no paciente " + cirurgia.getPaciente().getNome() +
                     ". \nData e hora da cirurgia: " + cirurgia.getDataHora() +
                     ". \nProcedimento: " + cirurgia.getProcedimento() +

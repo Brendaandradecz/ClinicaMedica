@@ -16,13 +16,13 @@ public class AnaliseDAO implements IDAO<Analise> {
 
     public boolean adicionar(Analise analise) {
         analiseDao.add(analise);
-        System.out.println("Analise adicionado ao sistema!\n");
+        System.out.println("\nAnalise adicionada ao sistema!\n");
         return true;
     }
     @Override
     public boolean remover(Analise analise) {
         analiseDao.remove(analise);
-        System.out.println("Analis adicionado ao sistema!\n");
+        System.out.println("Analise adicionada ao sistema!\n");
         return true;
     }
 
@@ -31,7 +31,7 @@ public class AnaliseDAO implements IDAO<Analise> {
         for (Analise analise: analiseDao) {
             if(analise.getPaciente().getNome().equals(busca) || analise.getPaciente().getCpf().equals(busca)){
                 System.out.println();
-                System.out.println("\nINFORMAÇÕES DA ANALISE DE AMOSTRAS:");
+                System.out.println("\nINFORMACOES DA ANALISE DE AMOSTRAS:");
                 System.out.println("Coleta de amostras realizada para o paciente " + analise.getPaciente().getNome()
                         + ". \nData e hora da analise: " + analise.getDataHora()
                         + ". \nResultado: " + analise.getResultado()
@@ -44,7 +44,7 @@ public class AnaliseDAO implements IDAO<Analise> {
     @Override
     public ArrayList<Analise> listarTodos() {
         for (Analise analise: analiseDao) {
-            System.out.println("\n INFORMAÇÕES DA ANALISE DE AMOSTRAS:");
+            System.out.println("\n INFORMACOES DA ANALISE DE AMOSTRAS:");
             System.out.println("Coleta de amostras realizada para o paciente " + analise.getPaciente().getNome()
                     + ". \nData e hora da analise: " + analise.getDataHora()
                     + ". \nResultado: " + analise.getResultado()

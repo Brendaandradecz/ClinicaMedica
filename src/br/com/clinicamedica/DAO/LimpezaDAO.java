@@ -16,7 +16,7 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     @Override
     public boolean adicionar(Limpeza elemento) {
         limpezaDao.add(elemento);
-        System.out.println("Funcionario(a) adicionado(a) ao sistema!\n");
+        System.out.println("\nFuncionario(a) adicionado(a) ao sistema!\n");
         return true;
     }
 
@@ -24,8 +24,8 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     public boolean buscar(String busca) {
         for (Limpeza limpeza: limpezaDao) {
             if (limpeza.getCpf().equals(busca) || limpeza.getNome().equals(busca)) {
-                System.out.println("\nInformações de " + limpeza.getNome());
-                System.out.println("Nome: " + limpeza.getNome()
+                System.out.println("\nInformacoes de " + limpeza.getNome());
+                System.out.println("\nNome: " + limpeza.getNome()
                         + ". \nCPF: " + limpeza.getCpf()
                         + ". \nTelefone: " + limpeza.getTelefone()
                         + ". \nEmail: " + limpeza.getEmail());
@@ -38,8 +38,8 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     @Override
     public ArrayList<Limpeza> listarTodos() {
         for (Limpeza limpeza: limpezaDao) {
-            System.out.println("\nInformações de " + limpeza.getNome());
-            System.out.println("Nome: " + limpeza.getNome()
+            System.out.println("\nInformacoes de " + limpeza.getNome());
+            System.out.println("\nNome: " + limpeza.getNome()
                     + ". \nCPF: " + limpeza.getCpf()
                     + ". \nTelefone: " + limpeza.getTelefone()
                     + ". \nEmail: " + limpeza.getEmail());
@@ -50,7 +50,7 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     @Override
     public boolean remover(Limpeza elemento) {
         limpezaDao.remove(elemento);
-        System.out.println("Funcionario(a) removido(a) do sisstema\n");
+        System.out.println("\nFuncionario(a) removido(a) do sistema\n");
         return true;
     }
 }

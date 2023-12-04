@@ -4,17 +4,15 @@ public abstract class Medico {
     private String nome;
     private String cpf;
     private String crm;
-    private String especialidade;
     private String email;
     private String telefone;
 
-    public Medico(String nome, String cpf, String email, String telefone, String crm, String especialidade) {
+    public Medico(String nome, String cpf, String email, String telefone, String crm) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
          this.telefone = telefone;
          this.crm = crm;
-         this.especialidade = especialidade;
     }
 
     public String getTelefone() {
@@ -31,14 +29,6 @@ public abstract class Medico {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getEspecialidade() {
-        return especialidade;
-    }
-
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
     }
 
     public String getCrm() {

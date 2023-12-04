@@ -31,7 +31,7 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     public boolean buscar(String busca) {
         for (Biomedico biomedico : biomedicoDao) {
             if (biomedico.getCpf().equals(busca) || biomedico.getCrbm().equals(busca) || biomedico.getNome().equals(busca)) {
-                System.out.println("\nInformações de " + biomedico.getNome());
+                System.out.println("\nInformacoes de " + biomedico.getNome());
                 System.out.println("Nome: " + biomedico.getNome()
                 + ". \nCRBM: " + biomedico.getCrbm()
                 + ". \nCPF: " + biomedico.getCpf()
@@ -46,7 +46,7 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     @Override
     public ArrayList<Biomedico> listarTodos() {
         for (Biomedico biomedico : biomedicoDao) {
-            System.out.println("\nInformações de " + biomedico.getNome());
+            System.out.println("\nInformacoes de " + biomedico.getNome());
             System.out.println("Nome: " + biomedico.getNome()
                     + ". \nCRBM: " + biomedico.getCrbm()
                     + ". \nCPF: " + biomedico.getCpf()
@@ -70,11 +70,11 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
         double Positivo = 0.7;
 
         if (resultado >= Positivo) {
-            System.out.println("A análise indicou um resultado positivo.\n");
+            System.out.println("A analise indicou um resultado positivo.\n");
         } else {
-            System.out.println("A análise indicou um resultado negativo.\n");
+            System.out.println("A analise indicou um resultado negativo.\n");
         }
-        System.out.println("INFORMAÇÕES DA ANÁLISE DE AMOSTRAS:");
+        System.out.println("INFORMACOES DA ANALISE DE AMOSTRAS:");
         System.out.println("Coleta de amostras realizada para o paciente " + coleta.getPaciente().getNome() +
                 ". \nTipo de amostra: " + coleta.getTipo() +
                 ". \nData e hora da coleta: " + coleta.getDataHora() +

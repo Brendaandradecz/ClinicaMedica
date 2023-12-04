@@ -15,21 +15,21 @@ public class ConsultaDAO implements IDAO<Consulta> {
     @Override
     public boolean adicionar(Consulta consulta) {
         consultaDao.add(consulta);
-        System.out.println("Consulta adicionado ao sistema!\n");
+        System.out.println("\nConsulta adicionado ao sistema!\n");
         return true;
     }
     @Override
     public boolean remover(Consulta consulta) {
         consultaDao.remove(consulta);
-        System.out.println("Consulta adicionado ao sistema!\n");
+        System.out.println("\nConsulta adicionado ao sistema!\n");
         return true;
     }
     @Override
     public boolean buscar(String busca) {
         for (Consulta consulta: consultaDao) {
             if(consulta.getPaciente().getCpf().equals(busca) || consulta.getPaciente().getNome().equals(busca)){
-                System.out.println("\nINFORMAÇÕES DA CONSULTA:");
-                System.out.println("Consulta do paciente " + consulta.getPaciente().getNome() +
+                System.out.println("\nINFORMACOES DA CONSULTA:");
+                System.out.println("\nConsulta do paciente " + consulta.getPaciente().getNome() +
                         ". \nData e hora da consulta: " + consulta.getDataHora() +
                         ". \nConsulta feita por: " + consulta.getMedico().getNome());
                 return true;
@@ -41,8 +41,8 @@ public class ConsultaDAO implements IDAO<Consulta> {
     @Override
     public ArrayList<Consulta> listarTodos() {
         for (Consulta consulta: consultaDao) {
-            System.out.println("\nINFORMAÇÕES DA CONSULTA:");
-            System.out.println("Consulta do paciente " + consulta.getPaciente().getNome() +
+            System.out.println("\nINFORMACOES DA CONSULTA:");
+            System.out.println("\nConsulta do paciente " + consulta.getPaciente().getNome() +
                     ". \nData e hora da consulta: " + consulta.getDataHora() +
                     ". \nConsulta feita por: " + consulta.getMedico().getNome());
         }

@@ -5,6 +5,7 @@
       <option name="DONT_REPORT_TRUE_ASSERT_STATEMENTS" value="true" />
     </inspection_tool>
     <inspection_tool class="EqualsWithItself" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="InfiniteRecursion" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SuspiciousIndentAfterControlStatement" enabled="false" level="WARNING" enabled_by_default="false" />
   </profile>
 </component>

@@ -16,7 +16,7 @@ public class PacienteDAO implements IDAO<Paciente> {
     @Override
     public boolean adicionar(Paciente elemento) {
         pacienteDao.add(elemento);
-        System.out.println("Paciente adicionado ao sistema!\n");
+        System.out.println("\nPaciente adicionado ao sistema!\n");
         return true;
     }
 
@@ -24,8 +24,8 @@ public class PacienteDAO implements IDAO<Paciente> {
     public boolean buscar(String busca) {
         for (Paciente paciente: pacienteDao) {
             if(paciente.getNome().equals(busca) || paciente.getCpf().equals(busca)){
-                System.out.println("\nInformações de " + paciente.getNome());
-                System.out.println("Nome: " + paciente.getNome()
+                System.out.println("\nInformacoes de " + paciente.getNome());
+                System.out.println("\nNome: " + paciente.getNome()
                         + ". \nCPF: " + paciente.getCpf()
                         + ". \nIdade: " + paciente.getIdade()
                         + ". \nAcompanhado? " + paciente.isPacienteAcompanhado()
@@ -43,8 +43,8 @@ public class PacienteDAO implements IDAO<Paciente> {
     @Override
     public ArrayList<Paciente> listarTodos() {
         for (Paciente paciente: pacienteDao) {
-            System.out.println("\nInformações de " + paciente.getNome());
-            System.out.println("Nome: " + paciente.getNome()
+            System.out.println("\nInformacoes de " + paciente.getNome());
+            System.out.println("\nNome: " + paciente.getNome()
                     + ". \nCPF: " + paciente.getCpf()
                     + ". \nIdade: " + paciente.getIdade()
                     + ". \nAcompanhado? " + paciente.isPacienteAcompanhado()
@@ -60,7 +60,7 @@ public class PacienteDAO implements IDAO<Paciente> {
     @Override
     public boolean remover(Paciente elemento) {
         pacienteDao.remove(elemento);
-        System.out.println("Paciente removido do sistema!\n");
+        System.out.println("\nPaciente removido do sistema!\n");
         return true;
     }
 }

@@ -70,20 +70,12 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     @Override
     public boolean marcarCirurgia(String id, LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
         try {
-            if (paciente.getCpf().equals(null)) {
-                throw new DocumentoInvalidoException();
-            }
-
-            if (dataHora == null || medico == null || paciente == null || procedimento == null){
-                throw new ParametrosInvalidosException();
-            }
-
             if (dataHora.isBefore(LocalDateTime.now())) {
                 throw new DataInvalidaException();
             }
             return this.dao.marcarCirurgia(id, dataHora, medico, paciente, procedimento);
 
-        } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException e) {
+        } catch (DataInvalidaException e) {
             System.err.println(e.getMessage());
         }
         return false;
@@ -92,21 +84,13 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     @Override
     public boolean marcarColeta(String id, LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra) {
         try {
-            if (paciente.getCpf().equals(null)) {
-                throw new DocumentoInvalidoException();
-            }
-
-            if (dataHora == null || enfermeiro == null || codigo == null || tipo == null || paciente == null) {
-                throw new ParametrosInvalidosException();
-            }
-
             if (dataHora.isBefore(LocalDateTime.now())) {
                 throw new DataInvalidaException();
             }
 
             return this.dao.marcarColeta(id, dataHora, enfermeiro, codigo, tipo, paciente, condicaoDaAmostra);
 
-        } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException e) {
+        } catch (DataInvalidaException e) {
             System.err.println(e.getMessage());
         }
         return false;
@@ -115,20 +99,12 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     @Override
     public boolean marcarConsulta(String id, LocalDateTime dataHora, Medico medico, Paciente paciente) {
         try {
-            if (paciente.getCpf().equals(null)) {
-                throw new DocumentoInvalidoException();
-            }
-
-            if (dataHora == null || medico == null || paciente == null) {
-                throw new ParametrosInvalidosException();
-            }
-
             if (dataHora.isBefore(LocalDateTime.now())) {
                 throw new DataInvalidaException();
             }
             return this.dao.marcarConsulta(id, dataHora, medico, paciente);
 
-        } catch (DocumentoInvalidoException | ParametrosInvalidosException | DataInvalidaException e) {
+        } catch (DataInvalidaException e) {
             System.err.println(e.getMessage());
         }
         return false;

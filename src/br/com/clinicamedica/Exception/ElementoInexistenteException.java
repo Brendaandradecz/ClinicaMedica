@@ -2,6 +2,6 @@ package br.com.clinicamedica.Exception;
 
 public class ElementoInexistenteException extends RuntimeException{
     public ElementoInexistenteException() {
-        super("Informação não armazenada!");
+        super("\nInformação nao armazenada!");
     }
 }
