@@ -31,7 +31,7 @@ public class AnaliseController implements IController<Analise> {
             if (dao.getArray().contains(elemento)) {
                 return this.dao.remover(elemento);
             } else {
-                throw new ElementoInexistenteException();
+                throw new ElementoInexistenteException("Analise");
             }
         } catch (ElementoInexistenteException e) {
             System.err.println(e.getMessage());
@@ -43,7 +43,7 @@ public class AnaliseController implements IController<Analise> {
     public boolean buscar(String busca) {
         try{
             if(!(this.dao.buscar(busca))){
-                throw new ResultadoNaoEncontradoException();
+                throw new ResultadoNaoEncontradoException("a Analise");
             }else{
                 return this.dao.buscar(busca);
             }
@@ -56,7 +56,7 @@ public class AnaliseController implements IController<Analise> {
     public ArrayList<Analise> listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
-                throw new ListaVaziaException();
+                throw new ListaVaziaException("Analises");
             }else{
                 return this.dao.listarTodos();
             }

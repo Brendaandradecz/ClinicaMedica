@@ -1,13 +1,11 @@
 package br.com.clinicamedica.Controller;
 
 import br.com.clinicamedica.Contract.IController;
-import br.com.clinicamedica.Contract.IDemandasController;
 import br.com.clinicamedica.DAO.ColetaDeAmostrasDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
 import br.com.clinicamedica.Exception.ElementoInexistenteException;
 import br.com.clinicamedica.Exception.ListaVaziaException;
 import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
-import br.com.clinicamedica.Model.Cirurgia;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
 
 import java.util.ArrayList;
@@ -33,7 +31,7 @@ public class ColetaDeAmostrasController implements IController<ColetaDeAmostras>
             if (dao.getArray().contains(elemento)) {
                 return this.dao.remover(elemento);
             } else {
-                throw new ElementoInexistenteException();
+                throw new ElementoInexistenteException("Coleta de Amostras");
             }
         } catch (ElementoInexistenteException e) {
             System.err.println(e.getMessage());
@@ -44,7 +42,7 @@ public class ColetaDeAmostrasController implements IController<ColetaDeAmostras>
     public boolean buscar(String busca) {
         try{
             if(!(this.dao.buscar(busca))){
-                throw new ResultadoNaoEncontradoException();
+                throw new ResultadoNaoEncontradoException("a Coleta de Amostras");
             }else{
                 return this.dao.buscar(busca);
             }
@@ -58,7 +56,7 @@ public class ColetaDeAmostrasController implements IController<ColetaDeAmostras>
     public ArrayList<ColetaDeAmostras> listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
-                throw new ListaVaziaException();
+                throw new ListaVaziaException("Coletas");
             }else{
                 return this.dao.listarTodos();
             }

@@ -24,7 +24,7 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     @Override
     public boolean adicionar(Recepcionista elemento) {
         recepcionistaDao.add(elemento);
-        System.out.println("Recepcionista adicionado(a) ao sistema!\n");
+        System.out.println("\nRecepcionista adicionado(a) ao sistema!\n");
         return true;
 
     }
@@ -32,12 +32,10 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     @Override
     public boolean buscar(String busca) {
         for (Recepcionista recepcionista: recepcionistaDao) {
-            if(recepcionista.getNome().equals(busca) || recepcionista.getCpf().equals(busca)){
-                System.out.println("\nInformacoes de " + recepcionista.getNome());
-                System.out.println("Nome: " + recepcionista.getNome()
-                        + ". \nCPF: " + recepcionista.getCpf()
-                        + ". \nTelefone: " + recepcionista.getTelefone()
-                        + ". \nEmail: " + recepcionista.getEmail());
+            if(recepcionista.getNome().toLowerCase().contains(busca) ||
+                    recepcionista.getCpf().toLowerCase().contains(busca)){
+                System.out.println("\nRecepcionista encontrado(a):");
+                imprimirInfo(recepcionista);
                 return true;
             }
         }
@@ -46,13 +44,18 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     @Override
     public ArrayList<Recepcionista> listarTodos() {
         for (Recepcionista recepcionista: recepcionistaDao) {
-            System.out.println("\nInformacoes de " + recepcionista.getNome());
-            System.out.println("Nome: " + recepcionista.getNome()
-                    + ". \nCPF: " + recepcionista.getCpf()
-                    + ". \nTelefone: " + recepcionista.getTelefone()
-                    + ". \nEmail: " + recepcionista.getEmail());
+            imprimirInfo(recepcionista);
         }
         return recepcionistaDao;
+    }
+
+    @Override
+    public void imprimirInfo(Recepcionista recepcionista) {
+        System.out.println("\nInformacoes de " + recepcionista.getNome());
+        System.out.println("Nome: " + recepcionista.getNome()
+                + ". \nCPF: " + recepcionista.getCpf()
+                + ". \nTelefone: " + recepcionista.getTelefone()
+                + ". \nEmail: " + recepcionista.getEmail());
     }
 
     @Override
@@ -66,8 +69,14 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     public boolean marcarCirurgia(String id, LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento) {
         Cirurgia cirurgia = new Cirurgia(dataHora, medico, paciente, procedimento, id);
         cirurgiaController.adicionar(cirurgia);
+
+        String dia = String.format(cirurgia.getDataHora().getDayOfMonth() +
+                "/" + cirurgia.getDataHora().getMonthValue() +
+                "/" + cirurgia.getDataHora().getYear() + " as " + cirurgia.getDataHora().getHour() +
+                ":" + cirurgia.getDataHora().getMinute());
+
         System.out.println("\nCirurgia marcada - INFORMACOES DA CIRURGIA");
-        System.out.println("Data e Hora: " + dataHora +
+        System.out.println("Data e Hora: " + dia +
                 "\nMédico: " + medico.getNome() +
                 "\nPaciente: " + paciente.getNome() +
                 "\nProcedimento: " + procedimento);
@@ -77,20 +86,31 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     public boolean marcarConsulta(String id, LocalDateTime dataHora, Medico medico, Paciente paciente) {
         Consulta consulta = new Consulta(dataHora, paciente, medico, id);
         consultaController.adicionar(consulta);
+
+        String dia = String.format(consulta.getDataHora().getDayOfMonth() +
+                "/" + consulta.getDataHora().getMonthValue() +
+                "/" + consulta.getDataHora().getYear() + " as " + consulta.getDataHora().getHour() +
+                ":" + consulta.getDataHora().getMinute());
+
         System.out.println("\nConsulta marcada - INFORMACOES DA CONSULTA");
-        System.out.println("Data e Hora: " + dataHora +
+        System.out.println("Data e Hora: " + dia +
                 "\nMédico: " + medico.getNome() +
                 "\nPaciente: " + paciente.getNome());
         return true;
     }
     @Override
-    public boolean marcarColeta(String id, LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra) {
-        ColetaDeAmostras coleta = new ColetaDeAmostras(tipo, codigo, enfermeiro, paciente, dataHora, condicaoDaAmostra, id);
+    public boolean marcarColeta(String id, LocalDateTime dataHora, Enfermagem enfermeiro, String tipo, Paciente paciente, String condicaoDaAmostra) {
+        ColetaDeAmostras coleta = new ColetaDeAmostras(tipo, enfermeiro, paciente, dataHora, condicaoDaAmostra, id);
         coletaController.adicionar(coleta);
+        String dia = String.format(coleta.getDataHora().getDayOfMonth() +
+                "/" + coleta.getDataHora().getMonthValue() +
+                "/" + coleta.getDataHora().getYear() + " as " + coleta.getDataHora().getHour() +
+                ":" + coleta.getDataHora().getMinute());
+
         System.out.println("\nColeta marcada - INFORMACOES DA COLETA");
-        System.out.println("Data e Hora: " + dataHora +
+        System.out.println("Data e Hora: " + dia +
                 "\nEnfermeiro: " + enfermeiro.getNome() +
-                "\nCódigo: " + codigo +
+                "\nIdentificacao: " + id +
                 "\nTipo: " + tipo +
                 "\nPaciente: " + paciente.getNome());
         return true;
@@ -99,8 +119,14 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     @Override
     public boolean alterarData(LocalDateTime alteracao, Cirurgia cirurgia) {
         cirurgia.setDataHora(alteracao);
+
+        String dia = String.format(alteracao.getDayOfMonth() +
+                "/" + alteracao.getMonthValue() +
+                "/" + alteracao.getYear() + " as " + alteracao.getHour() +
+                ":" + alteracao.getMinute());
+
         System.out.println("\nDATA DA CIRURGIA (Alteração Realizada) - CIRUGIA");
-        System.out.println("Nova Data e Hora: " + alteracao +
+        System.out.println("Nova Data e Hora: " + dia +
                 "\nMédico: " + cirurgia.getMedico().getNome() +
                 "\nPaciente: " + cirurgia.getPaciente().getNome() +
                 "\nProcedimento: " + cirurgia.getProcedimento());
@@ -110,8 +136,14 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     @Override
     public boolean alterarData(LocalDateTime alteracao, ColetaDeAmostras coleta) {
         coleta.setDataHora(alteracao);
+
+        String dia = String.format(alteracao.getDayOfMonth() +
+                "/" + alteracao.getMonthValue() +
+                "/" + alteracao.getYear() + " as " + alteracao.getHour() +
+                ":" + alteracao.getMinute());
+
         System.out.println("\nNOVA DATA DA COLETA (Alteração Realizada) - COLETA");
-        System.out.println("Nova Data e Hora: " + alteracao +
+        System.out.println("Nova Data e Hora: " + dia +
                 "\nEnfermeiro: " + coleta.getEnfermeiro().getNome() +
                 "\nPaciente: " + coleta.getPaciente().getNome() +
                 "\nTipo: " + coleta.getTipo());
@@ -120,8 +152,14 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     @Override
     public boolean alterarData(LocalDateTime alteracao, Consulta consulta) {
         consulta.setDataHora(alteracao);
+
+        String dia = String.format(alteracao.getDayOfMonth() +
+                "/" + alteracao.getMonthValue() +
+                "/" + alteracao.getYear() + " as " + alteracao.getHour() +
+                ":" + alteracao.getMinute());
+
         System.out.println("\nNOVA DATA DA CONSULTA (Alteração Realizada) - CONSULTA");
-        System.out.println("Nova Data e Hora: " + alteracao +
+        System.out.println("Nova Data e Hora: " + dia +
                 "\nMédico: " + consulta.getMedico().getNome() +
                 "\nPaciente: " + consulta.getPaciente().getNome());
         return true;

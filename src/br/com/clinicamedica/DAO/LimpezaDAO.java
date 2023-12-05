@@ -23,12 +23,10 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     @Override
     public boolean buscar(String busca) {
         for (Limpeza limpeza: limpezaDao) {
-            if (limpeza.getCpf().equals(busca) || limpeza.getNome().equals(busca)) {
-                System.out.println("\nInformacoes de " + limpeza.getNome());
-                System.out.println("\nNome: " + limpeza.getNome()
-                        + ". \nCPF: " + limpeza.getCpf()
-                        + ". \nTelefone: " + limpeza.getTelefone()
-                        + ". \nEmail: " + limpeza.getEmail());
+            if (limpeza.getCpf().toLowerCase().contains(busca) ||
+                    limpeza.getNome().toLowerCase().contains(busca)) {
+                System.out.println("\nFuncionario(a) encontrado(a):");
+                imprimirInfo(limpeza);
                 return true;
             }
         }
@@ -38,11 +36,7 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     @Override
     public ArrayList<Limpeza> listarTodos() {
         for (Limpeza limpeza: limpezaDao) {
-            System.out.println("\nInformacoes de " + limpeza.getNome());
-            System.out.println("\nNome: " + limpeza.getNome()
-                    + ". \nCPF: " + limpeza.getCpf()
-                    + ". \nTelefone: " + limpeza.getTelefone()
-                    + ". \nEmail: " + limpeza.getEmail());
+            imprimirInfo(limpeza);
         }
         return limpezaDao;
     }
@@ -52,5 +46,15 @@ public class LimpezaDAO implements IDAO<Limpeza> {
         limpezaDao.remove(elemento);
         System.out.println("\nFuncionario(a) removido(a) do sistema\n");
         return true;
+    }
+
+    @Override
+    public void imprimirInfo(Limpeza limpeza) {
+        System.out.println("\nInformacoes de " + limpeza.getNome());
+        System.out.println("\nNome: " + limpeza.getNome()
+                + ". \nCPF: " + limpeza.getCpf()
+                + ". \nTelefone: " + limpeza.getTelefone()
+                + ". \nEmail: " + limpeza.getEmail());
+
     }
 }

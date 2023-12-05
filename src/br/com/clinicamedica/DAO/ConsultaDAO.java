@@ -15,23 +15,22 @@ public class ConsultaDAO implements IDAO<Consulta> {
     @Override
     public boolean adicionar(Consulta consulta) {
         consultaDao.add(consulta);
-        System.out.println("\nConsulta adicionado ao sistema!\n");
+        System.out.println("\nConsulta adicionada ao sistema!\n");
         return true;
     }
     @Override
     public boolean remover(Consulta consulta) {
         consultaDao.remove(consulta);
-        System.out.println("\nConsulta adicionado ao sistema!\n");
+        System.out.println("\nConsulta removida do sistema!\n");
         return true;
     }
     @Override
     public boolean buscar(String busca) {
         for (Consulta consulta: consultaDao) {
-            if(consulta.getPaciente().getCpf().equals(busca) || consulta.getPaciente().getNome().equals(busca)){
-                System.out.println("\nINFORMACOES DA CONSULTA:");
-                System.out.println("\nConsulta do paciente " + consulta.getPaciente().getNome() +
-                        ". \nData e hora da consulta: " + consulta.getDataHora() +
-                        ". \nConsulta feita por: " + consulta.getMedico().getNome());
+            if(consulta.getPaciente().getCpf().toLowerCase().contains(busca) ||
+                    consulta.getPaciente().getNome().toLowerCase().contains(busca)){
+                System.out.println("\nConsulta encontrada:");
+                imprimirInfo(consulta);
                 return true;
             }
         }
@@ -41,10 +40,7 @@ public class ConsultaDAO implements IDAO<Consulta> {
     @Override
     public ArrayList<Consulta> listarTodos() {
         for (Consulta consulta: consultaDao) {
-            System.out.println("\nINFORMACOES DA CONSULTA:");
-            System.out.println("\nConsulta do paciente " + consulta.getPaciente().getNome() +
-                    ". \nData e hora da consulta: " + consulta.getDataHora() +
-                    ". \nConsulta feita por: " + consulta.getMedico().getNome());
+            imprimirInfo(consulta);
         }
         return consultaDao;
     }
@@ -55,5 +51,18 @@ public class ConsultaDAO implements IDAO<Consulta> {
             }
         }
         return null;
+    }
+
+    @Override
+    public void imprimirInfo(Consulta consulta) {
+        String dia = String.format(consulta.getDataHora().getDayOfMonth() +
+                "/" + consulta.getDataHora().getMonthValue() +
+                "/" + consulta.getDataHora().getYear() + " as " + consulta.getDataHora().getHour() +
+                ":" + consulta.getDataHora().getMinute());
+
+        System.out.println("\nINFORMACOES DA CONSULTA:");
+        System.out.println("\nConsulta do paciente " + consulta.getPaciente().getNome() +
+                ". \nData e hora da consulta: " + dia +
+                ". \nConsulta feita por: " + consulta.getMedico().getNome());
     }
 }

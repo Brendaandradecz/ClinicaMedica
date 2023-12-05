@@ -2,14 +2,12 @@ package br.com.clinicamedica.Controller;
 
 import br.com.clinicamedica.Contract.IController;
 import br.com.clinicamedica.Contract.IMedicoController;
-import br.com.clinicamedica.Contract.IMedicoDao;
 import br.com.clinicamedica.DAO.MedicoDAO;
 import br.com.clinicamedica.Exception.*;
 import br.com.clinicamedica.Model.Cirurgia;
 import br.com.clinicamedica.Model.Consulta;
 import br.com.clinicamedica.Model.Medico;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class MedicoController implements IController<Medico>, IMedicoController {
@@ -33,7 +31,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
     public boolean buscar(String busca) {
         try {
             if (!(this.dao.buscar(busca))) {
-                throw new ResultadoNaoEncontradoException();
+                throw new ResultadoNaoEncontradoException(" Medico(a)");
             } else {
                 return this.dao.buscar(busca);
             }
@@ -44,10 +42,10 @@ public class MedicoController implements IController<Medico>, IMedicoController 
     }
 
     @Override
-    public ArrayList listarTodos() {
+    public ArrayList<Medico> listarTodos() {
         try {
             if (dao.getArray().isEmpty()) {
-                throw new ListaVaziaException();
+                throw new ListaVaziaException("Medicos");
             } else {
                 return this.dao.listarTodos();
             }
@@ -63,7 +61,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             if (dao.getArray().contains(elemento)) {
                 return this.dao.remover(elemento);
             } else {
-                throw new ElementoInexistenteException();
+                throw new ElementoInexistenteException("Medico(a)");
             }
         } catch (ElementoInexistenteException e) {
             System.err.println(e.getMessage());
@@ -75,14 +73,14 @@ public class MedicoController implements IController<Medico>, IMedicoController 
     public boolean fazerConsulta(Consulta consulta) {
         try {
             if (consulta == null) {
-                throw new ConsultaNaoAgendadaException();
+                throw new NaoAgendadaException("Consulta");
             }
             if ((consulta.getPaciente().getIdade() < 18) && !consulta.getPaciente().isPacienteAcompanhado()) {
-                throw new MenorDesacompanhadoException();
+                throw new MenorDesacompanhadoException("consulta");
             }
             return this.dao.fazerConsulta(consulta);
 
-        } catch (ConsultaNaoAgendadaException | MenorDesacompanhadoException e) {
+        } catch (NaoAgendadaException | MenorDesacompanhadoException e) {
             System.err.println(e.getMessage());
         }
         return false;
@@ -91,14 +89,17 @@ public class MedicoController implements IController<Medico>, IMedicoController 
     public boolean fazerCirurgia(Cirurgia cirurgia) {
         try {
             if (cirurgia == null) {
-                throw new CirurgiaNaoAgendadaException();
+                throw new NaoAgendadaException("Cirurgia");
+            }
+            if ((cirurgia.getPaciente().getIdade() < 18) && !cirurgia.getPaciente().isPacienteAcompanhado()) {
+                throw new MenorDesacompanhadoException("cirugia");
             }
             if (cirurgia.getPaciente().isPressaoArterialAlterada()){
                 throw new PressaoArterialAlteradaException();
             }
             return this.dao.fazerCirurgia(cirurgia);
 
-        } catch (PressaoArterialAlteradaException | CirurgiaNaoAgendadaException e) {
+        } catch (PressaoArterialAlteradaException | MenorDesacompanhadoException | NaoAgendadaException e) {
             System.err.println(e.getMessage());
         }
         return false;

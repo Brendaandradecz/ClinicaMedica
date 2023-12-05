@@ -1,9 +1,7 @@
 package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
-import br.com.clinicamedica.Contract.IDemandas;
 import br.com.clinicamedica.Model.Analise;
-import br.com.clinicamedica.Model.Cirurgia;
 
 import java.util.ArrayList;
 
@@ -22,20 +20,17 @@ public class AnaliseDAO implements IDAO<Analise> {
     @Override
     public boolean remover(Analise analise) {
         analiseDao.remove(analise);
-        System.out.println("Analise adicionada ao sistema!\n");
+        System.out.println("\nAnalise removida do sistema!\n");
         return true;
     }
 
     @Override
     public boolean buscar(String busca) {
         for (Analise analise: analiseDao) {
-            if(analise.getPaciente().getNome().equals(busca) || analise.getPaciente().getCpf().equals(busca)){
-                System.out.println();
-                System.out.println("\nINFORMACOES DA ANALISE DE AMOSTRAS:");
-                System.out.println("Coleta de amostras realizada para o paciente " + analise.getPaciente().getNome()
-                        + ". \nData e hora da analise: " + analise.getDataHora()
-                        + ". \nResultado: " + analise.getResultado()
-                        + ". \nAnalise feita por: " + analise.getBiomedico().getNome() );
+            if(analise.getPaciente().getNome().toLowerCase().contains(busca) ||
+                    analise.getPaciente().getCpf().toLowerCase().contains(busca)){
+                System.out.println("\nAnalise encontrada:");
+                imprimirInfo(analise);
                 return true;
             }
         }
@@ -44,11 +39,7 @@ public class AnaliseDAO implements IDAO<Analise> {
     @Override
     public ArrayList<Analise> listarTodos() {
         for (Analise analise: analiseDao) {
-            System.out.println("\n INFORMACOES DA ANALISE DE AMOSTRAS:");
-            System.out.println("Coleta de amostras realizada para o paciente " + analise.getPaciente().getNome()
-                    + ". \nData e hora da analise: " + analise.getDataHora()
-                    + ". \nResultado: " + analise.getResultado()
-                    + ". \nAnalise feita por: " + analise.getBiomedico().getNome());
+            imprimirInfo(analise);
         }
         return analiseDao;
     }
@@ -59,5 +50,18 @@ public class AnaliseDAO implements IDAO<Analise> {
             }
         }
         return null;
+    }
+
+    @Override
+    public void imprimirInfo(Analise analise) {
+        String dia = String.format(analise.getDataHora().getDayOfMonth() +
+                "/" + analise.getDataHora().getMonthValue() +
+                "/" + analise.getDataHora().getYear() + " as " + analise.getDataHora().getHour() +
+                ":" + analise.getDataHora().getMinute());
+        System.out.println("\n INFORMACOES DA ANALISE DE AMOSTRAS:");
+        System.out.println("Coleta de amostras realizada para o paciente " + analise.getPaciente().getNome()
+                + ". \nData e hora da analise: " + dia
+                + ". \nResultado: " + analise.getResultado()
+                + ". \nAnalise feita por: " + analise.getBiomedico().getNome());
     }
 }

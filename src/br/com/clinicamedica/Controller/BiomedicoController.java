@@ -32,7 +32,7 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
     public boolean buscar(String busca) {
         try {
             if (!(this.dao.buscar(busca))) {
-                throw new ResultadoNaoEncontradoException();
+                throw new ResultadoNaoEncontradoException(" Biomedico(a)");
             } else {
                 return this.dao.buscar(busca);
             }
@@ -46,7 +46,7 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
     public ArrayList<Biomedico> listarTodos() {
         try {
             if (dao.getArray().isEmpty()) {
-                throw new ListaVaziaException();
+                throw new ListaVaziaException("Biomedicos");
             } else {
                 return this.dao.listarTodos();
             }
@@ -62,7 +62,7 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
             if (dao.getArray().contains(elemento)) {
                 return this.dao.remover(elemento);
             } else {
-                throw new ElementoInexistenteException();
+                throw new ElementoInexistenteException("Biomedico(a)");
             }
         } catch (ElementoInexistenteException e) {
             System.err.println(e.getMessage());
@@ -75,10 +75,14 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
         try {
             if (resultado > 1.0 || resultado < 0){
                 throw new ResultadoInvalidoException();
+            }if(coleta == null){
+                throw new NaoAgendadaException("Coleta");
+            }if(dataHora.isBefore(coleta.getDataHora())){
+                throw new DataInvalidaException();
             }
             return this.dao.fazerAnaliseDeAmostras(id, biomedico, paciente, dataHora, resultado, coleta);
 
-        } catch (ResultadoInvalidoException e) {
+        } catch (NaoAgendadaException | ResultadoInvalidoException | DataInvalidaException e) {
             System.err.println(e.getMessage());
         }
         return false;

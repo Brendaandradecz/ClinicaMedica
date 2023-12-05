@@ -21,13 +21,11 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     @Override
     public boolean buscar(String busca) {
         for (Medico medico: medicoDao) {
-            if (medico.getCpf().equals(busca) || medico.getCrm().equals(busca) || medico.getNome().equals(busca)) {
-                System.out.println("\nInformacoes de " + medico.getNome());
-                System.out.println("\nNome: " + medico.getNome()
-                        + ". \nCRM: " + medico.getCrm()
-                        + ". \nCPF: " + medico.getCpf()
-                        + ". \nTelefone: " + medico.getTelefone()
-                        + ". \nEmail: " + medico.getEmail());
+            if (medico.getCpf().toLowerCase().contains(busca) ||
+                    medico.getCrm().toLowerCase().contains(busca) ||
+                    medico.getNome().toLowerCase().contains(busca)) {
+                System.out.println("\nMedico(a) encontrado(a): ");
+                imprimirInfo(medico);
                 return true;
             }
         }
@@ -37,12 +35,7 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     @Override
     public ArrayList<Medico> listarTodos() {
         for (Medico medico: medicoDao) {
-            System.out.println("\nInformacoes de " + medico.getNome());
-            System.out.println("\nNome: " + medico.getNome()
-                    + ". \nCRM: " + medico.getCrm()
-                    + ". \nCPF: " + medico.getCpf()
-                    + ". \nTelefone: " + medico.getTelefone()
-                    + ". \nEmail: " + medico.getEmail());
+            imprimirInfo(medico);
         }
         return medicoDao;
     }
@@ -61,20 +54,40 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
 
     @Override
     public boolean fazerConsulta(Consulta consulta) {
+        String dia = String.format(consulta.getDataHora().getDayOfMonth() +
+                "/" + consulta.getDataHora().getMonthValue() +
+                "/" + consulta.getDataHora().getYear() + " as " + consulta.getDataHora().getHour() +
+                ":" + consulta.getDataHora().getMinute());
+
         System.out.println("\nINFORMACOES DA CONSULTA:");
         System.out.println("\nConsulta realizada por " + consulta.getMedico().getNome() +
                 " para o paciente " + consulta.getPaciente().getNome() +
-                " às " + consulta.getDataHora());
+                " no dia " + dia);
         return true;
     }
 
     @Override
     public boolean fazerCirurgia(Cirurgia cirurgia) {
+        String dia = String.format(cirurgia.getDataHora().getDayOfMonth() +
+                "/" + cirurgia.getDataHora().getMonthValue() +
+                "/" + cirurgia.getDataHora().getYear() + " as " + cirurgia.getDataHora().getHour() +
+                ":" + cirurgia.getDataHora().getMinute());
+
         System.out.println("\nINFORMACOES DA CIRURGIA:");
         System.out.println("\nCirurgia realizada por " + cirurgia.getMedico().getNome() +
                 " para o paciente " + cirurgia.getPaciente().getNome() +
-                " às " + cirurgia.getDataHora() +
+                " no dia " + dia +
                 ". Procedimento: " + cirurgia.getProcedimento());
         return true;
+    }
+
+    @Override
+    public void imprimirInfo(Medico medico) {
+        System.out.println("\nInformacoes de " + medico.getNome());
+        System.out.println("\nNome: " + medico.getNome()
+                + ". \nCRM: " + medico.getCrm()
+                + ". \nCPF: " + medico.getCpf()
+                + ". \nTelefone: " + medico.getTelefone()
+                + ". \nEmail: " + medico.getEmail());
     }
 }

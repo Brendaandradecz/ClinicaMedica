@@ -30,7 +30,7 @@ public class LimpezaController implements IController<Limpeza> {
     public boolean buscar(String busca) {
         try{
             if(!(this.dao.buscar(busca))){
-                throw new ResultadoNaoEncontradoException();
+                throw new ResultadoNaoEncontradoException(" Funcionário(a) de limpeza");
             }else{
                 return this.dao.buscar(busca);
             }
@@ -41,10 +41,10 @@ public class LimpezaController implements IController<Limpeza> {
     }
 
     @Override
-    public ArrayList listarTodos() {
+    public ArrayList<Limpeza> listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
-                throw new ListaVaziaException();
+                throw new ListaVaziaException("Funcionários de limpeza");
             }else{
                 return this.dao.listarTodos();
             }
@@ -60,7 +60,7 @@ public class LimpezaController implements IController<Limpeza> {
             if(dao.getArray().contains(elemento)){
                 return this.dao.remover(elemento);
             }else{
-                throw new ElementoInexistenteException();
+                throw new ElementoInexistenteException("Funcionário(a) de limpeza");
             }
         } catch(ElementoInexistenteException e){
             System.err.println(e.getMessage());

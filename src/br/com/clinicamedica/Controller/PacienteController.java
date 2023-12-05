@@ -30,7 +30,7 @@ public class PacienteController implements IController<Paciente> {
     public boolean buscar(String busca) {
         try{
             if(!(this.dao.buscar(busca))){
-                throw new ResultadoNaoEncontradoException();
+                throw new ResultadoNaoEncontradoException(" Paciente");
             }else{
                 return this.dao.buscar(busca);
             }
@@ -41,10 +41,10 @@ public class PacienteController implements IController<Paciente> {
     }
 
     @Override
-    public ArrayList listarTodos() {
+    public ArrayList<Paciente> listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
-                throw new ListaVaziaException();
+                throw new ListaVaziaException("Pacientes");
             }else{
                 return this.dao.listarTodos();
             }
@@ -60,7 +60,7 @@ public class PacienteController implements IController<Paciente> {
             if(dao.getArray().contains(elemento)){
                 return this.dao.remover(elemento);
             }else{
-                throw new ElementoInexistenteException();
+                throw new ElementoInexistenteException("Paciente");
             }
         } catch(ElementoInexistenteException e){
             System.err.println(e.getMessage());
@@ -68,4 +68,7 @@ public class PacienteController implements IController<Paciente> {
         return false;
     }
 
+    public PacienteDAO getDao() {
+        return dao;
+    }
 }

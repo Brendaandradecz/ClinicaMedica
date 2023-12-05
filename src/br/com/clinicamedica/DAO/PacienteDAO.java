@@ -23,36 +23,58 @@ public class PacienteDAO implements IDAO<Paciente> {
     @Override
     public boolean buscar(String busca) {
         for (Paciente paciente: pacienteDao) {
-            if(paciente.getNome().equals(busca) || paciente.getCpf().equals(busca)){
-                System.out.println("\nInformacoes de " + paciente.getNome());
-                System.out.println("\nNome: " + paciente.getNome()
-                        + ". \nCPF: " + paciente.getCpf()
-                        + ". \nIdade: " + paciente.getIdade()
-                        + ". \nAcompanhado? " + paciente.isPacienteAcompanhado()
-                        + ". \nCondição normal? " + paciente.isCondicaoNormal()
-                        + ". \nPossui Convenio? " + paciente.isPossuiConvenio()
-                        + ". \nPressão Arterial alterada? " + paciente.isPressaoArterialAlterada()
-                        + ". \nTelefone: " + paciente.getTelefone()
-                        + ". \nEmail: " + paciente.getEmail());
+            if(paciente.getNome().toLowerCase().contains(busca) ||
+                    paciente.getCpf().toLowerCase().contains(busca)){
+                System.out.println("\nPaciente encontrado:");
+                imprimirInfo(paciente);
                 return true;
             }
         }
         return false;
     }
+    public void imprimirInfo(Paciente paciente){
+        String condicao;
+        if(paciente.isCondicaoNormal()){
+            condicao = "Sim";
+        } else{
+            condicao = "Nao";
+        }
 
+        String acompanhado;
+        if(paciente.isPacienteAcompanhado()){
+            acompanhado = "Sim";
+        } else{
+            acompanhado = "Nao";
+        }
+
+        String pressao;
+        if(paciente.isPressaoArterialAlterada()){
+            pressao = "Sim";
+        } else{
+            pressao = "Nao";
+        }
+
+        String convenio;
+        if(paciente.isPossuiConvenio()){
+            convenio = "Sim";
+        } else{
+            convenio = "Nao";
+        }
+        System.out.println("\nInformacoes de " + paciente.getNome());
+        System.out.println("\nNome: " + paciente.getNome()
+                + ". \nCPF: " + paciente.getCpf()
+                + ". \nIdade: " + paciente.getIdade()
+                + ". \nAcompanhado? " + acompanhado
+                + ". \nCondição normal? " + condicao
+                + ". \nPossui Convenio? " + convenio
+                + ". \nPressão Arterial alterada? " + pressao
+                + ". \nTelefone: " + paciente.getTelefone()
+                + ". \nEmail: " + paciente.getEmail());
+    }
     @Override
     public ArrayList<Paciente> listarTodos() {
         for (Paciente paciente: pacienteDao) {
-            System.out.println("\nInformacoes de " + paciente.getNome());
-            System.out.println("\nNome: " + paciente.getNome()
-                    + ". \nCPF: " + paciente.getCpf()
-                    + ". \nIdade: " + paciente.getIdade()
-                    + ". \nAcompanhado? " + paciente.isPacienteAcompanhado()
-                    + ". \nCondição normal? " + paciente.isCondicaoNormal()
-                    + ". \nPossui Convenio? " + paciente.isPossuiConvenio()
-                    + ". \nPressão Arterial alterada? " + paciente.isPressaoArterialAlterada()
-                    + ". \nTelefone: " + paciente.getTelefone()
-                    + ". \nEmail: " + paciente.getEmail());
+            imprimirInfo(paciente);
         }
         return pacienteDao;
     }

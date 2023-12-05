@@ -15,20 +15,18 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
     @Override
     public boolean adicionar(Enfermagem elemento) {
         enfermagemDao.add(elemento);
-        System.out.println("Enfermeiro(a) adicionado ao sistema!\n");
+        System.out.println("\nEnfermeiro(a) adicionado ao sistema!\n");
         return true;
     }
 
     @Override
     public boolean buscar(String busca) {
         for (Enfermagem enfermagem : enfermagemDao) {
-            if (enfermagem.getCpf().equals(busca) || enfermagem.getCoren().equals(busca) || enfermagem.getNome().equals(busca)) {
-                System.out.println("\nInformações de " + enfermagem.getNome());
-                System.out.println("Nome: " + enfermagem.getNome()
-                        + ". \nCRBM: " + enfermagem.getCoren()
-                        + ". \nCPF: " + enfermagem.getCpf()
-                        + ". \nTelefone: " + enfermagem.getTelefone()
-                        + ". \nEmail: " + enfermagem.getEmail());
+            if (enfermagem.getCpf().toLowerCase().contains(busca) ||
+                    enfermagem.getCoren().toLowerCase().contains(busca) ||
+                    enfermagem.getNome().toLowerCase().contains(busca)) {
+                System.out.println("\nEnfermeiro(a) encontrado(a):");
+                imprimirInfo(enfermagem);
                 return true;
             }
         }
@@ -39,12 +37,7 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
     @Override
     public ArrayList<Enfermagem> listarTodos() {
         for (Enfermagem enfermagem : enfermagemDao) {
-            System.out.println("\nInformações de " + enfermagem.getNome());
-            System.out.println("Nome: " + enfermagem.getNome()
-                    + ". \nCRBM: " + enfermagem.getCoren()
-                    + ". \nCPF: " + enfermagem.getCpf()
-                    + ". \nTelefone: " + enfermagem.getTelefone()
-                    + ". \nEmail: " + enfermagem.getEmail());
+            imprimirInfo(enfermagem);
         }
         return enfermagemDao;
     }
@@ -63,20 +56,47 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
 
     @Override
     public boolean realizarTriagem(Paciente paciente, LocalDateTime dataHora) {
+        String dia = String.format(dataHora.getDayOfMonth() +
+                "/" + dataHora.getMonthValue() +
+                "/" + dataHora.getYear() + " as " + dataHora.getHour() +
+                ":" + dataHora.getMinute());
+
+        String condicao;
+
+        if(paciente.isCondicaoNormal()){
+            condicao = "Sim";
+        }else {
+            condicao = "Não";
+        }
         System.out.println("\nINFORMACOES DA TRIAGEM:");
         System.out.println("\nTriagem realizada para o paciente " + paciente.getNome() +
-                " em " + dataHora +
-                ". Condição: " + paciente.isCondicaoNormal());
+                " em " + dia +
+                ". Condição Normal: " + condicao);
         return true;
     }
 
     @Override
     public boolean realizarColeta(ColetaDeAmostras coleta) {
+        String dia = String.format(coleta.getDataHora().getDayOfMonth() +
+                "/" + coleta.getDataHora().getMonthValue() +
+                "/" + coleta.getDataHora().getYear() + " as " + coleta.getDataHora().getHour() +
+                ":" + coleta.getDataHora().getMinute());
+
         System.out.println("\nINFORMACOES DA COLETA DE AMOSTRAS:");
-        System.out.println("Coleta de amostras realizada para o paciente " + coleta.getPaciente().getNome() +
+        System.out.println("\nColeta de amostras realizada para o paciente " + coleta.getPaciente().getNome() +
                 ". Tipo de amostra: " + coleta.getTipo() +
-                ". Data e hora da coleta: " + coleta.getDataHora());
+                ". Data e hora da coleta: " + dia);
         return true;
+    }
+
+    @Override
+    public void imprimirInfo(Enfermagem enfermagem) {
+        System.out.println("\nInformações de " + enfermagem.getNome());
+        System.out.println("Nome: " + enfermagem.getNome()
+                + ". \nCRBM: " + enfermagem.getCoren()
+                + ". \nCPF: " + enfermagem.getCpf()
+                + ". \nTelefone: " + enfermagem.getTelefone()
+                + ". \nEmail: " + enfermagem.getEmail());
     }
 }
 

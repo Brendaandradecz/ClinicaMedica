@@ -29,7 +29,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     public boolean buscar(String busca) {
         try{
             if(!(this.dao.buscar(busca))){
-                throw new ResultadoNaoEncontradoException();
+                throw new ResultadoNaoEncontradoException(" Recepcionista");
             }else{
                 return this.dao.buscar(busca);
             }
@@ -40,10 +40,10 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     }
 
     @Override
-    public ArrayList listarTodos() {
+    public ArrayList<Recepcionista> listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
-                throw new ListaVaziaException();
+                throw new ListaVaziaException("Recepcionistas");
             }else{
                 return this.dao.listarTodos();
             }
@@ -59,7 +59,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
             if(dao.getArray().contains(elemento)){
                 return this.dao.remover(elemento);
             }else{
-                throw new ElementoInexistenteException();
+                throw new ElementoInexistenteException("Recepcionista");
             }
         } catch(ElementoInexistenteException e){
             System.err.println(e.getMessage());
@@ -82,13 +82,12 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     }
 
     @Override
-    public boolean marcarColeta(String id, LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra) {
+    public boolean marcarColeta(String id, LocalDateTime dataHora, Enfermagem enfermeiro, String tipo, Paciente paciente, String condicaoDaAmostra) {
         try {
             if (dataHora.isBefore(LocalDateTime.now())) {
                 throw new DataInvalidaException();
             }
-
-            return this.dao.marcarColeta(id, dataHora, enfermeiro, codigo, tipo, paciente, condicaoDaAmostra);
+            return this.dao.marcarColeta(id, dataHora, enfermeiro, tipo, paciente, condicaoDaAmostra);
 
         } catch (DataInvalidaException e) {
             System.err.println(e.getMessage());

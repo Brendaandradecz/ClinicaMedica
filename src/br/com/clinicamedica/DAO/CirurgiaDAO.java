@@ -1,9 +1,7 @@
 package br.com.clinicamedica.DAO;
 
 import br.com.clinicamedica.Contract.IDAO;
-import br.com.clinicamedica.Contract.IDemandas;
 import br.com.clinicamedica.Model.Cirurgia;
-import br.com.clinicamedica.Model.Consulta;
 
 import java.util.ArrayList;
 
@@ -17,24 +15,22 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
     @Override
     public boolean adicionar(Cirurgia cirurgia) {
         cirurgiaDao.add(cirurgia);
-        System.out.println("Cirurgia adicionada ao sistema!\n");
+        System.out.println("\nCirurgia adicionada ao sistema!\n");
         return true;
     }
     @Override
     public boolean remover(Cirurgia cirurgia) {
         cirurgiaDao.remove(cirurgia);
-        System.out.println("Cirurgia adicionada ao sistema!\n");
+        System.out.println("\nCirurgia removida do sistema!\n");
         return true;
     }
     @Override
     public boolean buscar(String busca) {
         for (Cirurgia cirurgia: cirurgiaDao) {
-            if(cirurgia.getPaciente().getCpf().equals(busca) || cirurgia.getPaciente().getNome().equals(busca)){
-                System.out.println("\nINFORMACOES DA CIRURGIA:");
-                System.out.println("Cirurgia realizada no paciente " + cirurgia.getPaciente().getNome() +
-                        ". \nData e hora da cirurgia: " + cirurgia.getDataHora() +
-                        ". \nProcedimento: " + cirurgia.getProcedimento() +
-                        ". \nCirugia feita por: " + cirurgia.getMedico().getNome());
+            if(cirurgia.getPaciente().getCpf().toLowerCase().contains(busca) ||
+                    cirurgia.getPaciente().getNome().toLowerCase().contains(busca)){
+                System.out.println("\nCirurgia encontrada:");
+                imprimirInfo(cirurgia);
                 return true;
             }
         }
@@ -44,11 +40,7 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
     @Override
     public ArrayList<Cirurgia> listarTodos() {
         for (Cirurgia cirurgia: cirurgiaDao) {
-            System.out.println("\nINFORMACOES DA CIRURGIA:");
-            System.out.println("Cirurgia realizada no paciente " + cirurgia.getPaciente().getNome() +
-                    ". \nData e hora da cirurgia: " + cirurgia.getDataHora() +
-                    ". \nProcedimento: " + cirurgia.getProcedimento() +
-                    ". \nCirugia feita por: " + cirurgia.getMedico().getNome());
+            imprimirInfo(cirurgia);
         }
         return cirurgiaDao;
     }
@@ -59,5 +51,20 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
             }
         }
         return null;
+    }
+
+    @Override
+    public void imprimirInfo(Cirurgia cirurgia) {
+        String dia = String.format(cirurgia.getDataHora().getDayOfMonth() +
+                "/" + cirurgia.getDataHora().getMonthValue() +
+                "/" + cirurgia.getDataHora().getYear() + " as " + cirurgia.getDataHora().getHour() +
+                ":" + cirurgia.getDataHora().getMinute());
+
+        System.out.println("\nCirurgia encontrada:");
+        System.out.println("\nINFORMACOES DA CIRURGIA:");
+        System.out.println("Cirurgia realizada no paciente " + cirurgia.getPaciente().getNome() +
+                ". \nData e hora da cirurgia: " + dia +
+                ". \nProcedimento: " + cirurgia.getProcedimento() +
+                ". \nCirugia feita por: " + cirurgia.getMedico().getNome());
     }
 }

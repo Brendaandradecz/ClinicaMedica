@@ -9,6 +9,5 @@ public interface IDAO<T>{
     ArrayList<T> listarTodos();
     boolean remover(T elemento);
     ArrayList<T> getArray();
-
-
+    void imprimirInfo(T elemento);
 }

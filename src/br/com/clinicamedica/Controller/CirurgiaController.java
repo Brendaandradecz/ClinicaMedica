@@ -1,8 +1,6 @@
 package br.com.clinicamedica.Controller;
 
 import br.com.clinicamedica.Contract.IController;
-import br.com.clinicamedica.Contract.IDAO;
-import br.com.clinicamedica.Contract.IDemandasController;
 import br.com.clinicamedica.DAO.CirurgiaDAO;
 import br.com.clinicamedica.Exception.DuplicacaoException;
 import br.com.clinicamedica.Exception.ElementoInexistenteException;
@@ -33,7 +31,7 @@ public class CirurgiaController implements IController<Cirurgia> {
             if (dao.getArray().contains(elemento)) {
                 return this.dao.remover(elemento);
             } else {
-                throw new ElementoInexistenteException();
+                throw new ElementoInexistenteException("Cirurgia");
             }
         } catch (ElementoInexistenteException e) {
             System.err.println(e.getMessage());
@@ -45,7 +43,7 @@ public class CirurgiaController implements IController<Cirurgia> {
     public boolean buscar(String busca) {
         try{
             if(!(this.dao.buscar(busca))){
-                throw new ResultadoNaoEncontradoException();
+                throw new ResultadoNaoEncontradoException("a Cirurgia");
             }else{
                 return this.dao.buscar(busca);
             }
@@ -59,7 +57,7 @@ public class CirurgiaController implements IController<Cirurgia> {
     public ArrayList<Cirurgia> listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
-                throw new ListaVaziaException();
+                throw new ListaVaziaException("Cirurgias");
             }else{
                 return this.dao.listarTodos();
             }

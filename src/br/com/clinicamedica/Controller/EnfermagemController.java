@@ -32,7 +32,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     public boolean buscar(String busca) {
         try {
             if (!(this.dao.buscar(busca))) {
-                throw new ResultadoNaoEncontradoException();
+                throw new ResultadoNaoEncontradoException(" Enfermeiro(a)");
             } else {
                 return this.dao.buscar(busca);
             }
@@ -43,10 +43,10 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     }
 
     @Override
-    public ArrayList listarTodos() {
+    public ArrayList<Enfermagem> listarTodos() {
         try {
             if (dao.getArray().isEmpty()) {
-                throw new ListaVaziaException();
+                throw new ListaVaziaException("Enfermeiros");
             } else {
                 return this.dao.listarTodos();
             }
@@ -62,7 +62,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
             if (dao.getArray().contains(elemento)) {
                 return this.dao.remover(elemento);
             } else {
-                throw new ElementoInexistenteException();
+                throw new ElementoInexistenteException("Enfermeiro(a)");
             }
         } catch (ElementoInexistenteException e) {
             System.err.println(e.getMessage());
@@ -76,7 +76,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
             if(dataHora.isBefore(LocalDateTime.now())){
                 throw new DataInvalidaException();
             } else {
-                return realizarTriagem(paciente, dataHora);
+                return this.dao.realizarTriagem(paciente, dataHora);
             }
         } catch (DataInvalidaException e){
             System.err.println(e.getMessage());
@@ -87,12 +87,14 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     @Override
     public boolean realizarColeta(ColetaDeAmostras coleta) {
         try {
-            if (coleta == null || coleta.getCondicaoDaAmostra().contains("Danificada")){
-                throw new AmostraInvalidaOuDanificadaException();
-            }else{
-                return this.dao.realizarColeta(coleta);
+            if(coleta == null){
+                throw new NaoAgendadaException("Coleta de Amostras");
             }
-        } catch (AmostraInvalidaOuDanificadaException e) {
+            if (coleta.getCondicaoDaAmostra().equalsIgnoreCase("danificada")){
+                throw new AmostraInvalidaOuDanificadaException();
+            }
+            return this.dao.realizarColeta(coleta);
+        } catch (NaoAgendadaException | AmostraInvalidaOuDanificadaException e) {
             System.err.println(e.getMessage());
         }
         return false;

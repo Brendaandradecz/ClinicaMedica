@@ -23,20 +23,17 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     @Override
     public boolean adicionar(Biomedico biomedico) {
         biomedicoDao.add(biomedico);
-        System.out.println("Biomedico(a) adicionado(a) ao sistema!\n");
+        System.out.println("\nBiomedico(a) adicionado(a) ao sistema!\n");
         return true;
     }
 
     @Override
     public boolean buscar(String busca) {
         for (Biomedico biomedico : biomedicoDao) {
-            if (biomedico.getCpf().equals(busca) || biomedico.getCrbm().equals(busca) || biomedico.getNome().equals(busca)) {
-                System.out.println("\nInformacoes de " + biomedico.getNome());
-                System.out.println("Nome: " + biomedico.getNome()
-                + ". \nCRBM: " + biomedico.getCrbm()
-                + ". \nCPF: " + biomedico.getCpf()
-                + ". \nTelefone: " + biomedico.getTelefone()
-                + ". \nEmail: " + biomedico.getEmail());
+            if (biomedico.getCpf().toLowerCase().contains(busca) ||
+                    biomedico.getCrbm().toLowerCase().contains(busca) ||
+                    biomedico.getNome().toLowerCase().contains(busca)) {
+                imprimirInfo(biomedico);
                 return true;
             }
         }
@@ -46,12 +43,7 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     @Override
     public ArrayList<Biomedico> listarTodos() {
         for (Biomedico biomedico : biomedicoDao) {
-            System.out.println("\nInformacoes de " + biomedico.getNome());
-            System.out.println("Nome: " + biomedico.getNome()
-                    + ". \nCRBM: " + biomedico.getCrbm()
-                    + ". \nCPF: " + biomedico.getCpf()
-                    + ". \nTelefone: " + biomedico.getTelefone()
-                    + ". \nEmail: " + biomedico.getEmail());
+            imprimirInfo(biomedico);
         }
         return biomedicoDao;
     }
@@ -59,7 +51,7 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     @Override
     public boolean remover(Biomedico biomedico) {
         biomedicoDao.remove(biomedico);
-        System.out.println("Biomedico(a) removido do sistema!\n");
+        System.out.println("\nBiomedico(a) removido do sistema!\n");
         return true;
     }
 
@@ -69,6 +61,16 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
         analiseController.adicionar(analise);
         double Positivo = 0.7;
 
+        String diaAnalise = String.format(analise.getDataHora().getDayOfMonth() +
+                "/" + analise.getDataHora().getMonthValue() +
+                "/" + analise.getDataHora().getYear() + " as " + analise.getDataHora().getHour() +
+                ":" + analise.getDataHora().getMinute());
+
+        String diaColeta = String.format(coleta.getDataHora().getDayOfMonth() +
+                "/" + coleta.getDataHora().getMonthValue() +
+                "/" + coleta.getDataHora().getYear() + " as " + coleta.getDataHora().getHour() +
+                ":" + coleta.getDataHora().getMinute());
+
         if (resultado >= Positivo) {
             System.out.println("A analise indicou um resultado positivo.\n");
         } else {
@@ -77,7 +79,8 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
         System.out.println("INFORMACOES DA ANALISE DE AMOSTRAS:");
         System.out.println("Coleta de amostras realizada para o paciente " + coleta.getPaciente().getNome() +
                 ". \nTipo de amostra: " + coleta.getTipo() +
-                ". \nData e hora da coleta: " + coleta.getDataHora() +
+                ". \nData e hora da coleta: " + diaColeta +
+                ". \nData e hora da analise: " + diaAnalise +
                 ". \nResultado: " + analise.getResultado());
 
         return true;
@@ -101,6 +104,17 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     @Override
     public boolean removerAnalise(Analise analise) {
         return this.analiseController.remover(analise);
+    }
+
+    @Override
+    public void imprimirInfo(Biomedico biomedico) {
+        System.out.println("\nBiomedico(a) encontrado(a):");
+        System.out.println("\nInformacoes de " + biomedico.getNome());
+        System.out.println("Nome: " + biomedico.getNome()
+                + ". \nCRBM: " + biomedico.getCrbm()
+                + ". \nCPF: " + biomedico.getCpf()
+                + ". \nTelefone: " + biomedico.getTelefone()
+                + ". \nEmail: " + biomedico.getEmail());
     }
 }
 

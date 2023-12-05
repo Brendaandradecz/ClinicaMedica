@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface IRecepcionistaController {
     boolean marcarCirurgia(String id, LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento);
 
-    boolean marcarColeta(String id, LocalDateTime dataHora, Enfermagem enfermeiro, String codigo, String tipo, Paciente paciente, String condicaoDaAmostra);
+    boolean marcarColeta(String id, LocalDateTime dataHora, Enfermagem enfermeiro, String tipo, Paciente paciente, String condicaoDaAmostra);
 
     boolean marcarConsulta(String id, LocalDateTime dataHora, Medico medico, Paciente paciente);
 

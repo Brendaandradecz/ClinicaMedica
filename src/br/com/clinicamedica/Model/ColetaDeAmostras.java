@@ -4,16 +4,14 @@ import java.time.LocalDateTime;
 
 public class ColetaDeAmostras {
     private String tipo;
-    private String codigo;
     private Enfermagem enfermeiro;
     private Paciente paciente;
     private LocalDateTime dataHora;
     private String condicaoDaAmostra;
     private String id;
 
-    public ColetaDeAmostras(String tipo, String codigo, Enfermagem enfermeiro, Paciente paciente, LocalDateTime dataHora, String condicaoDaAmostra, String id){
+    public ColetaDeAmostras(String tipo, Enfermagem enfermeiro, Paciente paciente, LocalDateTime dataHora, String condicaoDaAmostra, String id){
         this.tipo = tipo;
-        this.codigo = codigo;
         this.enfermeiro = enfermeiro;
         this.paciente = paciente;
         this.dataHora = dataHora;
@@ -35,14 +33,6 @@ public class ColetaDeAmostras {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public Enfermagem getEnfermeiro() {
