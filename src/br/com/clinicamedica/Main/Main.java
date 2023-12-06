@@ -45,9 +45,9 @@ public class Main {
         scanner.nextLine();
         Paciente paciente1 = new Paciente(nomePaciente1, idade1, cpfPaciente1, emailPaciente1, telefonePaciente1, possuiConvenio1, condicaoNormal1, pressaoArterialAlterada1, pacienteAcompanhado1);
 
-        //teste para buscar, pode apagar essas duas linhas dps
+
         pacienteController.adicionar(paciente1);
-        pacienteController.buscar("brenda");
+        pacienteController.buscar("brend");
 
         System.out.println("\nCadastrando Biomedico(a)");
         System.out.println("Insira o nome do Biomedico(a): ");

@@ -28,13 +28,15 @@ public class PacienteController implements IController<Paciente> {
 
     @Override
     public boolean buscar(String busca) {
-        try{
-            if(!(this.dao.buscar(busca))){
-                throw new ResultadoNaoEncontradoException(" Paciente");
-            }else{
-                return this.dao.buscar(busca);
+        try {
+            boolean pacienteEncontrado = this.dao.buscar(busca);
+
+            if (!pacienteEncontrado) {
+                throw new ResultadoNaoEncontradoException("Paciente");
+            } else {
+                return pacienteEncontrado;
             }
-        } catch(ResultadoNaoEncontradoException e){
+        } catch (ResultadoNaoEncontradoException e) {
             System.err.println(e.getMessage());
         }
         return false;
