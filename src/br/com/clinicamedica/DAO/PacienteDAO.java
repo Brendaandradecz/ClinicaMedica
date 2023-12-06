@@ -22,9 +22,10 @@ public class PacienteDAO implements IDAO<Paciente> {
 
     @Override
     public boolean buscar(String busca) {
+        String buscaLowerCase = busca.toLowerCase();
         for (Paciente paciente: pacienteDao) {
-            if(paciente.getNome().toLowerCase().contains(busca) ||
-                    paciente.getCpf().toLowerCase().contains(busca)){
+            if(paciente.getNome().toLowerCase().contains(buscaLowerCase) ||
+                    paciente.getCpf().toLowerCase().contains(buscaLowerCase)){
                 System.out.println("\nPaciente encontrado:");
                 imprimirInfo(paciente);
                 return true;

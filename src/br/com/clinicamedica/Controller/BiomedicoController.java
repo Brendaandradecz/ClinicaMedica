@@ -31,10 +31,12 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
     @Override
     public boolean buscar(String busca) {
         try {
-            if (!(this.dao.buscar(busca))) {
+            boolean biomedicoEncontrado = this.dao.buscar(busca);
+
+            if (!biomedicoEncontrado) {
                 throw new ResultadoNaoEncontradoException(" Biomedico(a)");
             } else {
-                return this.dao.buscar(busca);
+                return biomedicoEncontrado;
             }
         } catch (ResultadoNaoEncontradoException e) {
             System.err.println(e.getMessage());
@@ -42,12 +44,14 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
         return false;
     }
 
+
     @Override
     public ArrayList<Biomedico> listarTodos() {
         try {
             if (dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Biomedicos");
             } else {
+                System.out.println("\nLista de Biomedicos cadastrados no sistema");
                 return this.dao.listarTodos();
             }
         } catch (ListaVaziaException e) {

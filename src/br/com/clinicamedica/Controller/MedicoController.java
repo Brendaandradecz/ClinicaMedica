@@ -30,10 +30,12 @@ public class MedicoController implements IController<Medico>, IMedicoController 
     @Override
     public boolean buscar(String busca) {
         try {
-            if (!(this.dao.buscar(busca))) {
+            boolean medicoEncontrado = this.dao.buscar(busca);
+
+            if (!medicoEncontrado) {
                 throw new ResultadoNaoEncontradoException(" Medico(a)");
             } else {
-                return this.dao.buscar(busca);
+                return medicoEncontrado;
             }
         } catch (ResultadoNaoEncontradoException e) {
             System.err.println(e.getMessage());
@@ -47,6 +49,7 @@ public class MedicoController implements IController<Medico>, IMedicoController 
             if (dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Medicos");
             } else {
+                System.out.println("\nLista de Medicos cadastrados no sistema");
                 return this.dao.listarTodos();
             }
         } catch (ListaVaziaException e) {

@@ -17,7 +17,7 @@ public class ConsultaController implements IController<Consulta> {
     public boolean adicionar(Consulta elemento) {
         try{
             if(this.dao.getArray().contains(elemento)){
-                throw new DuplicacaoException("Cirurgia");
+                throw new DuplicacaoException("Consulta");
             }else{
                 return this.dao.adicionar(elemento);
             }
@@ -42,10 +42,11 @@ public class ConsultaController implements IController<Consulta> {
     @Override
     public boolean buscar(String busca) {
         try{
-            if(!(this.dao.buscar(busca))){
+            boolean consultaEncontrada = this.dao.buscar(busca);
+            if(!consultaEncontrada){
                 throw new ResultadoNaoEncontradoException("a Consulta");
             }else{
-                return this.dao.buscar(busca);
+                return consultaEncontrada;
             }
         } catch(ResultadoNaoEncontradoException e){
             System.err.println(e.getMessage());
@@ -59,6 +60,7 @@ public class ConsultaController implements IController<Consulta> {
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Consutas");
             }else{
+                System.out.println("\nLista de Consultas cadastradas no sistema");
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){

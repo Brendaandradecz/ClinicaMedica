@@ -29,10 +29,12 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
 
     @Override
     public boolean buscar(String busca) {
+        String buscaLowerCase = busca.toLowerCase();
         for (Biomedico biomedico : biomedicoDao) {
-            if (biomedico.getCpf().toLowerCase().contains(busca) ||
-                    biomedico.getCrbm().toLowerCase().contains(busca) ||
-                    biomedico.getNome().toLowerCase().contains(busca)) {
+            if (biomedico.getCpf().toLowerCase().contains(buscaLowerCase) ||
+                    biomedico.getCrbm().toLowerCase().contains(buscaLowerCase) ||
+                    biomedico.getNome().toLowerCase().contains(buscaLowerCase)) {
+                System.out.println("\nBiomedico(a) encontrado(a):");
                 imprimirInfo(biomedico);
                 return true;
             }
@@ -108,7 +110,6 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
 
     @Override
     public void imprimirInfo(Biomedico biomedico) {
-        System.out.println("\nBiomedico(a) encontrado(a):");
         System.out.println("\nInformacoes de " + biomedico.getNome());
         System.out.println("Nome: " + biomedico.getNome()
                 + ". \nCRBM: " + biomedico.getCrbm()

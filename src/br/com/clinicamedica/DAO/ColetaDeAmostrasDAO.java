@@ -23,9 +23,10 @@ public class ColetaDeAmostrasDAO implements IDAO<ColetaDeAmostras> {
 
     @Override
     public boolean buscar(String busca) {
+        String buscaLowerCase = busca.toLowerCase();
         for (ColetaDeAmostras coleta: coletaDeAmostrasDao) {
-            if(coleta.getPaciente().getNome().toLowerCase().contains(busca) ||
-                    coleta.getPaciente().getCpf().toLowerCase().contains(busca)){
+            if(coleta.getPaciente().getNome().toLowerCase().contains(buscaLowerCase) ||
+                    coleta.getPaciente().getCpf().toLowerCase().contains(buscaLowerCase)){
                 System.out.println("\nColeta de Amostras encontrada:");
                 imprimirInfo(coleta);
                 return true;

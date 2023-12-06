@@ -42,10 +42,11 @@ public class AnaliseController implements IController<Analise> {
     @Override
     public boolean buscar(String busca) {
         try{
-            if(!(this.dao.buscar(busca))){
+            boolean analiseEncontrada = this.dao.buscar(busca);
+            if(!analiseEncontrada){
                 throw new ResultadoNaoEncontradoException("a Analise");
             }else{
-                return this.dao.buscar(busca);
+                return analiseEncontrada;
             }
         } catch(ResultadoNaoEncontradoException e){
             System.err.println(e.getMessage());
@@ -58,6 +59,7 @@ public class AnaliseController implements IController<Analise> {
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Analises");
             }else{
+                System.out.println("\nLista de Analises cadastradas no sistema");
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){

@@ -26,9 +26,10 @@ public class AnaliseDAO implements IDAO<Analise> {
 
     @Override
     public boolean buscar(String busca) {
+        String buscaLowerCase = busca.toLowerCase();
         for (Analise analise: analiseDao) {
-            if(analise.getPaciente().getNome().toLowerCase().contains(busca) ||
-                    analise.getPaciente().getCpf().toLowerCase().contains(busca)){
+            if(analise.getPaciente().getNome().toLowerCase().contains(buscaLowerCase) ||
+                    analise.getPaciente().getCpf().toLowerCase().contains(buscaLowerCase)){
                 System.out.println("\nAnalise encontrada:");
                 imprimirInfo(analise);
                 return true;

@@ -22,9 +22,10 @@ public class LimpezaDAO implements IDAO<Limpeza> {
 
     @Override
     public boolean buscar(String busca) {
+        String buscaLowerCase = busca.toLowerCase();
         for (Limpeza limpeza: limpezaDao) {
-            if (limpeza.getCpf().toLowerCase().contains(busca) ||
-                    limpeza.getNome().toLowerCase().contains(busca)) {
+            if (limpeza.getCpf().toLowerCase().contains(buscaLowerCase) ||
+                    limpeza.getNome().toLowerCase().contains(buscaLowerCase)) {
                 System.out.println("\nFuncionario(a) encontrado(a):");
                 imprimirInfo(limpeza);
                 return true;

@@ -26,9 +26,10 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
     }
     @Override
     public boolean buscar(String busca) {
+        String buscaLowerCase = busca.toLowerCase();
         for (Cirurgia cirurgia: cirurgiaDao) {
-            if(cirurgia.getPaciente().getCpf().toLowerCase().contains(busca) ||
-                    cirurgia.getPaciente().getNome().toLowerCase().contains(busca)){
+            if(cirurgia.getPaciente().getCpf().toLowerCase().contains(buscaLowerCase) ||
+                    cirurgia.getPaciente().getNome().toLowerCase().contains(buscaLowerCase)){
                 System.out.println("\nCirurgia encontrada:");
                 imprimirInfo(cirurgia);
                 return true;
@@ -60,7 +61,6 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
                 "/" + cirurgia.getDataHora().getYear() + " as " + cirurgia.getDataHora().getHour() +
                 ":" + cirurgia.getDataHora().getMinute());
 
-        System.out.println("\nCirurgia encontrada:");
         System.out.println("\nINFORMACOES DA CIRURGIA:");
         System.out.println("Cirurgia realizada no paciente " + cirurgia.getPaciente().getNome() +
                 ". \nData e hora da cirurgia: " + dia +

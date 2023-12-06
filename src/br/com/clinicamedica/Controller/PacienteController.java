@@ -32,7 +32,7 @@ public class PacienteController implements IController<Paciente> {
             boolean pacienteEncontrado = this.dao.buscar(busca);
 
             if (!pacienteEncontrado) {
-                throw new ResultadoNaoEncontradoException("Paciente");
+                throw new ResultadoNaoEncontradoException(" Paciente");
             } else {
                 return pacienteEncontrado;
             }
@@ -48,6 +48,7 @@ public class PacienteController implements IController<Paciente> {
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Pacientes");
             }else{
+                System.out.println("\nLista de Pacientes cadastrados no sistema");
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){

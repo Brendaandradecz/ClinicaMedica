@@ -31,9 +31,10 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
 
     @Override
     public boolean buscar(String busca) {
+        String buscaLowerCase = busca.toLowerCase();
         for (Recepcionista recepcionista: recepcionistaDao) {
-            if(recepcionista.getNome().toLowerCase().contains(busca) ||
-                    recepcionista.getCpf().toLowerCase().contains(busca)){
+            if(recepcionista.getNome().toLowerCase().contains(buscaLowerCase) ||
+                    recepcionista.getCpf().toLowerCase().contains(buscaLowerCase)){
                 System.out.println("\nRecepcionista encontrado(a):");
                 imprimirInfo(recepcionista);
                 return true;

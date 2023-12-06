@@ -21,10 +21,11 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
 
     @Override
     public boolean buscar(String busca) {
+        String buscaLowerCase = busca.toLowerCase();
         for (Enfermagem enfermagem : enfermagemDao) {
-            if (enfermagem.getCpf().toLowerCase().contains(busca) ||
-                    enfermagem.getCoren().toLowerCase().contains(busca) ||
-                    enfermagem.getNome().toLowerCase().contains(busca)) {
+            if (enfermagem.getCpf().toLowerCase().contains(buscaLowerCase) ||
+                    enfermagem.getCoren().toLowerCase().contains(buscaLowerCase) ||
+                    enfermagem.getNome().toLowerCase().contains(buscaLowerCase)) {
                 System.out.println("\nEnfermeiro(a) encontrado(a):");
                 imprimirInfo(enfermagem);
                 return true;

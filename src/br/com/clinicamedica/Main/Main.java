@@ -45,10 +45,6 @@ public class Main {
         scanner.nextLine();
         Paciente paciente1 = new Paciente(nomePaciente1, idade1, cpfPaciente1, emailPaciente1, telefonePaciente1, possuiConvenio1, condicaoNormal1, pressaoArterialAlterada1, pacienteAcompanhado1);
 
-
-        pacienteController.adicionar(paciente1);
-        pacienteController.buscar("brend");
-
         System.out.println("\nCadastrando Biomedico(a)");
         System.out.println("Insira o nome do Biomedico(a): ");
         String nomeBio1 = scanner.nextLine();
@@ -231,14 +227,14 @@ public class Main {
         Limpeza funcionarioLimpeza1 = new Limpeza(nomeFuncLimp1, cpfFuncLimp1, emailFuncLimp1, telefoneFuncLimp1);
 
         System.out.println("\nMarcando Cirurgia");
-        LocalDateTime dataHoraCirurgia1 = LocalDateTime.of(2023,12,10,10,0, 4, 4);
+        LocalDateTime dataHoraCirurgia1 = LocalDateTime.of(2023,12,19,10,30, 0);
         System.out.println("Insira o Procedimento Cirurgico: ");
         String procedimentoCirurgia1 = scanner.nextLine();
 
         recepcionistaController.marcarCirurgia("1", dataHoraCirurgia1, cardiologista1, paciente1, procedimentoCirurgia1);
 
         System.out.println("\nMarcando Cirurgia");
-        LocalDateTime dataHoraCirurgia2 = LocalDateTime.of(2023,12,10,10,0, 4, 4);
+        LocalDateTime dataHoraCirurgia2 = LocalDateTime.of(2023,12,19,10,30, 0);
         System.out.println("Insira o Procedimento Cirurgico: ");
         String procedimentoCirurgia2 = scanner.nextLine();
         recepcionistaController.marcarCirurgia("2", dataHoraCirurgia2, clinicoGeral1, paciente1, procedimentoCirurgia2);
@@ -247,7 +243,7 @@ public class Main {
         System.out.println("Insira o tipo de amostra: ");
         String tipo1 = scanner.next();
         scanner.nextLine();
-        LocalDateTime dataHoraColeta1 = LocalDateTime.of(2023,12,10,10,0, 4, 4);
+        LocalDateTime dataHoraColeta1 = LocalDateTime.of(2023,12,20,10,30, 0);
         System.out.println("Insira a condicao da amostra: ");
         String condicaoDaAmostra1 = scanner.next();
         scanner.nextLine();
@@ -257,36 +253,36 @@ public class Main {
         System.out.println("Insira o tipo de amostra: ");
         String tipo2 = scanner.next();
         scanner.nextLine();
-        LocalDateTime dataHoraColeta2 = LocalDateTime.of(2023,12,10,10,0, 4, 4);
+        LocalDateTime dataHoraColeta2 = LocalDateTime.of(2023,12,19,11,30, 0);
         System.out.println("Insira a condicao da amostra: ");
         scanner.nextLine();
         String condicaoDaAmostra2 = scanner.next();
         recepcionistaController.marcarColeta("4", dataHoraColeta2, tecnicoEnfermagem1, tipo2, paciente1, condicaoDaAmostra2);
 
         System.out.println("\nMarcando Consulta");
-        LocalDateTime dataHoraConsulta1 = LocalDateTime.of(2023,12,10,10,0, 4, 4);
+        LocalDateTime dataHoraConsulta1 = LocalDateTime.of(2023,12,20,10,30, 0);
         recepcionistaController.marcarConsulta("5", dataHoraConsulta1, urologista1, paciente1);
 
         System.out.println("\nMarcando Consulta");
-        LocalDateTime dataHoraConsulta2 = LocalDateTime.of(2023,12,10,10,0, 4, 4);
+        LocalDateTime dataHoraConsulta2 = LocalDateTime.of(2023,12,22,10,30, 0);
         recepcionistaController.marcarConsulta("6", dataHoraConsulta2, psiquiatra1, paciente1);
 
 
         System.out.println("\nMarcando Consulta");
-        LocalDateTime dataHoraConsulta3 = LocalDateTime.of(2023,12,10,10,0, 4, 4);
+        LocalDateTime dataHoraConsulta3 = LocalDateTime.of(2023,12,21,10,30, 0);
         recepcionistaController.marcarConsulta("7", dataHoraConsulta3, ginecologista1, paciente1);
 
         System.out.println("\nCadastrando Analise");
         System.out.println("Insira o resultado da analise: ");
         double resultado1 = scanner.nextDouble();
         scanner.nextLine();
-        biomedicoController.fazerAnaliseDeAmostras("8",biomedico1, paciente1,LocalDateTime.of(2024,2,2,2,2,2), resultado1, recepcionistaController.encontrarColeta("3"));
+        biomedicoController.fazerAnaliseDeAmostras("8",biomedico1, paciente1,LocalDateTime.of(2024,1,2,12,30,0), resultado1, recepcionistaController.encontrarColeta("3"));
 
         System.out.println("\nCadastrando Analise");
         System.out.println("Insira o resultado da analise: ");
         double resultado2 = scanner.nextDouble();
         scanner.nextLine();
-        biomedicoController.fazerAnaliseDeAmostras("9", biomedico2, paciente1,LocalDateTime.of(2024,2,2,2,2,2), resultado2, recepcionistaController.encontrarColeta("4"));
+        biomedicoController.fazerAnaliseDeAmostras("9", biomedico2, paciente1,LocalDateTime.of(2024,1,2,11,30,0), resultado2, recepcionistaController.encontrarColeta("4"));
 
         pacienteController.listarTodos();
 
@@ -306,10 +302,9 @@ public class Main {
         recepcionistaController.adicionar(recepcionista1);
 
         pacienteController.buscar("brenda");
-        biomedicoController.buscar("Samuel");
-        medicoController.buscar("b");
+        biomedicoController.buscar("samuel");
+        medicoController.buscar("andrade");
 
-        System.out.println("Lista de Médicos cadastrados no sistema");
         medicoController.listarTodos();
         recepcionistaController.listarConsultas();
         recepcionistaController.listarColetas();
@@ -321,9 +316,9 @@ public class Main {
         medicoController.fazerConsulta(recepcionistaController.encontrarConsulta("7"));
 
         enfermagemController.realizarColeta(recepcionistaController.encontrarColeta("4"));
-        LocalDateTime dataHoraTriagem1 = LocalDateTime.of(2023,12,10,10,0, 0, 0);
+        LocalDateTime dataHoraTriagem1 = LocalDateTime.of(2023,12,10,10,0, 0);
         enfermagemController.realizarTriagem(paciente1, dataHoraTriagem1);
 
-        recepcionistaController.alterarData(LocalDateTime.of(2022,12,30,13,30, 0, 0), recepcionistaController.encontrarCirurgia("1") );
+        recepcionistaController.alterarData(LocalDateTime.of(2022,12,30,13,30, 0), recepcionistaController.encontrarCirurgia("1") );
     }
 }

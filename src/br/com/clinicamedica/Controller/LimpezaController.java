@@ -29,10 +29,11 @@ public class LimpezaController implements IController<Limpeza> {
     @Override
     public boolean buscar(String busca) {
         try{
-            if(!(this.dao.buscar(busca))){
+            boolean funcionarioEncontrado = this.dao.buscar(busca);
+            if(!funcionarioEncontrado){
                 throw new ResultadoNaoEncontradoException(" Funcionário(a) de limpeza");
             }else{
-                return this.dao.buscar(busca);
+                return funcionarioEncontrado;
             }
         } catch(ResultadoNaoEncontradoException e){
             System.err.println(e.getMessage());
@@ -46,6 +47,7 @@ public class LimpezaController implements IController<Limpeza> {
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Funcionários de limpeza");
             }else{
+                System.out.println("\nLista de Funcionários de limpeza cadastrados no sistema");
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){

@@ -31,10 +31,11 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     @Override
     public boolean buscar(String busca) {
         try {
-            if (!(this.dao.buscar(busca))) {
+            boolean enfermeiroEncontrado = this.dao.buscar(busca);
+            if (!enfermeiroEncontrado) {
                 throw new ResultadoNaoEncontradoException(" Enfermeiro(a)");
             } else {
-                return this.dao.buscar(busca);
+                return enfermeiroEncontrado;
             }
         } catch (ResultadoNaoEncontradoException e) {
             System.err.println(e.getMessage());
@@ -48,6 +49,7 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
             if (dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Enfermeiros");
             } else {
+                System.out.println("\nLista de Enfermeiros cadastrados no sistema");
                 return this.dao.listarTodos();
             }
         } catch (ListaVaziaException e) {

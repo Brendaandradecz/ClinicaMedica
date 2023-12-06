@@ -41,10 +41,11 @@ public class ColetaDeAmostrasController implements IController<ColetaDeAmostras>
     @Override
     public boolean buscar(String busca) {
         try{
-            if(!(this.dao.buscar(busca))){
+            boolean coletaEncontrada = this.dao.buscar(busca);
+            if(!coletaEncontrada){
                 throw new ResultadoNaoEncontradoException("a Coleta de Amostras");
             }else{
-                return this.dao.buscar(busca);
+                return coletaEncontrada;
             }
         } catch(ResultadoNaoEncontradoException e){
             System.err.println(e.getMessage());
@@ -58,6 +59,7 @@ public class ColetaDeAmostrasController implements IController<ColetaDeAmostras>
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Coletas");
             }else{
+                System.out.println("\nLista de Coletas cadastradas no sistema");
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){

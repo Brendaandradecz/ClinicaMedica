@@ -28,10 +28,12 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     @Override
     public boolean buscar(String busca) {
         try{
-            if(!(this.dao.buscar(busca))){
+            boolean recepcionistaEncontrado = this.dao.buscar(busca);
+
+            if(!recepcionistaEncontrado){
                 throw new ResultadoNaoEncontradoException(" Recepcionista");
             }else{
-                return this.dao.buscar(busca);
+                return recepcionistaEncontrado;
             }
         } catch(ResultadoNaoEncontradoException e){
             System.err.println(e.getMessage());
@@ -45,6 +47,7 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Recepcionistas");
             }else{
+                System.out.println("\nLista de Recepcionistas cadastrados no sistema");
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){

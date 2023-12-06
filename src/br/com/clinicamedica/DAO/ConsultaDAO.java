@@ -26,9 +26,10 @@ public class ConsultaDAO implements IDAO<Consulta> {
     }
     @Override
     public boolean buscar(String busca) {
+        String buscaLowerCase = busca.toLowerCase();
         for (Consulta consulta: consultaDao) {
-            if(consulta.getPaciente().getCpf().toLowerCase().contains(busca) ||
-                    consulta.getPaciente().getNome().toLowerCase().contains(busca)){
+            if(consulta.getPaciente().getCpf().toLowerCase().contains(buscaLowerCase) ||
+                    consulta.getPaciente().getNome().toLowerCase().contains(buscaLowerCase)){
                 System.out.println("\nConsulta encontrada:");
                 imprimirInfo(consulta);
                 return true;

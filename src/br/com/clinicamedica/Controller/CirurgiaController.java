@@ -42,10 +42,11 @@ public class CirurgiaController implements IController<Cirurgia> {
     @Override
     public boolean buscar(String busca) {
         try{
-            if(!(this.dao.buscar(busca))){
+            boolean cirurgiaEncontrada = this.dao.buscar(busca);
+            if(!cirurgiaEncontrada){
                 throw new ResultadoNaoEncontradoException("a Cirurgia");
             }else{
-                return this.dao.buscar(busca);
+                return cirurgiaEncontrada;
             }
         } catch(ResultadoNaoEncontradoException e){
             System.err.println(e.getMessage());
@@ -59,6 +60,7 @@ public class CirurgiaController implements IController<Cirurgia> {
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Cirurgias");
             }else{
+                System.out.println("\nLista de Cirurgias cadastradas no sistema");
                 return this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){

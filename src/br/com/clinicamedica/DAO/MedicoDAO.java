@@ -20,10 +20,11 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
 
     @Override
     public boolean buscar(String busca) {
+        String buscaLowerCase = busca.toLowerCase();
         for (Medico medico: medicoDao) {
-            if (medico.getCpf().toLowerCase().contains(busca) ||
-                    medico.getCrm().toLowerCase().contains(busca) ||
-                    medico.getNome().toLowerCase().contains(busca)) {
+            if (medico.getCpf().toLowerCase().contains(buscaLowerCase) ||
+                    medico.getCrm().toLowerCase().contains(buscaLowerCase) ||
+                    medico.getNome().toLowerCase().contains(buscaLowerCase)) {
                 System.out.println("\nMedico(a) encontrado(a): ");
                 imprimirInfo(medico);
                 return true;
