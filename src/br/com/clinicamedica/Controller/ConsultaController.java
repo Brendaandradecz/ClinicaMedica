@@ -55,18 +55,17 @@ public class ConsultaController implements IController<Consulta> {
     }
 
     @Override
-    public ArrayList<Consulta> listarTodos() {
+    public void listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Consutas");
             }else{
                 System.out.println("\nLista de Consultas cadastradas no sistema");
-                return this.dao.listarTodos();
+                this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
             System.err.println(e.getMessage());
         }
-        return null;
     }
     public Consulta encontrar(String id){
         return this.dao.encontrar(id);

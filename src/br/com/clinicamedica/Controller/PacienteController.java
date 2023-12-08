@@ -43,18 +43,17 @@ public class PacienteController implements IController<Paciente> {
     }
 
     @Override
-    public ArrayList<Paciente> listarTodos() {
+    public void listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Pacientes");
             }else{
                 System.out.println("\nLista de Pacientes cadastrados no sistema");
-                return this.dao.listarTodos();
+                this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
             System.err.println(e.getMessage());
         }
-        return null;
     }
 
     @Override

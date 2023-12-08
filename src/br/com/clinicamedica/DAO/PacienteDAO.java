@@ -73,11 +73,10 @@ public class PacienteDAO implements IDAO<Paciente> {
                 + ". \nEmail: " + paciente.getEmail());
     }
     @Override
-    public ArrayList<Paciente> listarTodos() {
+    public void listarTodos() {
         for (Paciente paciente: pacienteDao) {
             imprimirInfo(paciente);
         }
-        return pacienteDao;
     }
 
     @Override

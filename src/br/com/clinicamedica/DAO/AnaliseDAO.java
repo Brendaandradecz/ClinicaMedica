@@ -38,11 +38,10 @@ public class AnaliseDAO implements IDAO<Analise> {
         return false;
     }
     @Override
-    public ArrayList<Analise> listarTodos() {
+    public void listarTodos() {
         for (Analise analise: analiseDao) {
             imprimirInfo(analise);
         }
-        return analiseDao;
     }
     public Analise encontrar(String id){
         for (Analise analise : analiseDao) {

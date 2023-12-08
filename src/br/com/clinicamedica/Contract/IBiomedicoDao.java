@@ -12,6 +12,6 @@ public interface IBiomedicoDao {
     boolean fazerAnaliseDeAmostras(String id, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta);
     boolean adicionarAnalise(Analise analise);
     boolean buscarAnalise(String busca);
-    ArrayList<Analise> listarAnalise();
+    void listarAnalise();
     boolean removerAnalise(Analise analise);
 }

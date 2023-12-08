@@ -36,11 +36,10 @@ public class ColetaDeAmostrasDAO implements IDAO<ColetaDeAmostras> {
     }
 
     @Override
-    public ArrayList<ColetaDeAmostras> listarTodos() {
+    public void listarTodos() {
         for (ColetaDeAmostras coleta: coletaDeAmostrasDao) {
             imprimirInfo(coleta);
         }
-        return coletaDeAmostrasDao;
     }
     @Override
     public ArrayList<ColetaDeAmostras> getArray() {

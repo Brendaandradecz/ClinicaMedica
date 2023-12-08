@@ -54,18 +54,17 @@ public class AnaliseController implements IController<Analise> {
         return false;
     }
     @Override
-    public ArrayList<Analise> listarTodos() {
+    public void listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Analises");
             }else{
                 System.out.println("\nLista de Analises cadastradas no sistema");
-                return this.dao.listarTodos();
+                this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
             System.err.println(e.getMessage());
         }
-        return null;
     }
     public Analise encontrar(String id){
         return this.dao.encontrar(id);

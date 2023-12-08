@@ -42,18 +42,17 @@ public class LimpezaController implements IController<Limpeza> {
     }
 
     @Override
-    public ArrayList<Limpeza> listarTodos() {
+    public void listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Funcionários de limpeza");
             }else{
                 System.out.println("\nLista de Funcionários de limpeza cadastrados no sistema");
-                return this.dao.listarTodos();
+                this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
             System.err.println(e.getMessage());
         }
-        return null;
     }
 
     @Override

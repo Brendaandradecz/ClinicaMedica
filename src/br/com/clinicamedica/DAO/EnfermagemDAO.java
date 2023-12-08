@@ -36,11 +36,10 @@ public class EnfermagemDAO implements IDAO<Enfermagem>, IEnfermagemDao {
 
 
     @Override
-    public ArrayList<Enfermagem> listarTodos() {
+    public void listarTodos() {
         for (Enfermagem enfermagem : enfermagemDao) {
             imprimirInfo(enfermagem);
         }
-        return enfermagemDao;
     }
 
     @Override

@@ -26,9 +26,9 @@ public interface IRecepcionistaDao {
     boolean buscarConsulta(String busca);
     boolean buscarColeta(String busca);
     boolean buscarCirurgia(String busca);
-    ArrayList<Consulta> listarConsultas();
-    ArrayList<Cirurgia> listarCirurgias();
-    ArrayList<ColetaDeAmostras> listarColetas();
+    void listarConsultas();
+    void listarCirurgias();
+    void listarColetas();
     Consulta encontrarConsulta(String id);
     Cirurgia encontrarCirurgia(String id);
     ColetaDeAmostras encontrarColeta(String id);

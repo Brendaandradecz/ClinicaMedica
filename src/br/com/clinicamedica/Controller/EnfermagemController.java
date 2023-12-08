@@ -44,18 +44,17 @@ public class EnfermagemController implements IController<Enfermagem>, IEnfermage
     }
 
     @Override
-    public ArrayList<Enfermagem> listarTodos() {
+    public void listarTodos() {
         try {
             if (dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Enfermeiros");
             } else {
                 System.out.println("\nLista de Enfermeiros cadastrados no sistema");
-                return this.dao.listarTodos();
+                this.dao.listarTodos();
             }
         } catch (ListaVaziaException e) {
             System.err.println(e.getMessage());
         }
-        return null;
     }
 
     @Override

@@ -44,18 +44,17 @@ public class MedicoController implements IController<Medico>, IMedicoController 
     }
 
     @Override
-    public ArrayList<Medico> listarTodos() {
+    public void listarTodos() {
         try {
             if (dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Medicos");
             } else {
                 System.out.println("\nLista de Medicos cadastrados no sistema");
-                return this.dao.listarTodos();
+                this.dao.listarTodos();
             }
         } catch (ListaVaziaException e) {
             System.err.println(e.getMessage());
         }
-        return null;
     }
 
     @Override

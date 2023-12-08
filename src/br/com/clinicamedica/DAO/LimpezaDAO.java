@@ -35,11 +35,10 @@ public class LimpezaDAO implements IDAO<Limpeza> {
     }
 
     @Override
-    public ArrayList<Limpeza> listarTodos() {
+    public void listarTodos() {
         for (Limpeza limpeza: limpezaDao) {
             imprimirInfo(limpeza);
         }
-        return limpezaDao;
     }
 
     @Override

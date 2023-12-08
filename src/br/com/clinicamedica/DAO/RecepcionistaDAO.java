@@ -43,11 +43,10 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
         return false;
     }
     @Override
-    public ArrayList<Recepcionista> listarTodos() {
+    public void listarTodos() {
         for (Recepcionista recepcionista: recepcionistaDao) {
             imprimirInfo(recepcionista);
         }
-        return recepcionistaDao;
     }
 
     @Override
@@ -211,18 +210,18 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
     }
 
     @Override
-    public ArrayList<Consulta> listarConsultas() {
-        return this.consultaController.listarTodos();
+    public void listarConsultas() {
+        this.consultaController.listarTodos();
     }
 
     @Override
-    public ArrayList<Cirurgia> listarCirurgias() {
-        return this.cirurgiaController.listarTodos();
+    public void listarCirurgias() {
+        this.cirurgiaController.listarTodos();
     }
 
     @Override
-    public ArrayList<ColetaDeAmostras> listarColetas() {
-        return this.coletaController.listarTodos();
+    public void listarColetas() {
+        this.coletaController.listarTodos();
     }
     @Override
     public Consulta encontrarConsulta(String id) {

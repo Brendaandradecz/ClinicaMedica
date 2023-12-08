@@ -39,11 +39,10 @@ public class CirurgiaDAO implements IDAO<Cirurgia> {
     }
 
     @Override
-    public ArrayList<Cirurgia> listarTodos() {
+    public void listarTodos() {
         for (Cirurgia cirurgia: cirurgiaDao) {
             imprimirInfo(cirurgia);
         }
-        return cirurgiaDao;
     }
     public Cirurgia encontrar(String id){
         for (Cirurgia cirurgia : cirurgiaDao) {

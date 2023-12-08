@@ -39,11 +39,10 @@ public class ConsultaDAO implements IDAO<Consulta> {
     }
 
     @Override
-    public ArrayList<Consulta> listarTodos() {
+    public void listarTodos() {
         for (Consulta consulta: consultaDao) {
             imprimirInfo(consulta);
         }
-        return consultaDao;
     }
     public Consulta encontrar(String id){
         for (Consulta consulta : consultaDao) {

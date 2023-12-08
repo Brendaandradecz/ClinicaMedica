@@ -42,18 +42,17 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     }
 
     @Override
-    public ArrayList<Recepcionista> listarTodos() {
+    public void listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Recepcionistas");
             }else{
                 System.out.println("\nLista de Recepcionistas cadastrados no sistema");
-                return this.dao.listarTodos();
+                this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
             System.err.println(e.getMessage());
         }
-        return null;
     }
 
     @Override
@@ -203,18 +202,18 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
     }
 
     @Override
-    public ArrayList<Consulta> listarConsultas() {
-        return this.dao.listarConsultas();
+    public void listarConsultas() {
+        this.dao.listarConsultas();
     }
 
     @Override
-    public ArrayList<Cirurgia> listarCirurgias() {
-        return this.dao.listarCirurgias();
+    public void listarCirurgias() {
+        this.dao.listarCirurgias();
     }
 
     @Override
-    public ArrayList<ColetaDeAmostras> listarColetas() {
-        return this.dao.listarColetas();
+    public void listarColetas() {
+        this.dao.listarColetas();
     }
 
     @Override

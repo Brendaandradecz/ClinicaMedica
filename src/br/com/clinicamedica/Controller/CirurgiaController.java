@@ -55,18 +55,17 @@ public class CirurgiaController implements IController<Cirurgia> {
     }
 
     @Override
-    public ArrayList<Cirurgia> listarTodos() {
+    public void listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Cirurgias");
             }else{
                 System.out.println("\nLista de Cirurgias cadastradas no sistema");
-                return this.dao.listarTodos();
+                this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
             System.err.println(e.getMessage());
         }
-        return null;
     }
     public Cirurgia encontrar(String id){
         return this.dao.encontrar(id);

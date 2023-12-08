@@ -12,6 +12,6 @@ public interface IBiomedicoController {
     boolean fazerAnaliseDeAmostras(String id, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta);
     boolean adicionarAnalise(Analise analise);
     boolean buscarAnalise(String busca);
-    ArrayList<Analise> listarAnalises();
+    void listarAnalises();
     boolean removerAnalise(Analise analise);
 }

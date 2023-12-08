@@ -11,6 +11,7 @@ import br.com.clinicamedica.Model.Paciente;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class BiomedicoController implements IController<Biomedico>, IBiomedicoController {
     private BiomedicoDAO dao = new BiomedicoDAO();
@@ -46,18 +47,17 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
 
 
     @Override
-    public ArrayList<Biomedico> listarTodos() {
+    public void listarTodos() {
         try {
             if (dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Biomedicos");
             } else {
                 System.out.println("\nLista de Biomedicos cadastrados no sistema");
-                return this.dao.listarTodos();
+                this.dao.listarTodos();
             }
         } catch (ListaVaziaException e) {
             System.err.println(e.getMessage());
         }
-        return null;
     }
 
     @Override
@@ -103,8 +103,8 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
     }
 
     @Override
-    public ArrayList<Analise> listarAnalises() {
-        return this.dao.listarAnalise();
+    public void listarAnalises() {
+        this.dao.listarAnalise();
     }
 
     @Override

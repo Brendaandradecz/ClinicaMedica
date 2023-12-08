@@ -34,11 +34,10 @@ public class MedicoDAO implements IDAO<Medico>, IMedicoDao {
     }
 
     @Override
-    public ArrayList<Medico> listarTodos() {
+    public void listarTodos() {
         for (Medico medico: medicoDao) {
             imprimirInfo(medico);
         }
-        return medicoDao;
     }
 
     @Override

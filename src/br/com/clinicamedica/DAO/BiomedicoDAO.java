@@ -43,11 +43,10 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     }
 
     @Override
-    public ArrayList<Biomedico> listarTodos() {
+    public void listarTodos() {
         for (Biomedico biomedico : biomedicoDao) {
             imprimirInfo(biomedico);
         }
-        return biomedicoDao;
     }
 
     @Override
@@ -99,8 +98,8 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     }
 
     @Override
-    public ArrayList<Analise> listarAnalise() {
-        return this.analiseController.listarTodos();
+    public void listarAnalise() {
+        this.analiseController.listarTodos();
     }
 
     @Override

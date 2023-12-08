@@ -54,18 +54,17 @@ public class ColetaDeAmostrasController implements IController<ColetaDeAmostras>
     }
 
     @Override
-    public ArrayList<ColetaDeAmostras> listarTodos() {
+    public void listarTodos() {
         try{
             if(dao.getArray().isEmpty()) {
                 throw new ListaVaziaException("Coletas");
             }else{
                 System.out.println("\nLista de Coletas cadastradas no sistema");
-                return this.dao.listarTodos();
+                this.dao.listarTodos();
             }
         } catch(ListaVaziaException e){
             System.err.println(e.getMessage());
         }
-        return null;
     }
     public ColetaDeAmostras encontrar(String id){
         return this.dao.encontrar(id);
