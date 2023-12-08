@@ -70,6 +70,4 @@ public class AnaliseController implements IController<Analise> {
     public Analise encontrar(String id){
         return this.dao.encontrar(id);
     }
-
-
 }

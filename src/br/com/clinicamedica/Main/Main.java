@@ -314,6 +314,7 @@ public class Main {
 
         medicoController.fazerCirurgia(recepcionistaController.encontrarCirurgia("1"));
         medicoController.fazerConsulta(recepcionistaController.encontrarConsulta("7"));
+        medicoController.fazerConsulta(recepcionistaController.encontrarConsulta("10"));
 
         enfermagemController.realizarColeta(recepcionistaController.encontrarColeta("4"));
         LocalDateTime dataHoraTriagem1 = LocalDateTime.of(2023,12,10,10,0, 0);
