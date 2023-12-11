@@ -6,7 +6,6 @@ import br.com.clinicamedica.Model.ColetaDeAmostras;
 import br.com.clinicamedica.Model.Paciente;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public interface IBiomedicoController {
     boolean fazerAnaliseDeAmostras(String id, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta);

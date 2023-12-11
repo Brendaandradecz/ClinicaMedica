@@ -3,7 +3,6 @@ package br.com.clinicamedica.Contract;
 import br.com.clinicamedica.Model.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public interface IRecepcionistaController {
     boolean marcarCirurgia(String id, LocalDateTime dataHora, Medico medico, Paciente paciente, String procedimento);

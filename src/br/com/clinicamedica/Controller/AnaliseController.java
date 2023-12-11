@@ -8,8 +8,6 @@ import br.com.clinicamedica.Exception.ListaVaziaException;
 import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
 import br.com.clinicamedica.Model.Analise;
 
-import java.util.ArrayList;
-
 public class AnaliseController implements IController<Analise> {
     private AnaliseDAO dao = new AnaliseDAO();
     @Override
@@ -23,7 +21,7 @@ public class AnaliseController implements IController<Analise> {
         } catch(DuplicacaoException e){
             System.err.println(e.getMessage());
         }
-        return true;
+        return false;
     }
     @Override
     public boolean remover(Analise elemento) {

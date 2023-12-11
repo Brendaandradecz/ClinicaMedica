@@ -60,7 +60,7 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
     public boolean fazerAnaliseDeAmostras(String id, Biomedico biomedico, Paciente paciente, LocalDateTime dataHora, double resultado, ColetaDeAmostras coleta) {
         Analise analise = new Analise(dataHora, biomedico, paciente, resultado, id);
         analiseController.adicionar(analise);
-        double Positivo = 0.7;
+        double positivo = 0.7;
 
         String diaAnalise = String.format(analise.getDataHora().getDayOfMonth() +
                 "/" + analise.getDataHora().getMonthValue() +
@@ -72,7 +72,7 @@ public class BiomedicoDAO implements IDAO<Biomedico>, IBiomedicoDao {
                 "/" + coleta.getDataHora().getYear() + " as " + coleta.getDataHora().getHour() +
                 ":" + coleta.getDataHora().getMinute());
 
-        if (resultado >= Positivo) {
+        if (resultado >= positivo) {
             System.out.println("A analise indicou um resultado positivo.\n");
         } else {
             System.out.println("A analise indicou um resultado negativo.\n");

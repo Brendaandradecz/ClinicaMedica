@@ -10,8 +10,6 @@ import br.com.clinicamedica.Model.ColetaDeAmostras;
 import br.com.clinicamedica.Model.Paciente;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 
 public class BiomedicoController implements IController<Biomedico>, IBiomedicoController {
     private BiomedicoDAO dao = new BiomedicoDAO();
@@ -99,7 +97,7 @@ public class BiomedicoController implements IController<Biomedico>, IBiomedicoCo
 
     @Override
     public boolean buscarAnalise(String busca) {
-        return this.buscarAnalise(busca);
+        return this.dao.buscarAnalise(busca);
     }
 
     @Override

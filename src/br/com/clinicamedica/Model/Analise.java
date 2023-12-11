@@ -56,8 +56,4 @@ public class Analise {
     public double getResultado() {
         return resultado;
     }
-
-    public void setDiagnostico(String diagnostico) {
-        this.resultado = resultado;
-    }
 }

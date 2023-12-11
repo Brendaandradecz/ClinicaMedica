@@ -8,8 +8,6 @@ import br.com.clinicamedica.Exception.ListaVaziaException;
 import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
 import br.com.clinicamedica.Model.ColetaDeAmostras;
 
-import java.util.ArrayList;
-
 public class ColetaDeAmostrasController implements IController<ColetaDeAmostras> {
     private ColetaDeAmostrasDAO dao = new ColetaDeAmostrasDAO();
     @Override
@@ -23,7 +21,7 @@ public class ColetaDeAmostrasController implements IController<ColetaDeAmostras>
         } catch(DuplicacaoException e){
             System.err.println(e.getMessage());
         }
-        return true;
+        return false;
     }
     @Override
     public boolean remover(ColetaDeAmostras elemento) {

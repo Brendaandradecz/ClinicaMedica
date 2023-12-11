@@ -8,8 +8,6 @@ import br.com.clinicamedica.Exception.ListaVaziaException;
 import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
 import br.com.clinicamedica.Model.Paciente;
 
-import java.util.ArrayList;
-
 public class PacienteController implements IController<Paciente> {
     private PacienteDAO dao = new PacienteDAO();
     @Override
@@ -68,9 +66,5 @@ public class PacienteController implements IController<Paciente> {
             System.err.println(e.getMessage());
         }
         return false;
-    }
-
-    public PacienteDAO getDao() {
-        return dao;
     }
 }

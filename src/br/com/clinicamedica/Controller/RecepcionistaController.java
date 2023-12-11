@@ -7,7 +7,6 @@ import br.com.clinicamedica.Exception.*;
 import br.com.clinicamedica.Model.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class RecepcionistaController implements IController<Recepcionista>, IRecepcionistaController {
     private RecepcionistaDAO dao = new RecepcionistaDAO();
@@ -151,9 +150,6 @@ public class RecepcionistaController implements IController<Recepcionista>, IRec
             System.err.println(e.getMessage());
         }
         return false;
-    }
-    public Consulta encontrar(String id){
-        return this.dao.encontrarConsulta(id);
     }
 
     @Override

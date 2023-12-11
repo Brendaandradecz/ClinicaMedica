@@ -8,8 +8,6 @@ import br.com.clinicamedica.Exception.ListaVaziaException;
 import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
 import br.com.clinicamedica.Model.Limpeza;
 
-import java.util.ArrayList;
-
 public class LimpezaController implements IController<Limpeza> {
     private LimpezaDAO dao = new LimpezaDAO();
     @Override

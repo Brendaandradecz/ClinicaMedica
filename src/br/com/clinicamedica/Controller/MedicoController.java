@@ -8,8 +8,6 @@ import br.com.clinicamedica.Model.Cirurgia;
 import br.com.clinicamedica.Model.Consulta;
 import br.com.clinicamedica.Model.Medico;
 
-import java.util.ArrayList;
-
 public class MedicoController implements IController<Medico>, IMedicoController {
     private MedicoDAO dao = new MedicoDAO();
 

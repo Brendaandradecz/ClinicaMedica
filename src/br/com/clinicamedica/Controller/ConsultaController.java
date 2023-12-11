@@ -8,8 +8,6 @@ import br.com.clinicamedica.Exception.ListaVaziaException;
 import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
 import br.com.clinicamedica.Model.Consulta;
 
-import java.util.ArrayList;
-
 public class ConsultaController implements IController<Consulta> {
 
     private ConsultaDAO dao = new ConsultaDAO();
@@ -24,7 +22,7 @@ public class ConsultaController implements IController<Consulta> {
         } catch(DuplicacaoException e){
             System.err.println(e.getMessage());
         }
-        return true;
+        return false;
     }
     @Override
     public boolean remover(Consulta elemento) {

@@ -9,7 +9,6 @@ import br.com.clinicamedica.Model.Enfermagem;
 import br.com.clinicamedica.Model.Paciente;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class EnfermagemController implements IController<Enfermagem>, IEnfermagemController {
     private EnfermagemDAO dao = new EnfermagemDAO();

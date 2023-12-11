@@ -8,8 +8,6 @@ import br.com.clinicamedica.Exception.ListaVaziaException;
 import br.com.clinicamedica.Exception.ResultadoNaoEncontradoException;
 import br.com.clinicamedica.Model.Cirurgia;
 
-import java.util.ArrayList;
-
 public class CirurgiaController implements IController<Cirurgia> {
     private CirurgiaDAO dao = new CirurgiaDAO();
     @Override
@@ -23,7 +21,7 @@ public class CirurgiaController implements IController<Cirurgia> {
         } catch(DuplicacaoException e){
             System.err.println(e.getMessage());
         }
-        return true;
+        return false;
     }
     @Override
     public boolean remover(Cirurgia elemento) {

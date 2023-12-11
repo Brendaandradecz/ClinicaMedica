@@ -1,6 +1,5 @@
 package br.com.clinicamedica.Contract;
 
-import java.util.ArrayList;
 
 public interface IController<T>{
     boolean adicionar(T elemento);
