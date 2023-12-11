@@ -60,7 +60,7 @@ public class RecepcionistaDAO implements IDAO<Recepcionista>, IRecepcionistaDao 
 
     @Override
     public boolean remover(Recepcionista elemento) {
-        recepcionistaDao.add(elemento);
+        recepcionistaDao.remove(elemento);
         System.out.println("\nRecepcionista removido(a) do sistema!\n");
         return true;
     }
